@@ -1,4 +1,4 @@
-Augmenta for Processing
+Augmenta for Unity
 =======================
 
 A [Unity][] Augmenta helper library and example maintained by [Théoriz studio][]
