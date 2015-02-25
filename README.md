@@ -15,22 +15,20 @@ Install [Unity][], then get the package from here
 How to connect your app with Augmenta
 -------------------------------------
 
-1 --- IMPORT ---
+#### IMPORT
 
-- With Unity open, double-click on the file "Augmenta.unitypackage" or load it via "Assets > Import package > Custom package"
+- Open Unity, then double-click on the package or or load it via "Assets -> Import package -> Custom package"
 - Click "Import"
 - The Augmenta library will be added in your plugins folder
 
-
-2 --- SETUP ---
+#### SETUP
 
 - If you haven't started developing your own app yet, you can copy the "AugmentaExample2D" or "AugmentaExample3D" scene and start working from here
 - If you're integrating Augmenta into an existing project, you have to :
     > Drag the "OscReceiver" prefab into your scene (you can also use it to receive your own Osc messages)
     > Drag the "AugmentaReceiver" prefab into your scene
 
-
-3 --- THE CLASSES AND OBJECTS YOU NEED TO KNOW ---
+#### CLASSES
 
 - Inside the "AugmentaReceiver" object is the "InteractiveArea" object : it is the virtual equivalent of the area where your people/objects are moving in real life. You can move the "InteractiveArea" wherever you like in your scene and virtual people will appear on it.
 - Attached to the "AugmentaReceiver" is a script called "auInterface", which takes care of instanciating and updating cubes representing the people/objects in the real world scene. The easiest way to access information is through this interface. You may want to hide the debug cubes by turning the "debug" variable to "false".
@@ -75,9 +73,9 @@ Data
 ```
     * Augmenta OSC Protocol :
 
-        /au/personWillLeave/ args0 arg1 ... argn
-        /au/personUpdated/   args0 arg1 ... argn
-        /au/personEntered/   args0 arg1 ... argn
+        /au/personWillLeave args0 arg1 ... argn
+        /au/personUpdated   args0 arg1 ... argn
+        /au/personEntered   args0 arg1 ... argn
 
         where args are :
 
@@ -98,7 +96,7 @@ Data
         13: highest.y (float)
         14: highest.z (float)               // Height
 
-        /au/scene/   args0 arg1 ... argn
+        /au/scene   args0 arg1 ... argn
 
         0: currentTime (int)                // Time (in frame number)
         1: percentCovered (float)           // Percent covered
