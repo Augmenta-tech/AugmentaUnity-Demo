@@ -39,12 +39,17 @@ How to connect your app with Augmenta
 4a --- USING AUGMENTA BY GETTING ALL THE OBJECTS IN THE SCENE ---
 
 - Get the dictionary of the Augmenta objects in the scene by doing :
+```
     Dictionary<int,GameObject> myAugmentaObjects = auInterface.getAugmentaObjects();
+```
+
 - Loop through it to read the informations :
+```
     foreach(KeyValuePair<int, GameObject> pair in myAugmentaObjects) {
         Debug.Log("The point with id ["+pair.Key+"] is located at : x="+pair.Value.GetComponent<PersonObject>().getCentroid().x+" and y="+pair.Value.GetComponent<PersonObject>().getCentroid().z);
         Debug.Log ("He's "+pair.Value.GetComponent<PersonObject>().getAge()+" frames old");
     }
+```
 
 4b --- USING AUGMENTA BY LISTENING TO THE MESSAGES ---
 
@@ -58,10 +63,11 @@ How to connect your app with Augmenta
 - If you want to bypass the auInterface and the InteractiveArea, we're okay with that : you just have to know that the position informations will be given between 0 an 1
 - You can listen to the messages broadcasted by the auListener : PersonEntered(Person p) / PersonUpdated(Person p) / PersonWillLeave(Person p)
 - Or access the Persons array like this :
+```
      foreach(KeyValuePair<int, Person> pair in auListener.getPeopleArray()) {
         Debug.Log("The point with id ["+pair.Key+"] has raw values : x="+pair.Value.centroid.x+" and y="+pair.Value.centroid.y);
      }
-
+```
 
 Data
 ----
