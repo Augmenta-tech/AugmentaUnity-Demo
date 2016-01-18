@@ -153,7 +153,9 @@ public class auInterface : MonoBehaviour {
 		centroidObject.transform.rotation = Quaternion.identity;
 
 		// Test if the bounding box info is valid
-		if (person.boundingRect.x >= 0 && person.boundingRect.y >=0 && person.boundingRect.width > 0 && person.boundingRect.height > 0){
+		if (person.boundingRect.x >= 0 && person.boundingRect.x <= 1 
+			&& person.boundingRect.y >= 0 && person.boundingRect.y <= 1
+			&& person.boundingRect.width > 0 && person.boundingRect.height > 0){
 			boundingBoxValid = true;
 		} else if (boundingBoxValid) {
 			boundingBoxValid = false;
