@@ -15,7 +15,7 @@ public class PersonObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Hide/show the cube
-		renderer.enabled = auInterface.debug;
+		GetComponent<Renderer>().enabled = auInterface.debug;
 	}
 	void OnDrawGizmos(){
 		Gizmos.color = Color.red;

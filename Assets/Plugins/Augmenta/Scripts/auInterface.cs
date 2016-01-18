@@ -62,7 +62,7 @@ public class auInterface : MonoBehaviour {
 			personObject.transform.parent = boundingPlane.transform.parent.transform;
 			updatePerson(person, personObject);
 
-			personObject.renderer.material = materials[person.pid % materials.Length];
+			personObject.GetComponent<Renderer>().material = materials[person.pid % materials.Length];
 			arrayPersonCubes.Add(person.pid,personObject);
 			BroadcastMessage("ObjectEntered", personObject, SendMessageOptions.DontRequireReceiver);
 		}
@@ -102,7 +102,7 @@ public class auInterface : MonoBehaviour {
 		foreach(int id in ids) {
 			if(arrayPersonCubes.ContainsKey(id)){
 				GameObject pC = arrayPersonCubes[id];
-				pC.renderer.enabled = bEnable;
+				pC.GetComponent<Renderer>().enabled = bEnable;
 			}
 		}
 		
