@@ -47,6 +47,9 @@ using Augmenta;
 
 public class auListener : MonoBehaviour  {
 
+	public delegate void broadcastMessageHandler(string msg, Person person);
+	public static event broadcastMessageHandler broadcastMessage;
+
 	// Number of frames before a point who hasn't been updated is removed
 	public static int timeOut = 10; // frames
 
@@ -93,7 +96,9 @@ public class auListener : MonoBehaviour  {
 				currentPerson = arrayPerson[pid];
 				updatePerson(currentPerson, args);
 				//personUpdated(person);
-				BroadcastMessage("PersonUpdated", currentPerson, SendMessageOptions.DontRequireReceiver);
+				if(broadcastMessage != null){
+					broadcastMessage("PersonUpdated", currentPerson);
+				}
 			}
 
 		}
@@ -107,14 +112,18 @@ public class auListener : MonoBehaviour  {
 				currentPerson = arrayPerson[pid];
 				updatePerson(currentPerson, args);
 				//personUpdated(person);
-				BroadcastMessage("PersonUpdated", currentPerson, SendMessageOptions.DontRequireReceiver);
+				if(broadcastMessage != null){
+					broadcastMessage("PersonUpdated", currentPerson);
+				}
 			}
 		}
 		else if(address == "/au/personWillLeave/" || address == "/au/personWillLeave"){
 			int pid = (int)args[0];
 			if (arrayPerson.ContainsKey(pid)) {
 				Person personToRemove = arrayPerson[pid];				
-				BroadcastMessage("PersonWillLeave", personToRemove, SendMessageOptions.DontRequireReceiver);
+				if(broadcastMessage != null){
+					broadcastMessage("PersonWillLeave", personToRemove);
+				}
 				arrayPerson.Remove(pid);
 				//personWillLeave(personToRemove);
 			}
@@ -129,7 +138,9 @@ public class auListener : MonoBehaviour  {
 		updatePerson(newPerson, args);
 		arrayPerson.Add(newPerson.pid, newPerson);	
 		//personEntered(newPerson);
-		BroadcastMessage("PersonEntered", newPerson, SendMessageOptions.DontRequireReceiver);
+		if(broadcastMessage != null){
+			broadcastMessage("PersonEntered", newPerson);
+		}
 		return newPerson;
 	}
 	
@@ -180,7 +191,9 @@ public class auListener : MonoBehaviour  {
 						//Debug.Log("***: DESTROY");
 						// The point hasn't been updated for a certain number of frames : remove
 						arrayPerson.Remove(id);
-						BroadcastMessage("PersonWillLeave", p, SendMessageOptions.DontRequireReceiver);
+						if(broadcastMessage != null){
+							broadcastMessage("PersonWillLeave", p);
+						}
 					}
 				}
 			}

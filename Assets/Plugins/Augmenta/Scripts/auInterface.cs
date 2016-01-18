@@ -45,6 +45,15 @@ public class auInterface : MonoBehaviour {
 	
 	void Start () {
 		// Launched at scene startup
+		auListener.broadcastMessage += EventReceiver;
+	}
+		
+	public void onEnable(){
+		auListener.broadcastMessage += EventReceiver;
+	}
+
+	public void onDisable(){
+		auListener.broadcastMessage -= EventReceiver;
 	}
 
 	void Update () {
@@ -53,6 +62,16 @@ public class auInterface : MonoBehaviour {
 	
 	public static Dictionary<int,GameObject> getAugmentaObjects(){
 		return arrayPersonCubes;
+	}
+
+	public void EventReceiver(string msg, Person person){
+		if (msg == "PersonEntered") {
+			PersonEntered(person);
+		} else if (msg == "PersonUpdated") {
+			PersonUpdated(person);
+		} else if (msg == "PersonWillLeave") {
+			PersonWillLeave(person);
+		}
 	}
 	
 	public void PersonEntered(Person person){
@@ -64,7 +83,6 @@ public class auInterface : MonoBehaviour {
 
 			personObject.GetComponent<Renderer>().material = materials[person.pid % materials.Length];
 			arrayPersonCubes.Add(person.pid,personObject);
-			BroadcastMessage("ObjectEntered", personObject, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 
@@ -73,7 +91,6 @@ public class auInterface : MonoBehaviour {
 		if(arrayPersonCubes.ContainsKey(person.pid)){
 			GameObject cubeToMove = arrayPersonCubes[person.pid];
 			updatePerson(person, cubeToMove);
-			BroadcastMessage("ObjectUpdated", cubeToMove, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 
@@ -83,7 +100,6 @@ public class auInterface : MonoBehaviour {
 			//Debug.Log("Destroying cube");
 			GameObject cubeToRemove = arrayPersonCubes[person.pid];
 			// Send only the pid : the actual object will be destroyed
-			BroadcastMessage("ObjectWillLeave", person.pid, SendMessageOptions.DontRequireReceiver);
 			arrayPersonCubes.Remove(person.pid);
 			//delete it from the scene	
 			Destroy(cubeToRemove);
