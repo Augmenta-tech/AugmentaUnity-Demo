@@ -120,7 +120,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GUI.Box(new Rect(20,29,65,25), "Osc port");
+		GUI.Label(new Rect(20,29,65,25), "Osc port");
 
 		if (int.TryParse(GUI.TextField(new Rect(90, 30, 40, 20), port.ToString(), 25), out port)){
 			if(GUI.changed && port > 4000){
