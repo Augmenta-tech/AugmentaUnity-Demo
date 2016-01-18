@@ -69,7 +69,7 @@ public class auInterface : MonoBehaviour {
 	}
 
 	public void PersonUpdated(Person person) {
-		Debug.Log("Person updated pid : " + person.pid);
+		//Debug.Log("Person updated pid : " + person.pid);
 		if(arrayPersonCubes.ContainsKey(person.pid)){
 			GameObject cubeToMove = arrayPersonCubes[person.pid];
 			updatePerson(person, cubeToMove);

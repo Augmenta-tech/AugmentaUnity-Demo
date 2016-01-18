@@ -150,7 +150,7 @@ public class auListener : MonoBehaviour  {
 		p.highest.y = (float)args[13];
 		p.highest.z = (float)args[14];
 
-		Debug.Log("Update with width = "+p.boundingRect.width+" and height = "+p.boundingRect.height);
+		//Debug.Log("Update with width = "+p.boundingRect.width+" and height = "+p.boundingRect.height);
 
 		// Inactive time reset to zero : the point has just been updated
 		p.inactiveTime = 0;
