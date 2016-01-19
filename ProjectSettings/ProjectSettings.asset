@@ -420,7 +420,9 @@ PlayerSettings:
   XboxOneSplashScreen: {fileID: 0}
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
-  intPropertyNames: []
+  intPropertyNames:
+  - Standalone::ScriptingBackend
+  Standalone::ScriptingBackend: 0
   boolPropertyNames: []
   stringPropertyNames: []
   cloudProjectId: 
