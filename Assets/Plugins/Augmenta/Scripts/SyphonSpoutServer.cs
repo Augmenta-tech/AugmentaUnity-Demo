@@ -19,26 +19,48 @@ public class SyphonSpoutServer : MonoBehaviour {
 	private int oldRenderWidth;
 	private int oldRenderHeight;
 
-	// Use this for initialization
-	void Awake () {
+	void Start () {
 
+		// Init Syphon or Spout server
 		#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 		// Add syphon components
 		gameObject.AddComponent<Syphon>();
 		gameObject.AddComponent<SyphonServerTextureCustomResolution>();
 
 		#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		// Create a new camera for Spout, based on this camera
+		// because Spout can't send a render texture and show the scene in app window with the same camera
+		// This instantiation is made in Start function, to prevent cloned camera 
+		// to replicate itself through this script before it is destroyed.
+		GameObject spoutCamera = Instantiate(gameObject);
+
+		// Remove useless cloned components
+		Destroy(spoutCamera.GetComponent<SyphonSpoutServer>());
+		Destroy(spoutCamera.GetComponent<AudioListener>());
+		Destroy(spoutCamera.GetComponent<GUILayer>());
+
+		// Set name and tag 
+		spoutCamera.name = "Camera Spout Sender";
+		spoutCamera.tag = "SpoutCamera";
+
+		// Make spout sender camera child of main camera
+		spoutCamera.transform.parent = this.transform;
+
 		// Add spout components 
-		gameObject.AddComponent<Spout.Spout>();
-		gameObject.AddComponent<Spout.SpoutSender>();
-		gameObject.AddComponent<Spout.InvertCamera>();
-		gameObject.GetComponent<Spout.SpoutSender>().texture = gameObject.GetComponent<Camera>().targetTexture;
+		gameObject.AddComponent<Spout.Spout>();	// Instantiate Spout script on main camera to prevent crash when exiting app
+		spoutCamera.AddComponent<Spout.SpoutSender>();
+		spoutCamera.AddComponent<Spout.InvertCamera>();
+
+		// Setup spout components
+		spoutCamera.GetComponent<Spout.SpoutSender>().sharingName = Application.productName;
+		// Create a new render texture
+		RenderTexture targetTexture = new RenderTexture(renderWidth, renderHeight, 24);
+		// Set it to the camera 
+		spoutCamera.GetComponent<Camera>().targetTexture = targetTexture;
+		// And set it to Spout
+		spoutCamera.GetComponent<Spout.SpoutSender>().texture = targetTexture;
 
 		#endif
-
-	}
-
-	void Start () {
 
 		// Init values
 		oldRenderWidth = renderWidth;
@@ -78,7 +100,32 @@ public class SyphonSpoutServer : MonoBehaviour {
 
 			#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 			// Apply changes to syphon server
-			// TODO
+			GameObject spoutChild = null;
+			foreach (Transform child in gameObject.transform) {
+				if(child.CompareTag("SpoutCamera")){
+					spoutChild = child.gameObject;
+					break;
+				}
+			}
+			Spout.SpoutSender spoutSender = spoutChild.GetComponent<Spout.SpoutSender>();
+			Camera camera = spoutChild.GetComponent<Camera>();
+
+			// Disable Spout while updating targettexture to prevent crash
+			spoutSender.enabled = false;
+
+			// Create a new render texture because we can't reallocate an already existing one
+			// Store camera target texture in temp variable to be able to release it while not in use by the camera
+			RenderTexture targetTexture = camera.targetTexture;
+			camera.targetTexture = null;
+			targetTexture.Release();
+			targetTexture = new RenderTexture(renderWidth, renderHeight, 24);
+			// Set it to the camera 
+			camera.targetTexture = targetTexture;
+			// Set it to spout sender
+			spoutSender.texture = targetTexture;
+
+			// Enable spout sender
+			spoutSender.enabled = true;
 
 			#endif
 
