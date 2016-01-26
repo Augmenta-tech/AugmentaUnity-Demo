@@ -20,6 +20,7 @@ public class MainScript : MonoBehaviour {
 					go.gameObject.BroadcastMessage("SaveSettings", SendMessageOptions.DontRequireReceiver);
 				}
 			}
+			PlayerPrefs.Save ();
 		}
 
 	}
