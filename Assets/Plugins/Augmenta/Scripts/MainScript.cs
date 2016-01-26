@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MainScript : MonoBehaviour {
 
+	static public bool debug = true;
+
 	// Use this for initialization
 	void Start () {
 	

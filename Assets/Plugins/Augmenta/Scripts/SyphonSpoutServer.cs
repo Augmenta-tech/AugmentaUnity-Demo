@@ -15,6 +15,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 
 	private int renderWidth = 1920;
 	private int renderHeight = 1080;
+	private bool forceRenderSizeUpdate = true;
 
 	private int oldRenderWidth;
 	private int oldRenderHeight;
@@ -22,6 +23,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 	void Start () {
 
 		LoadSettings ();
+		Debug.Log ("Render size after load settings : " + renderWidth + "x" + renderHeight);
 
 		// Init Syphon or Spout server
 		#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
@@ -68,7 +70,6 @@ public class SyphonSpoutServer : MonoBehaviour {
 		oldRenderWidth = renderWidth;
 		oldRenderHeight = renderHeight;
 		aspectRatio = (float)renderWidth/(float)renderHeight;
-
 	}
 
 	void OnGUI(){
@@ -80,75 +81,75 @@ public class SyphonSpoutServer : MonoBehaviour {
 	}
 
 	void Update(){
-		UpdateRender ();
+		// Update the fbo if the render size has changed
+		if (forceRenderSizeUpdate || (renderWidth != oldRenderWidth || renderHeight != oldRenderHeight && renderWidth > 100 && renderHeight > 100)) {
+			forceRenderSizeUpdate = false;
+			UpdateRender ();
+		}
 	}
 
 
 		
 	void UpdateRender () {
 		
-		// Update the fbo if the render size has changed
-		if (renderWidth != oldRenderWidth || renderHeight != oldRenderHeight && renderWidth > 100 && renderHeight > 100) {
-
-			// If aspect ratio locked
-			if (lockAspectRatio) {
-				// If user modified width, change height to match aspect ratio
-				if (renderWidth != oldRenderWidth) {
-					renderHeight = Mathf.RoundToInt ((float)renderWidth / aspectRatio);
-				}
-				// If user modified height, change width to match aspect ratio
-				else if (renderHeight != oldRenderHeight) {
-					renderWidth = Mathf.RoundToInt (renderHeight * aspectRatio);
-				}
+		// If aspect ratio locked
+		if (lockAspectRatio) {
+			// If user modified width, change height to match aspect ratio
+			if (renderWidth != oldRenderWidth) {
+				renderHeight = Mathf.RoundToInt ((float)renderWidth / aspectRatio);
 			}
-
-			#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-			// Apply changes to syphon server
-			gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderWidth = renderWidth;
-			gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderHeight = renderHeight;
-			gameObject.GetComponent<SyphonServerTextureCustomResolution> ().createOrResizeRenderTexture ();
-
-			#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-			// Apply changes to syphon server
-			GameObject spoutChild = null;
-			foreach (Transform child in gameObject.transform) {
-				if(child.CompareTag("SpoutCamera")){
-					spoutChild = child.gameObject;
-					break;
-				}
+			// If user modified height, change width to match aspect ratio
+			else if (renderHeight != oldRenderHeight) {
+				renderWidth = Mathf.RoundToInt (renderHeight * aspectRatio);
 			}
-			Spout.SpoutSender spoutSender = spoutChild.GetComponent<Spout.SpoutSender>();
-			Camera camera = spoutChild.GetComponent<Camera>();
-
-			// Disable Spout while updating targettexture to prevent crash
-			spoutSender.enabled = false;
-
-			// Create a new render texture because we can't reallocate an already existing one
-			// Store camera target texture in temp variable to be able to release it while not in use by the camera
-			RenderTexture targetTexture = camera.targetTexture;
-			camera.targetTexture = null;
-			targetTexture.Release();
-			targetTexture = new RenderTexture(renderWidth, renderHeight, 24);
-			// Set it to the camera 
-			camera.targetTexture = targetTexture;
-			// Set it to spout sender
-			spoutSender.texture = targetTexture;
-
-			// Enable spout sender
-			spoutSender.enabled = true;
-
-			#endif
-
-			// If aspect ratio not locked, compute it 
-			if (!lockAspectRatio) {
-				aspectRatio = (float)renderWidth / (float)renderHeight;
-			}
-
-			// Save current values as old values to be able to compare them to new values next time they are changed in UI
-			oldRenderWidth = renderWidth;
-			oldRenderHeight = renderHeight;
 		}
-			
+
+		#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+		// Apply changes to syphon server
+		gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderWidth = renderWidth;
+		gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderHeight = renderHeight;
+		gameObject.GetComponent<SyphonServerTextureCustomResolution> ().createOrResizeRenderTexture ();
+
+		#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+		// Apply changes to syphon server
+		GameObject spoutChild = null;
+		foreach (Transform child in gameObject.transform) {
+			if(child.CompareTag("SpoutCamera")){
+				spoutChild = child.gameObject;
+				break;
+			}
+		}
+		Spout.SpoutSender spoutSender = spoutChild.GetComponent<Spout.SpoutSender>();
+		Camera camera = spoutChild.GetComponent<Camera>();
+
+		// Disable Spout while updating targettexture to prevent crash
+		spoutSender.enabled = false;
+
+		// Create a new render texture because we can't reallocate an already existing one
+		// Store camera target texture in temp variable to be able to release it while not in use by the camera
+		RenderTexture targetTexture = camera.targetTexture;
+		camera.targetTexture = null;
+		targetTexture.Release();
+		targetTexture = new RenderTexture(renderWidth, renderHeight, 24);
+		// Set it to the camera 
+		camera.targetTexture = targetTexture;
+		// Set it to spout sender
+		spoutSender.texture = targetTexture;
+
+		// Enable spout sender
+		spoutSender.enabled = true;
+
+		#endif
+
+		// If aspect ratio not locked, compute it 
+		if (!lockAspectRatio) {
+			aspectRatio = (float)renderWidth / (float)renderHeight;
+		}
+
+		// Save current values as old values to be able to compare them to new values next time they are changed in UI
+		oldRenderWidth = renderWidth;
+		oldRenderHeight = renderHeight;
+		
 	}
 
 	void SaveSettings(){
