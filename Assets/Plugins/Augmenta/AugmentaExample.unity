@@ -81,6 +81,7 @@ GameObject:
   - 124: {fileID: 30}
   - 81: {fileID: 27}
   - 114: {fileID: 10}
+  - 114: {fileID: 11}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -99,6 +100,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba00a6df11d8e46bc9e5862f3620e6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 9}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8313647243af146dab989a31c1f04de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syphonClients: []
+  nullTexture: {fileID: 0}
 --- !u!4 &15
 Transform:
   m_ObjectHideFlags: 0
@@ -110,7 +124,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!20 &17
 Camera:
   m_ObjectHideFlags: 0
@@ -183,6 +197,36 @@ NavMeshSettings:
     cellSize: 0.16666666
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &255540586 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100006, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
+  m_PrefabInternal: {fileID: 949007225}
+--- !u!114 &255540591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 255540586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ea3b72c68d23431fb4add50f4d3596a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &587296012 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100008, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
+  m_PrefabInternal: {fileID: 949007225}
+--- !u!114 &587296013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 587296012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a101eeafacff448ebce425e99a7bf91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &949007225
 Prefab:
   m_ObjectHideFlags: 0

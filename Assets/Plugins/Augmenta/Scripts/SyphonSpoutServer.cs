@@ -149,7 +149,17 @@ public class SyphonSpoutServer : MonoBehaviour {
 		// Save current values as old values to be able to compare them to new values next time they are changed in UI
 		oldRenderWidth = renderWidth;
 		oldRenderHeight = renderHeight;
+
+		UpdateWindowSize ();
 		
+	}
+
+	void UpdateWindowSize(){
+		int sw = Screen.currentResolution.width;
+		int sh = Screen.currentResolution.height;
+		if (renderWidth < 0.9f*sw && renderHeight < 0.9*sh && renderWidth > 400 && renderHeight > 400){
+			Screen.SetResolution(renderWidth,renderHeight, false);
+		}
 	}
 
 	void SaveSettings(){
