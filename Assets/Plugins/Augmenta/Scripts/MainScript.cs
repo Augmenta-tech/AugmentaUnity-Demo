@@ -25,5 +25,10 @@ public class MainScript : MonoBehaviour {
 			PlayerPrefs.Save ();
 		}
 
+		if (Input.GetKeyDown ("d")) {
+			debug = !debug;
+			Debug.Log ("Changed debug mode to " + debug);
+		}
+
 	}
 }
