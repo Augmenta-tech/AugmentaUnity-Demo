@@ -13,13 +13,15 @@ public class SyphonSpoutServer : MonoBehaviour {
 	private bool lockAspectRatio = false;
 	private float aspectRatio = 16/9;
 
-	public int renderWidth = 1920;
-	public int renderHeight = 1080;
+	private int renderWidth = 1920;
+	private int renderHeight = 1080;
 
 	private int oldRenderWidth;
 	private int oldRenderHeight;
 
 	void Start () {
+
+		LoadSettings ();
 
 		// Init Syphon or Spout server
 		#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
@@ -68,35 +70,43 @@ public class SyphonSpoutServer : MonoBehaviour {
 		aspectRatio = (float)renderWidth/(float)renderHeight;
 
 	}
-		
-	void OnGUI () {
+
+	void OnGUI(){
 		// Resolution
 		lockAspectRatio = GUI.Toggle(new Rect(15,60,120,20), lockAspectRatio, "Lock aspect ratio");
-
 		renderWidth = int.Parse(GUI.TextField(new Rect(140, 60, 40, 20), renderWidth.ToString(), 25));
 		GUI.Label(new Rect(180,60-2,15,30), "x");
 		renderHeight = int.Parse(GUI.TextField(new Rect(195, 60, 40, 20), renderHeight.ToString(), 25));
+	}
 
-		// Affect values in case user did change the resolution
-		if (GUI.changed) {
+	void Update(){
+		UpdateRender ();
+	}
+
+
+		
+	void UpdateRender () {
+		
+		// Update the fbo if the render size has changed
+		if (renderWidth != oldRenderWidth || renderHeight != oldRenderHeight && renderWidth > 100 && renderHeight > 100) {
 
 			// If aspect ratio locked
-			if(lockAspectRatio){
+			if (lockAspectRatio) {
 				// If user modified width, change height to match aspect ratio
-				if(renderWidth != oldRenderWidth){
-					renderHeight = Mathf.RoundToInt((float)renderWidth / aspectRatio);
+				if (renderWidth != oldRenderWidth) {
+					renderHeight = Mathf.RoundToInt ((float)renderWidth / aspectRatio);
 				}
 				// If user modified height, change width to match aspect ratio
-				else if(renderHeight != oldRenderHeight){
-					renderWidth = Mathf.RoundToInt(renderHeight * aspectRatio);
+				else if (renderHeight != oldRenderHeight) {
+					renderWidth = Mathf.RoundToInt (renderHeight * aspectRatio);
 				}
 			}
 
 			#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 			// Apply changes to syphon server
-			gameObject.GetComponent<SyphonServerTextureCustomResolution>().renderWidth = renderWidth;
-			gameObject.GetComponent<SyphonServerTextureCustomResolution>().renderHeight = renderHeight;
-			gameObject.GetComponent<SyphonServerTextureCustomResolution>().createOrResizeRenderTexture();
+			gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderWidth = renderWidth;
+			gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderHeight = renderHeight;
+			gameObject.GetComponent<SyphonServerTextureCustomResolution> ().createOrResizeRenderTexture ();
 
 			#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 			// Apply changes to syphon server
@@ -130,16 +140,28 @@ public class SyphonSpoutServer : MonoBehaviour {
 			#endif
 
 			// If aspect ratio not locked, compute it 
-			if(!lockAspectRatio){
-				aspectRatio = (float)renderWidth/(float)renderHeight;
+			if (!lockAspectRatio) {
+				aspectRatio = (float)renderWidth / (float)renderHeight;
 			}
 
 			// Save current values as old values to be able to compare them to new values next time they are changed in UI
 			oldRenderWidth = renderWidth;
 			oldRenderHeight = renderHeight;
-
 		}
 			
+	}
+
+	void SaveSettings(){
+		PlayerPrefs.SetInt ("renderWidth", renderWidth);
+		PlayerPrefs.SetInt ("renderHeight", renderHeight);
+	}
+
+	void LoadSettings(){
+		renderWidth = PlayerPrefs.GetInt ("renderWidth");
+		renderHeight = PlayerPrefs.GetInt("renderHeight");
+	}
+	void OnApplicationQuit(){
+		SaveSettings ();
 	}
 
 }
