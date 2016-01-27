@@ -5,12 +5,13 @@ public class AreaCalibration : MonoBehaviour {
 
 	GameObject globalCam;
 	Vector2 InteractiveAreaSize;
+	bool areaAutoResize = true;
 
 	// Use this for initialization
 	void Start () {
 		LoadSettings ();
 		globalCam = GameObject.FindGameObjectWithTag ("MainCamera");
-		//StartCoroutine("KeepAdjustingScene",3);
+		StartCoroutine("KeepAdjustingScene",3);
 	}
 	
 	// Update is called once per frame
@@ -61,60 +62,33 @@ public class AreaCalibration : MonoBehaviour {
 		}
 	}
 
-	void OnApplicationQuit() {
-		SaveSettings ();
-	}
-
-	void SaveSettings(){
-		Debug.Log ("Saving interactive area settings");
-		PlayerPrefs.SetFloat ("auScaleX", this.transform.localScale.x);
-		PlayerPrefs.SetFloat ("auScaleY", this.transform.localScale.z);
-	}
-
-	void LoadSettings(){
-		Debug.Log ("Loading interactive area settings");
-		this.transform.localScale = new Vector3(PlayerPrefs.GetFloat ("auScaleX"), 0f, PlayerPrefs.GetFloat("auScaleY"));
-	}
-
-	void Reset(){
-		this.transform.position = new Vector3 (0, 0, 0);
-		this.transform.rotation = Quaternion.identity;
-		this.transform.localScale = new Vector3 (1, 1, 1);
-	}
-	/*
-	public void AutoResizeScene(bool b){
-		if (b){
-			StartCoroutine("KeepAdjustingScene",3);
-		} else {
-			StopCoroutine("KeepAdjustingScene");
-		}
-	}
-
 	IEnumerator KeepAdjustingScene(float delay) {
-		while(true){
-			adjustScene();
-			yield return new WaitForSeconds(delay);
-			//Debug.Log ("Adjusting size");
+		while (true) {
+			if (areaAutoResize) {
+				adjustScene ();
+			}
+			yield return new WaitForSeconds (delay);
 		}
 	}
 
 	public void adjustScene(){
 
-		Debug.Log ("Adjust scene");
+		//Debug.Log ("Adjust scene");
 
 		float epsilon = 0.003f;
 	
-		this.transform.eulerAngles = new Vector3(90, 0, 0);
+		this.transform.eulerAngles = new Vector3(0, 0, 0);
 		this.transform.position = new Vector3(0, 0, 0);
 
 		Vector2 currentAreaWorldSize = new Vector2(0f,0f);
 		currentAreaWorldSize.x = this.GetComponent<Renderer>().bounds.size.x;
 		currentAreaWorldSize.y = this.GetComponent<Renderer>().bounds.size.z;
+		//Debug.Log ("Current area size : " + currentAreaWorldSize);
 
 		Vector2 worldSize = new Vector2(0f,0f);
 		worldSize.x = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Screen.currentResolution.width, 0)).x);
 		worldSize.y = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.currentResolution.height, 0, 0)).z);
-		Debug.Log ("World size : "+worldSize.ToString());
+		//Debug.Log ("World size : "+worldSize.ToString());
 
 		while(currentAreaWorldSize.x < worldSize.x-epsilon) {
 			this.transform.localScale += new Vector3(0.005f, 0f, 0f);
@@ -133,8 +107,35 @@ public class AreaCalibration : MonoBehaviour {
 			currentAreaWorldSize.y = this.GetComponent<Renderer>().bounds.size.z;
 		}
 
-		Debug.Log ("END adjust scene");
+		//Debug.Log ("END adjust scene");
 
 	}
-*/
+
+	void OnGUI(){
+		areaAutoResize = GUI.Toggle(new Rect(15,90,150,20), areaAutoResize, "Auto Augmenta area");
+	}
+
+	void OnApplicationQuit() {
+		SaveSettings ();
+	}
+
+	void SaveSettings(){
+		Debug.Log ("Saving interactive area settings");
+		PlayerPrefs.SetFloat ("auScaleX", this.transform.localScale.x);
+		PlayerPrefs.SetFloat ("auScaleY", this.transform.localScale.z);
+		PlayerPrefs.SetInt ("areaAutoResize", areaAutoResize?1:0);
+	}
+
+	void LoadSettings(){
+		Debug.Log ("Loading interactive area settings");
+		this.transform.localScale = new Vector3(PlayerPrefs.GetFloat ("auScaleX"), 0f, PlayerPrefs.GetFloat("auScaleY"));
+		areaAutoResize = PlayerPrefs.GetInt ("areaAutoResize") == 1 ? true : false;
+	}
+
+	void Reset(){
+		this.transform.position = new Vector3 (0, 0, 0);
+		this.transform.rotation = Quaternion.identity;
+		this.transform.localScale = new Vector3 (1, 1, 1);
+	}
+
 }
