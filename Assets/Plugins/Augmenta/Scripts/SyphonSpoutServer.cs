@@ -157,8 +157,21 @@ public class SyphonSpoutServer : MonoBehaviour {
 	void UpdateWindowSize(){
 		int sw = Screen.currentResolution.width;
 		int sh = Screen.currentResolution.height;
-		if (renderWidth < 0.9f*sw && renderHeight < 0.9*sh && renderWidth > 400 && renderHeight > 400){
-			Screen.SetResolution(renderWidth,renderHeight, false);
+		if (renderWidth < 400 || renderHeight < 400) {
+			// Do nothing
+		} else if (renderWidth < 0.9f * sw && renderHeight < 0.9 * sh) {
+			Screen.SetResolution (renderWidth, renderHeight, false);
+		} else {
+			float renderRatio = (float)renderWidth / (float)renderHeight;
+			float screenRatio = sw / sh;
+			if (renderRatio > screenRatio) {
+				int newWidth = (int)(0.9f * sw);
+				Screen.SetResolution (newWidth, (int)(newWidth / renderRatio), false);
+			} else {
+				int newHeight = (int)(0.9f * sh);
+				Debug.LogError ("sh :" + sh + " / newheight : " + newHeight + " / calc width : " + (int)(newHeight * renderRatio));
+				Screen.SetResolution ((int)((float)newHeight * (float)renderRatio), newHeight, false);
+			}
 		}
 	}
 
