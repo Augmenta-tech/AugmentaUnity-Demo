@@ -73,11 +73,13 @@ public class SyphonSpoutServer : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		// Resolution
-		lockAspectRatio = GUI.Toggle(new Rect(15,60,120,20), lockAspectRatio, "Lock aspect ratio");
-		renderWidth = int.Parse(GUI.TextField(new Rect(140, 60, 40, 20), renderWidth.ToString(), 25));
-		GUI.Label(new Rect(180,60-2,15,30), "x");
-		renderHeight = int.Parse(GUI.TextField(new Rect(195, 60, 40, 20), renderHeight.ToString(), 25));
+		if (!MainScript.hide) {
+			// Resolution
+			lockAspectRatio = GUI.Toggle (new Rect (15, 60, 120, 20), lockAspectRatio, "Lock aspect ratio");
+			renderWidth = int.Parse (GUI.TextField (new Rect (140, 60, 40, 20), renderWidth.ToString (), 25));
+			GUI.Label (new Rect (180, 60 - 2, 15, 30), "x");
+			renderHeight = int.Parse (GUI.TextField (new Rect (195, 60, 40, 20), renderHeight.ToString (), 25));
+		}
 	}
 
 	void Update(){

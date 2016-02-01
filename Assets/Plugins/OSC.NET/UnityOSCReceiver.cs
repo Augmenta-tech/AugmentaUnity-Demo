@@ -122,24 +122,26 @@ public class UnityOSCReceiver : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		GUI.Label(new Rect(20,29,65,25), "Osc port");
-		if (connected) {
-			GUI.color = Color.green;
-		} else {
-			GUI.color = Color.red;
-		}
-		if (int.TryParse(GUI.TextField(new Rect(90, 30, 45, 20), port.ToString(), 25), out port)){
-			if(GUI.changed){
-				if (port > 4000) {
-					if (reconnect ()) {
-						Invoke ("callClearAllPersons", 0.1f);
+		if (!MainScript.hide) {
+			GUI.Label (new Rect (20, 29, 65, 25), "Osc port");
+			if (connected) {
+				GUI.color = Color.green;
+			} else {
+				GUI.color = Color.red;
+			}
+			if (int.TryParse (GUI.TextField (new Rect (90, 30, 45, 20), port.ToString (), 25), out port)) {
+				if (GUI.changed) {
+					if (port > 4000) {
+						if (reconnect ()) {
+							Invoke ("callClearAllPersons", 0.1f);
+						}
+					} else {
+						connected = false;
 					}
-				} else {
-					connected = false;
 				}
 			}
+			GUI.color = Color.white;
 		}
-		GUI.color = Color.white;
 	}
 
 	void callClearAllPersons(){

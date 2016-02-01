@@ -112,7 +112,9 @@ public class AreaCalibration : MonoBehaviour {
 	}
 
 	void OnGUI(){
-		areaAutoResize = GUI.Toggle(new Rect(15,90,150,20), areaAutoResize, "Auto Augmenta area");
+		if (!MainScript.hide) {
+			areaAutoResize = GUI.Toggle (new Rect (15, 90, 150, 20), areaAutoResize, "Auto Augmenta area");
+		}
 	}
 
 	void OnApplicationQuit() {
