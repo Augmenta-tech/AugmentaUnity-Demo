@@ -44,6 +44,9 @@ public class MainScript : MonoBehaviour {
 			hide = !hide;
 			Debug.Log ("Changed hide mode to : " + hide);
 		}
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.Quit ();
+		}
 		// ---------------------
 
 

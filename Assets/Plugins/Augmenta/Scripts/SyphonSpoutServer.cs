@@ -105,6 +105,11 @@ public class SyphonSpoutServer : MonoBehaviour {
 			UpdateRender ();
 			GameObject.Find("InteractiveArea").BroadcastMessage ("adjustScene", SendMessageOptions.DontRequireReceiver);
 		}
+
+		// Safety check to make sure that the syphon texture is reset correctly when changing window size
+		if(gameObject.GetComponent<Camera>().targetTexture == null){
+			ResizeSyphonRenderTexture ();
+		}
 	}
 
 
@@ -125,9 +130,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 
 		#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 		// Apply changes to syphon server
-		gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderWidth = renderWidth;
-		gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderHeight = renderHeight;
-		gameObject.GetComponent<SyphonServerTextureCustomResolution> ().createOrResizeRenderTexture ();
+		ResizeSyphonRenderTexture ();
 
 		#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 		// Apply changes to syphon server
@@ -192,6 +195,13 @@ public class SyphonSpoutServer : MonoBehaviour {
 				Screen.SetResolution ((int)((float)newHeight * (float)renderRatio), newHeight, false);
 			}
 		}
+
+	}
+
+	void ResizeSyphonRenderTexture(){
+		gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderWidth = renderWidth;
+		gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderHeight = renderHeight;
+		gameObject.GetComponent<SyphonServerTextureCustomResolution> ().createOrResizeRenderTexture ();
 	}
 
 	void SaveSettings(){
