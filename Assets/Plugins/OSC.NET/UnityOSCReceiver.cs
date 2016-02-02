@@ -59,6 +59,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 		} catch (Exception e) {
 			Debug.Log("Failed to connect to port "+port);
 			Debug.Log(e.Message);
+			connected = false;
 		}
 	}
 	/**
@@ -136,7 +137,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 							Invoke ("callClearAllPersons", 0.1f);
 						}
 					} else {
-						connected = false;
+						disconnect ();
 					}
 				}
 			}
