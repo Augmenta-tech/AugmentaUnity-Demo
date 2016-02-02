@@ -10,7 +10,8 @@ namespace Augmenta
 		public float percentCovered;
 		public int numPeople;
 		public Vector2 averageMotion;
-		public int sceneWidth; // for ratio computing
-		public int sceneHeight;
+		public int width; // for ratio computing
+		public int height;
+		public int depth;
 	}	
 }

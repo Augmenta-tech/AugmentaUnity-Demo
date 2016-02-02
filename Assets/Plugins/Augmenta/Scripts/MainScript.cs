@@ -9,16 +9,22 @@ public class MainScript : MonoBehaviour {
 	// Object references
 	UnityOSCReceiver osc;
 	GameObject syphonCanvas;
+	auListener listener;
+	SyphonSpoutServer graphicServer;
 
 	// Use this for initialization
 	void Start () {
+		StartCoroutine("GetSyphonCanvas"); // Get the reference like the others but we have to wait until it's instanciated
 		osc = GameObject.Find ("OscReceiver").GetComponent<UnityOSCReceiver>();
-		StartCoroutine("GetSyphonCanvas");
+		listener = GameObject.Find ("AugmentaReceiver").GetComponent<auListener> ();
+		graphicServer = GameObject.Find ("MainCamera").GetComponent<SyphonSpoutServer> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		// ---------------------
+		// Controls
+		// ---------------------
 		if (Input.GetKeyDown ("s")) {
 			// Force every save settings function in the program
 			Debug.Log ("Save all settings manually");
@@ -30,16 +36,16 @@ public class MainScript : MonoBehaviour {
 			}
 			PlayerPrefs.Save ();
 		}
-
 		if (Input.GetKeyDown ("d")) {
 			debug = !debug;
 			Debug.Log ("Changed debug mode to " + debug);
 		}
-
 		if (Input.GetKeyDown ("h")) {
 			hide = !hide;
 			Debug.Log ("Changed hide mode to : " + hide);
 		}
+		// ---------------------
+
 
 		// Disable drawing if hide
 		if (hide) {
@@ -51,7 +57,12 @@ public class MainScript : MonoBehaviour {
 				syphonCanvas.SetActive (true);
 			}
 		}
-		//syphonCanvas.SetActive (false);
+
+		// Transfer scene width/height data from auListener to SyphonSpoutServer
+		// we do this here to avoid adding augmenta dependency in the SyphonSpoutServer
+		int w = listener.GetScene().width;
+		int h = listener.GetScene().height;
+		graphicServer.SetResolution (w, h);
 
 	}
 

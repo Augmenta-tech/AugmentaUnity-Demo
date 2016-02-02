@@ -5,13 +5,16 @@ public class AreaCalibration : MonoBehaviour {
 
 	GameObject globalCam;
 	Vector2 InteractiveAreaSize;
+	bool oldAreaAutoResize = true;
 	bool areaAutoResize = true;
 
 	// Use this for initialization
 	void Start () {
 		LoadSettings ();
+		oldAreaAutoResize = areaAutoResize;
 		globalCam = GameObject.FindGameObjectWithTag ("MainCamera");
-		StartCoroutine("KeepAdjustingScene",3);
+		adjustScene ();
+		//StartCoroutine("KeepAdjustingScene",3);
 	}
 	
 	// Update is called once per frame
@@ -19,7 +22,7 @@ public class AreaCalibration : MonoBehaviour {
 
 		GetComponent<Renderer>().enabled = MainScript.debug;
 
-		if (MainScript.debug) {
+		if (MainScript.debug && !areaAutoResize) {
 			if (Input.GetKeyDown ("r")) {
 				Reset ();
 			}
@@ -60,55 +63,60 @@ public class AreaCalibration : MonoBehaviour {
 				}
 			}
 		}
+
+		// Test change in the value of areaAutoResize
+		if (areaAutoResize != oldAreaAutoResize) {
+			adjustScene ();
+		}
+		oldAreaAutoResize = areaAutoResize;
+
 	}
 
 	IEnumerator KeepAdjustingScene(float delay) {
 		while (true) {
-			if (areaAutoResize) {
-				adjustScene ();
-			}
+			adjustScene ();
 			yield return new WaitForSeconds (delay);
 		}
 	}
 
 	public void adjustScene(){
+		if (areaAutoResize) {
+			//Debug.Log ("Adjust scene");
 
-		//Debug.Log ("Adjust scene");
+			float epsilon = 0.003f;
+		
+			this.transform.eulerAngles = new Vector3(0, 0, 0);
+			this.transform.position = new Vector3(0, 0, 0);
 
-		float epsilon = 0.003f;
-	
-		this.transform.eulerAngles = new Vector3(0, 0, 0);
-		this.transform.position = new Vector3(0, 0, 0);
-
-		Vector2 currentAreaWorldSize = new Vector2(0f,0f);
-		currentAreaWorldSize.x = this.GetComponent<Renderer>().bounds.size.x;
-		currentAreaWorldSize.y = this.GetComponent<Renderer>().bounds.size.z;
-		//Debug.Log ("Current area size : " + currentAreaWorldSize);
-
-		Vector2 worldSize = new Vector2(0f,0f);
-		worldSize.x = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Screen.currentResolution.width, 0)).x);
-		worldSize.y = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.currentResolution.height, 0, 0)).z);
-		//Debug.Log ("World size : "+worldSize.ToString());
-
-		while(currentAreaWorldSize.x < worldSize.x-epsilon) {
-			this.transform.localScale += new Vector3(0.005f, 0f, 0f);
+			Vector2 currentAreaWorldSize = new Vector2(0f,0f);
 			currentAreaWorldSize.x = this.GetComponent<Renderer>().bounds.size.x;
-		}
-		while(currentAreaWorldSize.y < worldSize.y-epsilon) {
-			this.transform.localScale += new Vector3(0f, 0f, 0.005f);
 			currentAreaWorldSize.y = this.GetComponent<Renderer>().bounds.size.z;
-		}
-		while(currentAreaWorldSize.x > worldSize.x+epsilon) {
-			this.transform.localScale -= new Vector3(0.005f, 0f, 0f);
-			currentAreaWorldSize.x = this.GetComponent<Renderer>().bounds.size.x;
-		}
-		while(currentAreaWorldSize.y > worldSize.y+epsilon) {
-			this.transform.localScale -= new Vector3(0f, 0f, 0.005f);
-			currentAreaWorldSize.y = this.GetComponent<Renderer>().bounds.size.z;
-		}
+			//Debug.Log ("Current area size : " + currentAreaWorldSize);
 
-		//Debug.Log ("END adjust scene");
+			Vector2 worldSize = new Vector2(0f,0f);
+			worldSize.x = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Screen.currentResolution.width, 0)).x);
+			worldSize.y = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.currentResolution.height, 0, 0)).z);
+			//Debug.Log ("World size : "+worldSize.ToString());
 
+			while(currentAreaWorldSize.x < worldSize.x-epsilon) {
+				this.transform.localScale += new Vector3(0.005f, 0f, 0f);
+				currentAreaWorldSize.x = this.GetComponent<Renderer>().bounds.size.x;
+			}
+			while(currentAreaWorldSize.y < worldSize.y-epsilon) {
+				this.transform.localScale += new Vector3(0f, 0f, 0.005f);
+				currentAreaWorldSize.y = this.GetComponent<Renderer>().bounds.size.z;
+			}
+			while(currentAreaWorldSize.x > worldSize.x+epsilon) {
+				this.transform.localScale -= new Vector3(0.005f, 0f, 0f);
+				currentAreaWorldSize.x = this.GetComponent<Renderer>().bounds.size.x;
+			}
+			while(currentAreaWorldSize.y > worldSize.y+epsilon) {
+				this.transform.localScale -= new Vector3(0f, 0f, 0.005f);
+				currentAreaWorldSize.y = this.GetComponent<Renderer>().bounds.size.z;
+			}
+
+			//Debug.Log ("END adjust scene");
+		}
 	}
 
 	void OnGUI(){
@@ -123,14 +131,26 @@ public class AreaCalibration : MonoBehaviour {
 
 	void SaveSettings(){
 		Debug.Log ("Saving interactive area settings");
+
+		PlayerPrefs.SetFloat ("auPositionX", this.transform.position.x);
+		PlayerPrefs.SetFloat ("auPositionY", this.transform.position.z);
 		PlayerPrefs.SetFloat ("auScaleX", this.transform.localScale.x);
 		PlayerPrefs.SetFloat ("auScaleY", this.transform.localScale.z);
+		PlayerPrefs.SetFloat ("auRotationW", this.transform.rotation.w);
+		PlayerPrefs.SetFloat ("auRotationX", this.transform.rotation.x);
+		PlayerPrefs.SetFloat ("auRotationY", this.transform.rotation.y);
+		PlayerPrefs.SetFloat ("auRotationZ", this.transform.rotation.z);
+
 		PlayerPrefs.SetInt ("areaAutoResize", areaAutoResize?1:0);
 	}
 
 	void LoadSettings(){
 		Debug.Log ("Loading interactive area settings");
+
+		this.transform.position = new Vector3(PlayerPrefs.GetFloat("auPositionX"), 0f, PlayerPrefs.GetFloat("auPositionY")); 
 		this.transform.localScale = new Vector3(PlayerPrefs.GetFloat ("auScaleX"), 0f, PlayerPrefs.GetFloat("auScaleY"));
+		this.transform.rotation = new Quaternion (PlayerPrefs.GetFloat ("auRotationX"), PlayerPrefs.GetFloat ("auRotationY"), PlayerPrefs.GetFloat ("auRotationZ"), PlayerPrefs.GetFloat ("auRotationW"));
+
 		areaAutoResize = PlayerPrefs.GetInt ("areaAutoResize") == 1 ? true : false;
 	}
 

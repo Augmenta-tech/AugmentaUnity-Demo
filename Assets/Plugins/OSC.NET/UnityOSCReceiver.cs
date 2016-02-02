@@ -38,7 +38,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 		// else
 		if(connected){
 			disconnect();
-			Invoke("connect", .1f); //wait a tick to sync threading before reconnecting
+			Invoke("connect", 10); //wait a tick to sync threading before reconnecting
 		}
 		else{
 			connect();
@@ -131,7 +131,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 			}
 			if (int.TryParse (GUI.TextField (new Rect (90, 30, 45, 20), port.ToString (), 25), out port)) {
 				if (GUI.changed) {
-					if (port > 4000) {
+					if (port > 1024) {
 						if (reconnect ()) {
 							Invoke ("callClearAllPersons", 0.1f);
 						}

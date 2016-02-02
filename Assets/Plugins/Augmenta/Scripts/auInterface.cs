@@ -159,7 +159,7 @@ public class auInterface : MonoBehaviour {
 			boundingBoxValid = true;
 		} else if (boundingBoxValid) {
 			boundingBoxValid = false;
-			Debug.LogWarning("The bounding box informations are not valid, we'll be using the centroid and a default scale instead for the debug display");
+			//Debug.LogWarning("The bounding box informations are not valid, we'll be using the centroid and a default scale instead for the debug display");
 		}
 
 		if (boundingBoxValid){

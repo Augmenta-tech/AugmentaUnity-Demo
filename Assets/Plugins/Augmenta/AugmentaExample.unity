@@ -83,7 +83,7 @@ GameObject:
   - 114: {fileID: 10}
   - 114: {fileID: 11}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,11 +244,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.12030648e-07
+      value: 0.00000011203065
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -.707067013
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalRotation.y
@@ -260,7 +260,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707146585
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalRotation.y
@@ -268,19 +268,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707107067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.0446653366
+      value: -0.044665337
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -.133975983
+      value: -0.13397598
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .70710659
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalRotation.z
@@ -288,6 +288,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400008, guid: e297540dcf5f341ed95ccd16bdf4df10, type: 2}
+      propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

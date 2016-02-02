@@ -47,13 +47,22 @@ using Augmenta;
 
 public class auListener : MonoBehaviour  {
 
+	// Broadcast augmenta message DELEGATE
 	public delegate void broadcastMessageHandler(string msg, Person person);
 	public static event broadcastMessageHandler broadcastMessage;
+
+	// Scene object
+	private Scene scene;
 
 	// Number of frames before a point who hasn't been updated is removed
 	public static int timeOut = 10; // frames
 
+	// Dinctionnary of persons
 	private static Dictionary<int, Person> arrayPerson = new Dictionary<int, Person>(); // Containing all current persons
+
+	public Scene GetScene(){
+		return scene;
+	}
 
 	public int arrayPersonCount(){
 		return arrayPerson.Count;
@@ -66,6 +75,8 @@ public class auListener : MonoBehaviour  {
 	public void Start(){
 		Debug.Log("[Augmenta] Subscribing to OSC Message Receiver");
 		UnityOSCReceiver.OSCMessageReceived += new UnityOSCReceiver.OSCMessageReceivedHandler(OSCMessageReceived);
+
+		scene = new Scene ();
 
 		// Start the coroutine that check if everyone is alive
 		StartCoroutine("checkAlive");
@@ -127,6 +138,15 @@ public class auListener : MonoBehaviour  {
 				arrayPerson.Remove(pid);
 				//personWillLeave(personToRemove);
 			}
+		}
+		else if(address == "/au/scene/" || address == "/au/scene"){
+			scene.currentTime = (int)args [0];
+			scene.percentCovered = (float)args [1];
+			scene.numPeople = (int)args [2];
+			scene.averageMotion = new Vector2 ((float)args [3], (float)args [4]);
+			scene.width = (int)args [5];
+			scene.height = (int)args [6];
+			scene.depth = (int)args [7];
 		}
 		else{
 			//print(address + " ");

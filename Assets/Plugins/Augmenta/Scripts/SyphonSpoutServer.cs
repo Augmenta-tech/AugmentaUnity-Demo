@@ -9,12 +9,13 @@ public class SyphonSpoutServer : MonoBehaviour {
 	 * to the target platform of the app (Syphon for OSX, Spout for Windows)
 	 */ 
 
-
+	private bool autoResolution = true;
 	private bool lockAspectRatio = false;
 	private float aspectRatio = 16/9;
 
 	private int renderWidth = 1920;
 	private int renderHeight = 1080;
+	private int minRenderSize = 300;
 	private bool forceRenderSizeUpdate = true;
 
 	private int oldRenderWidth;
@@ -72,13 +73,28 @@ public class SyphonSpoutServer : MonoBehaviour {
 		aspectRatio = (float)renderWidth/(float)renderHeight;
 	}
 
+	public void SetResolution(int x, int y){
+		// Allow a change from other scripts only if the resolution is in AUTO mode
+		if (autoResolution && x >= minRenderSize && y >= minRenderSize) {
+			renderWidth = x;
+			renderHeight = y;
+		}
+	}
+
 	void OnGUI(){
 		if (!MainScript.hide) {
+			
 			// Resolution
-			lockAspectRatio = GUI.Toggle (new Rect (15, 60, 120, 20), lockAspectRatio, "Lock aspect ratio");
-			renderWidth = int.Parse (GUI.TextField (new Rect (140, 60, 40, 20), renderWidth.ToString (), 25));
-			GUI.Label (new Rect (180, 60 - 2, 15, 30), "x");
-			renderHeight = int.Parse (GUI.TextField (new Rect (195, 60, 40, 20), renderHeight.ToString (), 25));
+			autoResolution = GUI.Toggle (new Rect (15, 60, 120, 20), autoResolution, "Auto resolution");
+			if (autoResolution) {
+				GUI.Label (new Rect (130, 60, 100, 20), renderWidth+" x "+renderHeight);
+			} else {
+				renderWidth = int.Parse (GUI.TextField (new Rect (130, 60, 40, 20), renderWidth.ToString (), 25));
+				GUI.Label (new Rect (174, 59, 15, 30), "x");
+				renderHeight = int.Parse (GUI.TextField (new Rect (185, 60, 40, 20), renderHeight.ToString (), 25));
+				lockAspectRatio = GUI.Toggle (new Rect (230, 60, 120, 20), lockAspectRatio, "Lock ratio");
+			}
+
 		}
 	}
 
@@ -87,6 +103,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 		if (forceRenderSizeUpdate || (renderWidth != oldRenderWidth || renderHeight != oldRenderHeight && renderWidth > 100 && renderHeight > 100)) {
 			forceRenderSizeUpdate = false;
 			UpdateRender ();
+			GameObject.Find("InteractiveArea").BroadcastMessage ("adjustScene", SendMessageOptions.DontRequireReceiver);
 		}
 	}
 
@@ -159,7 +176,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 	void UpdateWindowSize(){
 		int sw = Screen.currentResolution.width;
 		int sh = Screen.currentResolution.height;
-		if (renderWidth < 400 || renderHeight < 400) {
+		if (renderWidth < minRenderSize || renderHeight < minRenderSize) {
 			// Do nothing
 		} else if (renderWidth < 0.9f * sw && renderHeight < 0.9 * sh) {
 			Screen.SetResolution (renderWidth, renderHeight, false);
@@ -171,7 +188,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 				Screen.SetResolution (newWidth, (int)(newWidth / renderRatio), false);
 			} else {
 				int newHeight = (int)(0.9f * sh);
-				Debug.LogError ("sh :" + sh + " / newheight : " + newHeight + " / calc width : " + (int)(newHeight * renderRatio));
+				//Debug.LogError ("sh :" + sh + " / newheight : " + newHeight + " / calc width : " + (int)(newHeight * renderRatio));
 				Screen.SetResolution ((int)((float)newHeight * (float)renderRatio), newHeight, false);
 			}
 		}
@@ -180,12 +197,15 @@ public class SyphonSpoutServer : MonoBehaviour {
 	void SaveSettings(){
 		PlayerPrefs.SetInt ("renderWidth", renderWidth);
 		PlayerPrefs.SetInt ("renderHeight", renderHeight);
+		PlayerPrefs.SetInt ("autoResolution", autoResolution?1:0);
 	}
 
 	void LoadSettings(){
 		renderWidth = PlayerPrefs.GetInt ("renderWidth");
 		renderHeight = PlayerPrefs.GetInt("renderHeight");
+		autoResolution = PlayerPrefs.GetInt ("autoResolution") == 1 ? true : false;
 	}
+
 	void OnApplicationQuit(){
 		SaveSettings ();
 	}
