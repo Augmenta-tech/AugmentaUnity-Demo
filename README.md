@@ -17,6 +17,10 @@ How to connect your app with Augmenta
 
 #### IMPORT
 
+- Clone this project as a starting point
+
+**OR**
+
 - Open Unity, then double-click on the package or or load it via "Assets -> Import package -> Custom package"
 - Click "Import"
 - The Augmenta library will be added in your plugins folder
