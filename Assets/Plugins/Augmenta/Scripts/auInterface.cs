@@ -200,4 +200,21 @@ public class auInterface : MonoBehaviour {
 		Destroy(centroidObject);
 
 	}	
+
+	public static GameObject getOldest(){
+		if (auListener.getOldest() != null) {
+			return arrayPersonCubes[auListener.getOldest().pid];
+		} else {
+			return null;
+		}
+	}
+	
+	public static GameObject getNewest(){
+		if (auListener.getNewest() != null) {
+			return arrayPersonCubes[auListener.getNewest().pid];
+		} else {
+			return null;
+		}
+	}
+
 }

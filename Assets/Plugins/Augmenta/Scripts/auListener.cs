@@ -221,4 +221,41 @@ public class auListener : MonoBehaviour  {
 			yield return 0;
 		}
 	}
+
+	public static Person getOldest(){
+		Person bestPerson = null;
+		int maxAge = 0;
+		foreach(KeyValuePair<int, Person> p in arrayPerson) {
+			if(p.Value.age > maxAge){
+				bestPerson = p.Value;
+				maxAge = p.Value.age;
+			}
+			// If several persons have the same oldest age, take the one with smallest pid
+			else if(p.Value.age == maxAge){
+				if(p.Value.pid < bestPerson.pid){
+					bestPerson = p.Value;
+				}
+			}
+		}
+		return bestPerson;
+	}
+	
+	public static Person getNewest(){
+		Person bestPerson = null;
+		int minAge = int.MaxValue;
+		foreach(KeyValuePair<int, Person> p in arrayPerson) {
+			if(p.Value.age < minAge){
+				bestPerson = p.Value;
+				minAge = p.Value.age;
+			}
+			// If several persons have the same newest age, take the one with greatest pid
+			else if(p.Value.age == minAge){
+				if(p.Value.pid > bestPerson.pid){
+					bestPerson = p.Value;
+				}
+			}
+		}
+		return bestPerson;
+	}
+
 }
