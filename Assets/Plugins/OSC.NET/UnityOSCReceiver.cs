@@ -10,6 +10,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 	
 	private bool connected = false;
 	public int port = 12000;
+	private bool mute = false;
 	private OSCReceiver receiver;
 	private Thread thread;
 	
@@ -99,25 +100,27 @@ public class UnityOSCReceiver : MonoBehaviour {
 	private void listen() {
 		Debug.Log("Listening to port " + port);
 		while(connected) {
-			try {
-				OSCPacket packet = receiver.Receive();
+			if(!mute){
+				try {
+					OSCPacket packet = receiver.Receive();
 
-				if (packet!=null) {
-					lock(processQueue){
-						//Debug.Log( "Adding  packets " + processQueue.Count );
-						if (packet.IsBundle()) {
-							ArrayList messages = packet.Values;
-							for (int i=0; i<messages.Count; i++) {
-								processQueue.Add( (OSCMessage)messages[i] );
+					if (packet!=null) {
+						lock(processQueue){
+							//Debug.Log( "Adding  packets " + processQueue.Count );
+							if (packet.IsBundle()) {
+								ArrayList messages = packet.Values;
+								for (int i=0; i<messages.Count; i++) {
+									processQueue.Add( (OSCMessage)messages[i] );
+								}
+							} else{
+								processQueue.Add( (OSCMessage)packet );
 							}
-						} else{
-							processQueue.Add( (OSCMessage)packet );
 						}
-					}
-				} else Console.WriteLine("null packet");
-			} catch (Exception e) {
-				Debug.Log( e.Message );
-				Console.WriteLine(e.Message);
+					} else Console.WriteLine("null packet");
+				} catch (Exception e) {
+					Debug.Log( e.Message );
+					Console.WriteLine(e.Message);
+				}
 			}
 		}
 	}
@@ -142,6 +145,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 				}
 			}
 			GUI.color = Color.white;
+			mute = GUI.Toggle (new Rect (145, 29, 50, 20), mute, "Mute");
 		}
 	}
 
