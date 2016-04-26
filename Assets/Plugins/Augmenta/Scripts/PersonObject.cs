@@ -10,6 +10,9 @@ public class PersonObject : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		name = "PersonObject";
+		if (GetComponent<Renderer>() != null) {
+			GetComponent<Renderer>().enabled = false; // Hide by default
+		}
 	}
 	
 	// Update is called once per frame
