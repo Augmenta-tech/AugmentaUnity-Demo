@@ -60,6 +60,23 @@ public class auListener : MonoBehaviour  {
 	// Dinctionnary of persons
 	private static Dictionary<int, Person> arrayPerson = new Dictionary<int, Person>(); // Containing all current persons
 
+	// Smooth factor for smoothing augmenta data
+	private float smoothAmount = 0;
+	public float SmoothAmount{
+		get{
+			return smoothAmount;
+		}
+		set{
+			if(value < 0){
+				smoothAmount = 0;
+			} else if(value > 0.99){
+				smoothAmount = 0.99f;
+			} else {
+				smoothAmount = value;
+			}
+		}
+	}
+
 	public Scene GetScene(){
 		return scene;
 	}
@@ -183,6 +200,10 @@ public class auListener : MonoBehaviour  {
 
 		//Debug.Log("Update with width = "+p.boundingRect.width+" and height = "+p.boundingRect.height);
 
+		if(smoothAmount != 0){
+			p.smooth(smoothAmount);
+		}
+
 		// Inactive time reset to zero : the point has just been updated
 		p.inactiveTime = 0;
 	}
@@ -256,6 +277,13 @@ public class auListener : MonoBehaviour  {
 			}
 		}
 		return bestPerson;
+	}
+
+	void OnGUI(){
+		if (!MainScript.hide) {
+			GUI.Label (new Rect (140, 115, 60, 20), "Smooth");
+			smoothAmount = GUI.HorizontalSlider(new Rect(15, 120, 120, 20), smoothAmount, 0, 0.99f);
+		}
 	}
 
 }
