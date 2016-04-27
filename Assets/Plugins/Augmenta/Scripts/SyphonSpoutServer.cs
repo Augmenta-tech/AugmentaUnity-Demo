@@ -36,16 +36,18 @@ public class SyphonSpoutServer : MonoBehaviour {
 
 	void Start () {
 
-		// Init values
-		oldRenderWidth = renderWidth;
-		oldRenderHeight = renderHeight;
+		// Init default values
 		lastManualRenderWidth = renderWidth;
 		lastManualRenderHeight = renderHeight;
-		aspectRatio = (float)renderWidth/(float)renderHeight;
 
 		// Load saved settings
 		LoadSettings ();
 		Debug.Log ("Render size after load settings : " + renderWidth + "x" + renderHeight);
+
+		// Init other values depending on previously loaded settings 
+		oldRenderWidth = renderWidth;
+		oldRenderHeight = renderHeight;
+		aspectRatio = (float)lastManualRenderWidth/(float)lastManualRenderHeight;
 
 		// Init Syphon or Spout server
 		SetupGraphicServer ();
@@ -316,7 +318,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 	void LoadSettings(){
 		renderWidth = PlayerPrefs.GetInt ("renderWidth", renderWidth);
 		renderHeight = PlayerPrefs.GetInt("renderHeight", renderHeight);
-		autoResolution = PlayerPrefs.GetInt ("autoResolution") == 1 ? true : false;
+		autoResolution = PlayerPrefs.GetInt ("autoResolution", autoResolution?1:0) == 1 ? true : false;
 		lastManualRenderWidth = PlayerPrefs.GetInt ("lastManualRenderWidth", lastManualRenderWidth);
 		lastManualRenderHeight = PlayerPrefs.GetInt ("lastManualRenderHeight", lastManualRenderHeight);
 	}

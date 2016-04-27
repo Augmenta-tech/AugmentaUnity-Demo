@@ -145,7 +145,7 @@ public class AreaCalibration : MonoBehaviour {
 		this.transform.localScale = new Vector3(PlayerPrefs.GetFloat ("auScaleX"), 0f, PlayerPrefs.GetFloat("auScaleY"));
 		this.transform.rotation = new Quaternion (PlayerPrefs.GetFloat ("auRotationX"), PlayerPrefs.GetFloat ("auRotationY"), PlayerPrefs.GetFloat ("auRotationZ"), PlayerPrefs.GetFloat ("auRotationW"));
 
-		areaAutoResize = PlayerPrefs.GetInt ("areaAutoResize") == 1 ? true : false;
+		areaAutoResize = PlayerPrefs.GetInt ("areaAutoResize", areaAutoResize?1:0) == 1 ? true : false;
 	}
 
 	void Reset(){
