@@ -63,8 +63,17 @@ public class SyphonSpoutServer : MonoBehaviour {
 		#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 		// Safety check to make sure that the syphon texture is reset correctly when changing window size
 		if(gameObject.GetComponent<Camera>().targetTexture == null){
-			if(graphicServer == GraphicServer.SYPHON){
+			switch(graphicServer){
+			case GraphicServer.SYPHON:
 				ResizeSyphonRenderTexture ();
+				break;
+
+			case GraphicServer.FUNNEL:
+				ResizeFunnelRenderTexture();
+				break;
+
+			default:
+				break;
 			}
 		}
 		#endif
@@ -209,6 +218,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 		// This instantiation is made in Start function, to prevent cloned camera 
 		// to replicate itself through this script before it is destroyed.
 		GameObject spoutCamera = Instantiate(gameObject);
+		DontDestroyOnLoad(spoutCamera);
 		
 		// Remove useless cloned components
 		Destroy(spoutCamera.GetComponent<SyphonSpoutServer>());
