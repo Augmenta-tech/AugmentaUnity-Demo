@@ -21,6 +21,10 @@ public class SyphonSpoutServer : MonoBehaviour {
 	private int oldRenderWidth;
 	private int oldRenderHeight;
 
+	private int lastManualRenderWidth;
+	private int lastManualRenderHeight;
+	private bool wasAutoResolution;	// auResolution bool state on last frame
+
 	#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 	private enum GraphicServer{
 		SYPHON,
@@ -32,16 +36,20 @@ public class SyphonSpoutServer : MonoBehaviour {
 
 	void Start () {
 
+		// Init values
+		oldRenderWidth = renderWidth;
+		oldRenderHeight = renderHeight;
+		lastManualRenderWidth = renderWidth;
+		lastManualRenderHeight = renderHeight;
+		aspectRatio = (float)renderWidth/(float)renderHeight;
+
+		// Load saved settings
 		LoadSettings ();
 		Debug.Log ("Render size after load settings : " + renderWidth + "x" + renderHeight);
 
 		// Init Syphon or Spout server
 		SetupGraphicServer ();
 
-		// Init values
-		oldRenderWidth = renderWidth;
-		oldRenderHeight = renderHeight;
-		aspectRatio = (float)renderWidth/(float)renderHeight;
 	}
 
 	public void SetResolution(int x, int y){
@@ -53,6 +61,16 @@ public class SyphonSpoutServer : MonoBehaviour {
 	}
 
 	void Update(){
+
+		// If auto resolution mode just changed
+		if (!autoResolution && wasAutoResolution) {
+			// If current resolution differ from the last manual resolution saved
+			if (renderWidth != lastManualRenderWidth || renderHeight != lastManualRenderHeight) {
+				renderWidth = lastManualRenderWidth;
+				renderHeight = lastManualRenderHeight;
+			}
+		}
+
 		// Update the fbo if the render size has changed
 		if (forceRenderSizeUpdate || (renderWidth != oldRenderWidth || renderHeight != oldRenderHeight && renderWidth > 100 && renderHeight > 100)) {
 			forceRenderSizeUpdate = false;
@@ -77,6 +95,16 @@ public class SyphonSpoutServer : MonoBehaviour {
 			}
 		}
 		#endif
+
+		// If not in auto resolution mode
+		if (!autoResolution) {
+			// Not in auto mode, so save resolution as the last manually saved
+			lastManualRenderWidth = renderWidth;
+			lastManualRenderHeight = renderHeight;
+		}
+
+		// Save autoResolution bool state this frame for the next one
+		wasAutoResolution = autoResolution;
 	}
 
 
@@ -84,7 +112,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 	void UpdateRender () {
 		
 		// If aspect ratio locked
-		if (lockAspectRatio) {
+		if (!autoResolution && lockAspectRatio) {
 			// If user modified width, change height to match aspect ratio
 			if (renderWidth != oldRenderWidth) {
 				renderHeight = Mathf.RoundToInt ((float)renderWidth / aspectRatio);
@@ -98,7 +126,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 		ResizeRenderTexture ();
 
 		// If aspect ratio not locked, compute it 
-		if (!lockAspectRatio) {
+		if (!autoResolution && !lockAspectRatio) {
 			aspectRatio = (float)renderWidth / (float)renderHeight;
 		}
 
@@ -281,12 +309,16 @@ public class SyphonSpoutServer : MonoBehaviour {
 		PlayerPrefs.SetInt ("renderWidth", renderWidth);
 		PlayerPrefs.SetInt ("renderHeight", renderHeight);
 		PlayerPrefs.SetInt ("autoResolution", autoResolution?1:0);
+		PlayerPrefs.SetInt ("lastManualRenderWidth", lastManualRenderWidth);
+		PlayerPrefs.SetInt ("lastManualRenderHeight", lastManualRenderHeight);
 	}
 
 	void LoadSettings(){
-		renderWidth = PlayerPrefs.GetInt ("renderWidth");
-		renderHeight = PlayerPrefs.GetInt("renderHeight");
+		renderWidth = PlayerPrefs.GetInt ("renderWidth", renderWidth);
+		renderHeight = PlayerPrefs.GetInt("renderHeight", renderHeight);
 		autoResolution = PlayerPrefs.GetInt ("autoResolution") == 1 ? true : false;
+		lastManualRenderWidth = PlayerPrefs.GetInt ("lastManualRenderWidth", lastManualRenderWidth);
+		lastManualRenderHeight = PlayerPrefs.GetInt ("lastManualRenderHeight", lastManualRenderHeight);
 	}
 
 	void OnApplicationQuit(){
