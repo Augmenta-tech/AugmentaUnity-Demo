@@ -20,9 +20,9 @@ public class AreaCalibration : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		GetComponent<Renderer>().enabled = MainScript.debug;
+		GetComponent<Renderer>().enabled = auMainScript.debug;
 
-		if (MainScript.debug && !areaAutoResize) {
+		if (auMainScript.debug && !areaAutoResize) {
 			if (Input.GetKeyDown ("r")) {
 				Reset ();
 			}

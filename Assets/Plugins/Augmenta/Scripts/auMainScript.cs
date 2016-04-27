@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainScript : MonoBehaviour {
+public class auMainScript : MonoBehaviour {
 
 	static public bool debug = true;
 	static public bool hide = false;
