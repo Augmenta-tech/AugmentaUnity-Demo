@@ -9,12 +9,12 @@ public class SyphonSpoutServer : MonoBehaviour {
 	 * to the target platform of the app (Syphon for OSX, Spout for Windows)
 	 */ 
 
-	private bool autoResolution = true;
-	private bool lockAspectRatio = false;
+	public bool autoResolution = true;
+	public bool lockAspectRatio = false;
 	private float aspectRatio = 16/9;
 
-	private int renderWidth = 1920;
-	private int renderHeight = 1080;
+	public int renderWidth = 1920;
+	public int renderHeight = 1080;
 	private int minRenderSize = 300;
 	private bool forceRenderSizeUpdate = true;
 
@@ -78,23 +78,6 @@ public class SyphonSpoutServer : MonoBehaviour {
 		if (autoResolution && x >= minRenderSize && y >= minRenderSize) {
 			renderWidth = x;
 			renderHeight = y;
-		}
-	}
-
-	void OnGUI(){
-		if (!MainScript.hide) {
-			
-			// Resolution
-			autoResolution = GUI.Toggle (new Rect (15, 60, 120, 20), autoResolution, "Auto resolution");
-			if (autoResolution) {
-				GUI.Label (new Rect (130, 60, 100, 20), renderWidth+" x "+renderHeight);
-			} else {
-				renderWidth = int.Parse (GUI.TextField (new Rect (130, 60, 40, 20), renderWidth.ToString (), 25));
-				GUI.Label (new Rect (174, 59, 15, 30), "x");
-				renderHeight = int.Parse (GUI.TextField (new Rect (185, 60, 40, 20), renderHeight.ToString (), 25));
-				lockAspectRatio = GUI.Toggle (new Rect (230, 60, 120, 20), lockAspectRatio, "Lock ratio");
-			}
-
 		}
 	}
 

@@ -10,7 +10,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 	
 	private bool connected = false;
 	public int port = 12000;
-	private bool mute = false;
+	public bool mute = false;
 	private OSCReceiver receiver;
 	private Thread thread;
 	
@@ -122,30 +122,6 @@ public class UnityOSCReceiver : MonoBehaviour {
 					Console.WriteLine(e.Message);
 				}
 			}
-		}
-	}
-
-	void OnGUI(){
-		if (!MainScript.hide) {
-			GUI.Label (new Rect (20, 29, 65, 25), "Osc port");
-			if (connected) {
-				GUI.color = Color.green;
-			} else {
-				GUI.color = Color.red;
-			}
-			if (int.TryParse (GUI.TextField (new Rect (90, 30, 45, 20), port.ToString (), 25), out port)) {
-				if (GUI.changed) {
-					if (port > 1024) {
-						if (reconnect ()) {
-							Invoke ("callClearAllPersons", 0.1f);
-						}
-					} else {
-						disconnect ();
-					}
-				}
-			}
-			GUI.color = Color.white;
-			mute = GUI.Toggle (new Rect (145, 29, 50, 20), mute, "Mute");
 		}
 	}
 

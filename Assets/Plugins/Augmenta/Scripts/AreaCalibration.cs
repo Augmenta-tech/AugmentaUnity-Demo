@@ -6,7 +6,7 @@ public class AreaCalibration : MonoBehaviour {
 	GameObject globalCam;
 	Vector2 InteractiveAreaSize;
 	bool oldAreaAutoResize = true;
-	bool areaAutoResize = true;
+	public bool areaAutoResize = true;
 
 	// Use this for initialization
 	void Start () {
@@ -116,12 +116,6 @@ public class AreaCalibration : MonoBehaviour {
 			}
 
 			//Debug.Log ("END adjust scene");
-		}
-	}
-
-	void OnGUI(){
-		if (!MainScript.hide) {
-			areaAutoResize = GUI.Toggle (new Rect (15, 90, 150, 20), areaAutoResize, "Auto Augmenta area");
 		}
 	}
 

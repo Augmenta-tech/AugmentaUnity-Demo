@@ -279,11 +279,4 @@ public class auListener : MonoBehaviour  {
 		return bestPerson;
 	}
 
-	void OnGUI(){
-		if (!MainScript.hide) {
-			GUI.Label (new Rect (140, 115, 60, 20), "Smooth");
-			smoothAmount = GUI.HorizontalSlider(new Rect(15, 120, 120, 20), smoothAmount, 0, 0.99f);
-		}
-	}
-
 }
