@@ -60,10 +60,12 @@ public class SyphonSpoutServer : MonoBehaviour {
 			GameObject.Find("InteractiveArea").BroadcastMessage ("adjustScene", SendMessageOptions.DontRequireReceiver);
 		}
 
+		#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 		// Safety check to make sure that the syphon texture is reset correctly when changing window size
 		if(gameObject.GetComponent<Camera>().targetTexture == null){
 			ResizeSyphonRenderTexture ();
 		}
+		#endif
 	}
 
 
