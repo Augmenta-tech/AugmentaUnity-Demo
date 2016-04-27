@@ -141,7 +141,7 @@ public class auMainScript : MonoBehaviour {
 		}
 		if (int.TryParse (GUI.TextField (oscPortRect, osc.port.ToString (), 25), out osc.port)) {
 			if (GUI.changed) {
-				if (osc.port > 1024) {
+				if (osc.port >= 1024 || osc.port <= 65535) {
 					if (osc.reconnect()) {
 						Invoke ("callClearAllPersons", 0.1f);
 					}
