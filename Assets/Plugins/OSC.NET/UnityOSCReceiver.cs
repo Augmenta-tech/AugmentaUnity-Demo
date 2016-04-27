@@ -9,6 +9,7 @@ using OSC.NET;
 public class UnityOSCReceiver : MonoBehaviour {
 	
 	private bool connected = false;
+	private bool reconnecting = false;
 	public int port = 12000;
 	public bool mute = false;
 	private OSCReceiver receiver;
@@ -30,6 +31,8 @@ public class UnityOSCReceiver : MonoBehaviour {
 	}
 
 	public bool reconnect(){
+		reconnecting = true;
+
 		if (receiver != null){
 			if (receiver.getPort() == port){
 				return false;
@@ -39,7 +42,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 		// else
 		if(connected){
 			disconnect();
-			Invoke("connect", 10); //wait a tick to sync threading before reconnecting
+			Invoke("connect", 5); //wait a tick to sync threading before reconnecting
 		}
 		else{
 			connect();
@@ -53,6 +56,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 		try {
 			Debug.Log("Connecting to port " + port);
 			receiver = new OSCReceiver(port);
+			reconnecting = false;
 			connected = true;
 			thread = new Thread(new ThreadStart(listen));
 			Debug.Log("Starting listening thread...");
@@ -61,6 +65,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 			Debug.Log("Failed to connect to port "+port);
 			Debug.Log(e.Message);
 			connected = false;
+			reconnecting = false;
 		}
 	}
 	/**
@@ -96,6 +101,7 @@ public class UnityOSCReceiver : MonoBehaviour {
 	}
 
 	public bool isConnected() { return connected; }
+	public bool isReconnecting() { return reconnecting; }
 
 	private void listen() {
 		Debug.Log("Listening to port " + port);

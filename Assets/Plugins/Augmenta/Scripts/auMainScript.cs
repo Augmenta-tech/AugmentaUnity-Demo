@@ -15,6 +15,8 @@ public class auMainScript : MonoBehaviour {
 
 	// GUI
 	Rect windowRect = new Rect (0, 0, 250, 150);	// Initial position of UI window
+	private string[] load = {"    ", "-   ", "--  ", "--- ", " ---", "  --", "   -"}; // Characters used for loading effect
+	int oscPortUI; // osc port set in UI (different than the one in osc while not validated) 
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +25,7 @@ public class auMainScript : MonoBehaviour {
 		listener = GameObject.Find ("AugmentaReceiver").GetComponent<auListener> ();
 		graphicServer = GameObject.Find ("MainCamera").GetComponent<SyphonSpoutServer> ();
 		areaCalibration = GameObject.Find ("InteractiveArea").GetComponent<AreaCalibration> ();
+		oscPortUI = osc.port;
 	}
 	
 	// Update is called once per frame
@@ -133,14 +136,21 @@ public class auMainScript : MonoBehaviour {
 		Rect oscPortRect = new Rect(oscLabelRect.xMax + offsetX, anchor.y, 45, 20);
 		Rect muteRect = new Rect(oscPortRect.xMax + offsetY, anchor.y, 50, 20);
 
+		// Label
 		GUI.Label(oscLabelRect, "Osc port");
+		// Input osc port
+		GUI.SetNextControlName("inputOscPort");
 		if (osc.isConnected()) {
 			GUI.color = Color.green;
+		} else if(osc.isReconnecting()){
+			GUI.color = Color.gray;
 		} else {
 			GUI.color = Color.red;
 		}
-		if (int.TryParse (GUI.TextField (oscPortRect, osc.port.ToString (), 25), out osc.port)) {
-			if (GUI.changed) {
+		if (int.TryParse (GUI.TextField (oscPortRect, oscPortUI.ToString (), 25), out oscPortUI)) {
+			// Change port when losing focus or enter key pressed
+			if (oscPortUI != osc.port && (GUI.GetNameOfFocusedControl() != "inputOscPort" || (Event.current.isKey && Event.current.keyCode == KeyCode.Return && GUI.GetNameOfFocusedControl() == "inputOscPort"))) {
+				osc.port = oscPortUI;
 				if (osc.port >= 1024 || osc.port <= 65535) {
 					if (osc.reconnect()) {
 						Invoke ("callClearAllPersons", 0.1f);
@@ -151,6 +161,11 @@ public class auMainScript : MonoBehaviour {
 			}
 		}
 		GUI.color = Color.white;
+		// Display loading effect
+		if (osc.isReconnecting ()) {
+			GUI.Label(new Rect(oscPortRect.xMax + 2, oscPortRect.yMin, 20, 20), load[Time.frameCount%load.Length]);
+		}
+		// Mute toggle
 		osc.mute = GUI.Toggle (muteRect, osc.mute, "Mute");
 
 
