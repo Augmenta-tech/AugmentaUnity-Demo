@@ -92,7 +92,8 @@ public class auMainScript : MonoBehaviour {
 			drawHiddenGUI ();
 		} else {
 			// Use "windowRect =" to make window draggable
-			windowRect = GUI.Window (0, windowRect, drawGUI, "Augmenta settings");
+			// use 12000 for window ID to prevent potential conflicts if use 0
+			windowRect = GUI.Window (12000, windowRect, drawGUI, "Augmenta settings");
 		}
 	}
 
