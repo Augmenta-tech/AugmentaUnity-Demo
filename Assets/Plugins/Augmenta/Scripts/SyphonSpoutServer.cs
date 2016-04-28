@@ -9,12 +9,12 @@ public class SyphonSpoutServer : MonoBehaviour {
 	 * to the target platform of the app (Syphon for OSX, Spout for Windows)
 	 */ 
 
-	public bool autoResolution = true;
-	public bool lockAspectRatio = false;
-	private float aspectRatio = 16/9;
+	public bool autoResolution;
+	public bool lockAspectRatio;
+	private float aspectRatio;
 
-	public int renderWidth = 1920;
-	public int renderHeight = 1080;
+	public int renderWidth;
+	public int renderHeight;
 	private int minRenderSize = 300;
 	private bool forceRenderSizeUpdate = true;
 
@@ -34,11 +34,20 @@ public class SyphonSpoutServer : MonoBehaviour {
 	private GraphicServer graphicServer = GraphicServer.SYPHON;
 	#endif
 
+	// Init default values
+	void Init(){
+		autoResolution = true;
+		lockAspectRatio = false;
+		renderWidth = 1920;
+		renderHeight = 1080;
+		lastManualRenderWidth = renderWidth;
+		lastManualRenderHeight = renderHeight;
+	}
+
 	void Start () {
 
 		// Init default values
-		lastManualRenderWidth = renderWidth;
-		lastManualRenderHeight = renderHeight;
+		Init ();
 
 		// Load saved settings
 		LoadSettings ();

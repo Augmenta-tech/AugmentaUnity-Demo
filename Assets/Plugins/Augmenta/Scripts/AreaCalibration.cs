@@ -141,9 +141,12 @@ public class AreaCalibration : MonoBehaviour {
 	void LoadSettings(){
 		Debug.Log ("Loading interactive area settings");
 
-		this.transform.position = new Vector3(PlayerPrefs.GetFloat("auPositionX"), 0f, PlayerPrefs.GetFloat("auPositionY")); 
-		this.transform.localScale = new Vector3(PlayerPrefs.GetFloat ("auScaleX"), 1f, PlayerPrefs.GetFloat("auScaleY"));
-		this.transform.rotation = new Quaternion (PlayerPrefs.GetFloat ("auRotationX"), PlayerPrefs.GetFloat ("auRotationY"), PlayerPrefs.GetFloat ("auRotationZ"), PlayerPrefs.GetFloat ("auRotationW"));
+		this.transform.position = new Vector3(PlayerPrefs.GetFloat("auPositionX", 0f), 0f, PlayerPrefs.GetFloat("auPositionY", 0f)); 
+		this.transform.localScale = new Vector3(PlayerPrefs.GetFloat ("auScaleX", 1f), 1f, PlayerPrefs.GetFloat("auScaleY", 1f));
+		this.transform.rotation = new Quaternion (PlayerPrefs.GetFloat ("auRotationX", Quaternion.identity.x), 
+		                                          PlayerPrefs.GetFloat ("auRotationY", Quaternion.identity.y), 
+		                                          PlayerPrefs.GetFloat ("auRotationZ", Quaternion.identity.z), 
+		                                          PlayerPrefs.GetFloat ("auRotationW", Quaternion.identity.w));
 
 		areaAutoResize = PlayerPrefs.GetInt ("areaAutoResize", areaAutoResize?1:0) == 1 ? true : false;
 	}
