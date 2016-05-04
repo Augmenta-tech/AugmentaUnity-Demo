@@ -94,8 +94,8 @@ public class AreaCalibration : MonoBehaviour {
 			//Debug.Log ("Current area size : " + currentAreaWorldSize);
 
 			Vector2 worldSize = new Vector2(0f,0f);
-			worldSize.x = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Screen.currentResolution.width, 0)).x);
-			worldSize.y = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.currentResolution.height, 0, 0)).z);
+			worldSize.x = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(0, Screen.currentResolution.width, globalCam.transform.position.y)).x);
+			worldSize.y = -2*(globalCam.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.currentResolution.height, 0, globalCam.transform.position.y)).z);
 			//Debug.Log ("World size : "+worldSize.ToString());
 
 			while(currentAreaWorldSize.x < worldSize.x-epsilon) {
