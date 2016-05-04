@@ -39,9 +39,6 @@ public class auInterface : MonoBehaviour {
 	public Material	[] materials;
 	public GameObject boundingPlane; // Put the people on this plane
 	public GameObject personMarker; // Used to represent people moving about in our example
-
-	public static bool debug = true;
-	private bool boundingBoxValid = true;
 	
 	void Start () {
 		// Launched at scene startup
@@ -146,7 +143,7 @@ public class auInterface : MonoBehaviour {
 	private void movePerson(Person person, GameObject personObject){
 
 		Transform pt = personObject.transform;
-		Transform bt = boundingPlane.transform;
+		//Transform bt = boundingPlane.transform;
 		Bounds meshBounds = boundingPlane.GetComponent<MeshFilter>().sharedMesh.bounds;
 
 		pt.localPosition = new Vector3((float)(person.centroid.x - 0.5f) * meshBounds.size.x, pt.localScale.y/2, (float)(person.centroid.y - 0.5f) * meshBounds.size.z * -1);
