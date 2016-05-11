@@ -59,32 +59,14 @@ public class auMainScript : MonoBehaviour {
 
 
 		// Disable drawing if hide
-		if (hide) {
-			if (syphonCanvas != null) {
-				syphonCanvas.SetActive (false);
-			}
-		} else {
-			if (syphonCanvas != null) {
-				syphonCanvas.SetActive (true);
-			}
-		}
-
+		graphicServer.ShowEditorView(!hide);
+		
 		// Transfer scene width/height data from auListener to SyphonSpoutServer
 		// we do this here to avoid adding augmenta dependency in the SyphonSpoutServer
 		int w = listener.GetScene().width;
 		int h = listener.GetScene().height;
 		graphicServer.SetResolution (w, h);
-
-	}
-
-	IEnumerator GetSyphonCanvas(){
-		while (syphonCanvas == null) {
-			yield return 0;
-			syphonCanvas = GameObject.Find ("SyphonServerCustomRezUICanvas");
-			if (syphonCanvas != null) {
-				GameObject.Find ("SyphonServerCustomRezCam").GetComponent<Camera> ().backgroundColor = Color.black;
-			}
-		}
+		
 	}
 
 	void OnGUI(){

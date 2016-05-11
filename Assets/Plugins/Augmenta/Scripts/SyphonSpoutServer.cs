@@ -225,7 +225,50 @@ public class SyphonSpoutServer : MonoBehaviour {
 		ResizeSpoutRenderTexture();
 		#endif
 	}
-
+	
+	/// If true, preview in game view, else send only visuals rendered 
+	public void ShowEditorView(bool show){
+		if (show) {
+			
+			#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+			switch(graphicServer){
+			case GraphicServer.SYPHON:
+				gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderMe = true;
+				break;
+				
+			case GraphicServer.FUNNEL:
+				gameObject.GetComponent<Funnel.Funnel> ().renderMode = Funnel.Funnel.RenderMode.PreviewOnGameView;
+				break;
+				
+			default:
+				break;
+			}
+			#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+			// TODO
+			#endif
+			
+		} else {
+			
+			#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+			switch(graphicServer){
+			case GraphicServer.SYPHON:
+				gameObject.GetComponent<SyphonServerTextureCustomResolution> ().renderMe = false;
+				break;
+				
+			case GraphicServer.FUNNEL:
+				gameObject.GetComponent<Funnel.Funnel> ().renderMode = Funnel.Funnel.RenderMode.SendOnly;
+				break;
+				
+			default:
+				break;
+			}
+			#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+			// TODO
+			#endif
+			
+		}
+	}
+	
 	#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 	void SetupSyphonServer(){
 		// Add syphon components
