@@ -244,7 +244,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 				break;
 			}
 			#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-			// TODO
+			gameObject.GetComponent<Camera>().enabled = true;
 			#endif
 			
 		} else {
@@ -263,7 +263,7 @@ public class SyphonSpoutServer : MonoBehaviour {
 				break;
 			}
 			#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-			// TODO
+			gameObject.GetComponent<Camera>().enabled = false;
 			#endif
 			
 		}
