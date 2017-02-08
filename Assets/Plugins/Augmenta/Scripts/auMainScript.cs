@@ -233,6 +233,16 @@ public class auMainScript : MonoBehaviour {
 			GUILayout.Space (marginY);
 
 			//--------------------------------------------------
+			// auUnit
+			//--------------------------------------------------
+			GUILayout.BeginHorizontal();
+			GUILayout.Label ("auUnit", GUILayout.ExpandWidth(false));
+			auUnit.unit = GUILayout.HorizontalSlider(auUnit.unit, 0, 1, slider, thumb);
+			GUILayout.EndHorizontal ();
+
+			GUILayout.Space (marginY);
+
+			//--------------------------------------------------
 			// Debug instructions
 			//--------------------------------------------------
 			// Define text content
