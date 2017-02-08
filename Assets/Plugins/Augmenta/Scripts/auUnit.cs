@@ -42,5 +42,11 @@ public class auUnit : MonoBehaviour {
 			|| unitPlane.transform.localScale.z != unit) {
 			unitPlane.transform.localScale = new Vector3 (unit, 1, unit);
 		}
+
+		if (auMainScript.debug) {
+			unitPlane.SetActive (true);
+		} else {
+			unitPlane.SetActive (false);
+		}
 	}
 }
