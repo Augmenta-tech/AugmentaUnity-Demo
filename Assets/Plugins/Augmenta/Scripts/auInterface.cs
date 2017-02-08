@@ -34,15 +34,25 @@ public class auInterface : MonoBehaviour {
 
 	*/
 
+	// Broadcast augmenta message DELEGATE
+	public delegate void personEnteredHandler(int id, GameObject obj);
+	public static event personEnteredHandler personEnteredMessage;
+	public delegate void personUpdatedHandler(int id, GameObject obj);
+	public static event personUpdatedHandler personUpdatedMessage;
+	public delegate void personWillLeaveHandler(int id);
+	public static event personWillLeaveHandler personWillLeaveMessage;
+
 	private static Dictionary<int,GameObject> arrayPersonCubes = new Dictionary<int,GameObject>();
 
 	public Material	[] materials;
-	public GameObject boundingPlane; // Put the people on this plane
+	public static GameObject boundingPlane; // Put the people on this plane
 	public GameObject personMarker; // Used to represent people moving about in our example
 	
 	void Start () {
 		// Launched at scene startup
 		auListener.broadcastMessage += EventReceiver;
+
+		boundingPlane = this.transform.Find ("InteractiveArea").gameObject;
 	}
 		
 	public void onEnable(){
@@ -55,6 +65,7 @@ public class auInterface : MonoBehaviour {
 
 	void Update () {
 		// Called once per frame
+
 	}
 	
 	public static Dictionary<int,GameObject> getAugmentaObjects(){
@@ -84,14 +95,24 @@ public class auInterface : MonoBehaviour {
 
 			personObject.GetComponent<Renderer>().material = materials[person.pid % materials.Length];
 			arrayPersonCubes.Add(person.pid,personObject);
+
+			// Transmit message
+			if (personEnteredMessage != null) {
+				personEnteredMessage (person.pid, personObject);
+			}
 		}
 	}
 
 	public void PersonUpdated(Person person) {
 		//Debug.Log("Person updated pid : " + person.pid);
 		if(arrayPersonCubes.ContainsKey(person.pid)){
-			GameObject cubeToMove = arrayPersonCubes[person.pid];
-			updatePerson(person, cubeToMove);
+			GameObject personObject = arrayPersonCubes[person.pid];
+			updatePerson(person, personObject);
+
+			// Transmit message
+			if (personUpdatedMessage != null) {
+				personUpdatedMessage (person.pid, personObject);
+			}
 		}
 	}
 
@@ -99,11 +120,16 @@ public class auInterface : MonoBehaviour {
 		//Debug.Log("Person leaving with ID " + person.pid);
 		if(arrayPersonCubes.ContainsKey(person.pid)){
 			//Debug.Log("Destroying cube");
-			GameObject cubeToRemove = arrayPersonCubes[person.pid];
+			GameObject personObject = arrayPersonCubes[person.pid];
 			// Send only the pid : the actual object will be destroyed
 			arrayPersonCubes.Remove(person.pid);
 			//delete it from the scene	
-			Destroy(cubeToRemove);
+			Destroy(personObject);
+
+			// Transmit message
+			if (personWillLeaveMessage != null) {
+				personWillLeaveMessage (person.pid);
+			}
 		}
 	}
 

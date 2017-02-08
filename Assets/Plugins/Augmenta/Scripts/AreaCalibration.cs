@@ -7,6 +7,7 @@ public class AreaCalibration : MonoBehaviour {
 	Vector2 InteractiveAreaSize;
 	bool oldAreaAutoResize = true;
 	public bool areaAutoResize = true;
+	Vector2 oldResolution = new Vector2(0, 0);
 
 	// Use this for initialization
 	void Start () {
@@ -65,8 +66,12 @@ public class AreaCalibration : MonoBehaviour {
 		}
 
 		// Test change in the value of areaAutoResize
-		if (areaAutoResize != oldAreaAutoResize) {
+		if (areaAutoResize != oldAreaAutoResize 
+			|| Screen.width != oldResolution.x 
+			|| Screen.height != oldResolution.y
+		) {
 			adjustScene ();
+			oldResolution = new Vector2(Screen.width, Screen.height);
 		}
 		oldAreaAutoResize = areaAutoResize;
 
