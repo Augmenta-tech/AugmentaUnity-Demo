@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Augmenta;
+using System;
 
 public class auInterface : MonoBehaviour {
 	/*
@@ -47,7 +48,21 @@ public class auInterface : MonoBehaviour {
 	public Material	[] materials;
 	public static GameObject boundingPlane; // Put the people on this plane
 	public GameObject personMarker; // Used to represent people moving about in our example
-	
+
+	/// Ways to get Augmenta objects
+	/// - ALL : all persons are returned
+	/// - OLDEST : only the oldest person in augmenta scene is returned
+	/// - NEWEST : only the newest person in augmenta scene is returned
+	public enum Mode{
+		ALL,
+		OLDEST, 
+		NEWEST
+	}
+
+	/// Currently selected mode
+	public static Mode mode = Mode.ALL;
+
+
 	void Start () {
 		// Launched at scene startup
 		auListener.broadcastMessage += EventReceiver;
@@ -67,19 +82,75 @@ public class auInterface : MonoBehaviour {
 		// Called once per frame
 
 	}
-	
+
+	/// Return Augmenta objects considering currently selected mode to get them
 	public static Dictionary<int,GameObject> GetAugmentaObjects(){
-		return arrayPersonCubes;
+		switch (mode) {
+		case Mode.ALL:
+			return auInterface.GetAll ();
+
+		case Mode.NEWEST:
+			Dictionary<int,GameObject> newDict = new Dictionary<int,GameObject> ();
+			if(auInterface.GetNewest() != null)
+				newDict.Add (auInterface.GetNewest ().GetComponent<PersonObject> ().GetId (), auInterface.GetNewest ());
+			return newDict;
+
+		case Mode.OLDEST:
+			Dictionary<int,GameObject> oldDict = new Dictionary<int,GameObject> ();
+			if (auInterface.GetOldest() != null)
+				oldDict.Add (auInterface.GetOldest ().GetComponent<PersonObject> ().GetId (), auInterface.GetOldest ());
+			return oldDict;
+
+		default:
+			return null;
+		}
 	}
 
 	public void EventReceiver(string msg, Person person){
-		if (msg == "PersonEntered") {
-			PersonEntered(person);
-		} else if (msg == "PersonUpdated") {
-			PersonUpdated(person);
-		} else if (msg == "PersonWillLeave") {
-			PersonWillLeave(person);
+		switch (mode) {
+		case Mode.ALL:
+			if (msg == "PersonEntered") {
+				PersonEntered(person);
+			} else if (msg == "PersonUpdated") {
+				PersonUpdated(person);
+			} else if (msg == "PersonWillLeave") {
+				PersonWillLeave(person);
+			}
+			break;
+
+		case Mode.NEWEST:
+			if (person == auListener.GetNewest ()) {
+				if (msg == "PersonEntered") {
+					PersonEntered (person);
+				} else if (msg == "PersonUpdated") {
+					PersonUpdated (person);
+				} else if (msg == "PersonWillLeave") {
+					PersonWillLeave (person);
+				}
+			} else {
+				if (msg == "PersonUpdated" || msg == "PersonWillLeave") {
+					PersonWillLeave (person);
+				}
+			}
+			break;
+
+		case Mode.OLDEST:
+			if (person == auListener.GetOldest ()) {
+				if (msg == "PersonEntered") {
+					PersonEntered (person);
+				} else if (msg == "PersonUpdated") {
+					PersonUpdated (person);
+				} else if (msg == "PersonWillLeave") {
+					PersonWillLeave (person);
+				}
+			} else {
+				if (msg == "PersonUpdated" || msg == "PersonWillLeave") {
+					PersonWillLeave (person);
+				}
+			}
+			break;
 		}
+
 	}
 	
 	public void PersonEntered(Person person){
@@ -105,14 +176,16 @@ public class auInterface : MonoBehaviour {
 
 	public void PersonUpdated(Person person) {
 		//Debug.Log("Person updated pid : " + person.pid);
-		if(arrayPersonCubes.ContainsKey(person.pid)){
-			GameObject personObject = arrayPersonCubes[person.pid];
-			UpdatePerson(person, personObject);
+		if (arrayPersonCubes.ContainsKey (person.pid)) {
+			GameObject personObject = arrayPersonCubes [person.pid];
+			UpdatePerson (person, personObject);
 
 			// Transmit message
 			if (personUpdatedMessage != null) {
 				personUpdatedMessage (person.pid, personObject);
 			}
+		} else {
+			PersonEntered (person);
 		}
 	}
 
@@ -177,6 +250,7 @@ public class auInterface : MonoBehaviour {
 
 	}	
 
+	// Return oldest tracked person
 	public static GameObject GetOldest(){
 		if (auListener.GetOldest() != null) {
 			return arrayPersonCubes[auListener.GetOldest().pid];
@@ -184,7 +258,8 @@ public class auInterface : MonoBehaviour {
 			return null;
 		}
 	}
-	
+
+	// Return newest tracked person
 	public static GameObject GetNewest(){
 		if (auListener.GetNewest() != null) {
 			return arrayPersonCubes[auListener.GetNewest().pid];
@@ -192,5 +267,24 @@ public class auInterface : MonoBehaviour {
 			return null;
 		}
 	}
+
+	// Return all tracked persons
+	public static Dictionary<int,GameObject> GetAll(){
+		return arrayPersonCubes;
+	}
+
+	public static void SetMode(string modeName){
+		try {
+			mode = (Mode)System.Enum.Parse (typeof(Mode), modeName);
+		} 
+		catch(ArgumentException){
+			Debug.LogError ("AugmentaManager : the mode " + modeName + " you try to set does not exist in AugmentaManager.mode enumeration");
+		}
+	}
+
+	public static void SetMode(Mode newMode){
+		mode = newMode;
+	}
+
 
 }

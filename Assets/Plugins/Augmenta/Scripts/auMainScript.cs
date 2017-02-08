@@ -214,6 +214,27 @@ public class auMainScript : MonoBehaviour {
 			// Put back default color
 			GUI.contentColor = defaultColor;
 
+			//--------------------------------------------------
+			// Ways to get Augmenta persons
+			//--------------------------------------------------
+			GUILayout.BeginHorizontal();
+			bool modeAll = GUILayout.Toggle (auInterface.mode == auInterface.Mode.ALL, "All");
+			bool modeOldest = GUILayout.Toggle (auInterface.mode == auInterface.Mode.OLDEST, "Oldest");
+			bool modeNewest = GUILayout.Toggle (auInterface.mode == auInterface.Mode.NEWEST, "Newest");
+			if (modeAll && auInterface.mode != auInterface.Mode.ALL) {
+				auInterface.SetMode (auInterface.Mode.ALL);
+			} else if (modeNewest && auInterface.mode != auInterface.Mode.NEWEST) {
+				auInterface.SetMode (auInterface.Mode.NEWEST);
+			} else if (modeOldest && auInterface.mode != auInterface.Mode.OLDEST) {
+				auInterface.SetMode (auInterface.Mode.OLDEST);
+			}
+			GUILayout.EndHorizontal ();
+
+			GUILayout.Space (marginY);
+
+			//--------------------------------------------------
+			// Debug instructions
+			//--------------------------------------------------
 			// Define text content
 			GUIContent content = new GUIContent ();
 			content.text = 	"You can calibrate Augmenta area in manual mode : \n" +
