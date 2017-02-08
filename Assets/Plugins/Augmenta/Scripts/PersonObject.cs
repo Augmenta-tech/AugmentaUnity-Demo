@@ -25,13 +25,13 @@ public class PersonObject : MonoBehaviour {
 		Gizmos.DrawLine(centroid, centroid+3*transform.up);
 	}
 
-	public int getId(){return pid;}
-	public void setId(int id){pid = id;}
+	public int GetId(){return pid;}
+	public void SetId(int id){pid = id;}
 
-	public Vector3 getCentroid(){return centroid;}
-	public void setCentroid(Vector3 _centroid){centroid = _centroid;}
+	public Vector3 GetCentroid(){return centroid;}
+	public void SetCentroid(Vector3 _centroid){centroid = _centroid;}
 
-	public int getOid(){return auListener.getPeopleArray()[pid].oid;}
+	public int GetOid(){return auListener.GetPeopleArray()[pid].oid;}
 
-	public int getAge(){return auListener.getPeopleArray()[pid].age;}
+	public int GetAge(){return auListener.GetPeopleArray()[pid].age;}
 }

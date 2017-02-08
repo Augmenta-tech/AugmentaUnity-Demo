@@ -55,11 +55,11 @@ public class auInterface : MonoBehaviour {
 		boundingPlane = this.transform.Find ("InteractiveArea").gameObject;
 	}
 		
-	public void onEnable(){
+	public void OnEnable(){
 		auListener.broadcastMessage += EventReceiver;
 	}
 
-	public void onDisable(){
+	public void OnDisable(){
 		auListener.broadcastMessage -= EventReceiver;
 	}
 
@@ -68,7 +68,7 @@ public class auInterface : MonoBehaviour {
 
 	}
 	
-	public static Dictionary<int,GameObject> getAugmentaObjects(){
+	public static Dictionary<int,GameObject> GetAugmentaObjects(){
 		return arrayPersonCubes;
 	}
 
@@ -91,7 +91,7 @@ public class auInterface : MonoBehaviour {
 			personObject.transform.localPosition = Vector3.zero;
 			personObject.transform.localRotation = Quaternion.identity;
 			personObject.transform.localScale = Vector3.one;
-			updatePerson(person, personObject);
+			UpdatePerson(person, personObject);
 
 			personObject.GetComponent<Renderer>().material = materials[person.pid % materials.Length];
 			arrayPersonCubes.Add(person.pid,personObject);
@@ -107,7 +107,7 @@ public class auInterface : MonoBehaviour {
 		//Debug.Log("Person updated pid : " + person.pid);
 		if(arrayPersonCubes.ContainsKey(person.pid)){
 			GameObject personObject = arrayPersonCubes[person.pid];
-			updatePerson(person, personObject);
+			UpdatePerson(person, personObject);
 
 			// Transmit message
 			if (personUpdatedMessage != null) {
@@ -151,7 +151,7 @@ public class auInterface : MonoBehaviour {
 		
 	}
 	
-	public void clearAllPersons(){
+	public void ClearAllPersons(){
 		Debug.Log("Clear all cubes");
 		foreach(var pKey in arrayPersonCubes.Keys){
 			Destroy(arrayPersonCubes[pKey]);
@@ -159,14 +159,14 @@ public class auInterface : MonoBehaviour {
 		arrayPersonCubes.Clear();
 	}
 
-	private void updatePerson(Person person, GameObject personObject){
-		movePerson(person, personObject);
+	private void UpdatePerson(Person person, GameObject personObject){
+		MovePerson(person, personObject);
 		PersonObject po = personObject.GetComponent<PersonObject>();
-		po.setId(person.pid);
+		po.SetId(person.pid);
 	}
 
 	//maps the Augmenta coordinate system into one that matches the size of the boundingPlane
-	private void movePerson(Person person, GameObject personObject){
+	private void MovePerson(Person person, GameObject personObject){
 
 		Transform pt = personObject.transform;
 		//Transform bt = boundingPlane.transform;
@@ -177,17 +177,17 @@ public class auInterface : MonoBehaviour {
 
 	}	
 
-	public static GameObject getOldest(){
-		if (auListener.getOldest() != null) {
-			return arrayPersonCubes[auListener.getOldest().pid];
+	public static GameObject GetOldest(){
+		if (auListener.GetOldest() != null) {
+			return arrayPersonCubes[auListener.GetOldest().pid];
 		} else {
 			return null;
 		}
 	}
 	
-	public static GameObject getNewest(){
-		if (auListener.getNewest() != null) {
-			return arrayPersonCubes[auListener.getNewest().pid];
+	public static GameObject GetNewest(){
+		if (auListener.GetNewest() != null) {
+			return arrayPersonCubes[auListener.GetNewest().pid];
 		} else {
 			return null;
 		}

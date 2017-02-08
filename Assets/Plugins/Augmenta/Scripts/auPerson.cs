@@ -23,7 +23,7 @@ namespace Augmenta
 
 
 		// Exponential smooth people's data
-		public void smooth(float amount){	
+		public void Smooth(float amount){	
 
 			// Check if "last" values have been initialized
 			if(lastDepth != 0 && lastCentroid != new Vector2() && lastHighest != new Vector3() && lastBoundingRect != new Rect()){

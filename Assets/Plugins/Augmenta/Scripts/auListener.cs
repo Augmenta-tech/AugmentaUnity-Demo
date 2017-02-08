@@ -81,11 +81,11 @@ public class auListener : MonoBehaviour  {
 		return scene;
 	}
 
-	public int arrayPersonCount(){
+	public int ArrayPersonCount(){
 		return arrayPerson.Count;
 	}
 
-	public static Dictionary<int, Person> getPeopleArray(){
+	public static Dictionary<int, Person> GetPeopleArray(){
 		return arrayPerson;
 	}
 
@@ -96,15 +96,15 @@ public class auListener : MonoBehaviour  {
 		scene = new Scene ();
 
 		// Start the coroutine that check if everyone is alive
-		StartCoroutine("checkAlive");
+		StartCoroutine("CheckAlive");
 	}
 	
-	public void onEnable(){
+	public void OnEnable(){
 		Debug.Log("[Augmenta] Subscribing to OSC Message Receiver");
 		UnityOSCReceiver.OSCMessageReceived += new UnityOSCReceiver.OSCMessageReceivedHandler(OSCMessageReceived);
 	}
 
-	public void onDisable(){
+	public void OnDisable(){
 		Debug.Log("[Augmenta] Unsubscribing to OSC Message Receiver");
 		UnityOSCReceiver.OSCMessageReceived -= new UnityOSCReceiver.OSCMessageReceivedHandler(OSCMessageReceived);
 	}
@@ -119,10 +119,10 @@ public class auListener : MonoBehaviour  {
 			int pid = (int)args[0];
 			Person currentPerson = null;
 			if (!arrayPerson.ContainsKey(pid)) {
-				addPerson(args);
+				AddPerson(args);
 			} else {
 				currentPerson = arrayPerson[pid];
-				updatePerson(currentPerson, args);
+				UpdatePerson(currentPerson, args);
 				//personUpdated(person);
 				if(broadcastMessage != null){
 					broadcastMessage("PersonUpdated", currentPerson);
@@ -134,11 +134,11 @@ public class auListener : MonoBehaviour  {
 			int pid = (int)args[0];
 			Person currentPerson = null;
 			if (!arrayPerson.ContainsKey(pid)) {
-				currentPerson = addPerson(args);
+				currentPerson = AddPerson(args);
 			}
 			else{
 				currentPerson = arrayPerson[pid];
-				updatePerson(currentPerson, args);
+				UpdatePerson(currentPerson, args);
 				//personUpdated(person);
 				if(broadcastMessage != null){
 					broadcastMessage("PersonUpdated", currentPerson);
@@ -170,9 +170,9 @@ public class auListener : MonoBehaviour  {
 		}
 	}
 		
-	private Person addPerson(ArrayList args) {
+	private Person AddPerson(ArrayList args) {
 		Person newPerson = new Person();
-		updatePerson(newPerson, args);
+		UpdatePerson(newPerson, args);
 		arrayPerson.Add(newPerson.pid, newPerson);	
 		//personEntered(newPerson);
 		if(broadcastMessage != null){
@@ -181,7 +181,7 @@ public class auListener : MonoBehaviour  {
 		return newPerson;
 	}
 	
-	private void updatePerson(Person p, ArrayList args) {
+	private void UpdatePerson(Person p, ArrayList args) {
 		p.pid = (int)args[0];
 		p.oid = (int)args[1];
 		p.age = (int)args[2];
@@ -201,19 +201,19 @@ public class auListener : MonoBehaviour  {
 		//Debug.Log("Update with width = "+p.boundingRect.width+" and height = "+p.boundingRect.height);
 
 		if(smoothAmount != 0){
-			p.smooth(smoothAmount);
+			p.Smooth(smoothAmount);
 		}
 
 		// Inactive time reset to zero : the point has just been updated
 		p.inactiveTime = 0;
 	}
 
-	public void clearAllPersons(){
+	public void ClearAllPersons(){
 		arrayPerson.Clear();
 	}
 
 	// Co-routine to check if person is alive or not
-	IEnumerator checkAlive() {
+	IEnumerator CheckAlive() {
 		while(true) {
 			ArrayList ids = new ArrayList();
 			foreach(KeyValuePair<int, Person> p in arrayPerson) {
@@ -243,7 +243,7 @@ public class auListener : MonoBehaviour  {
 		}
 	}
 
-	public static Person getOldest(){
+	public static Person GetOldest(){
 		Person bestPerson = null;
 		int maxAge = 0;
 		foreach(KeyValuePair<int, Person> p in arrayPerson) {
@@ -261,7 +261,7 @@ public class auListener : MonoBehaviour  {
 		return bestPerson;
 	}
 	
-	public static Person getNewest(){
+	public static Person GetNewest(){
 		Person bestPerson = null;
 		int minAge = int.MaxValue;
 		foreach(KeyValuePair<int, Person> p in arrayPerson) {

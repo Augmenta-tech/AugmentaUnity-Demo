@@ -70,7 +70,7 @@ public class auMainScript : MonoBehaviour {
 
 	void OnGUI(){
 		if (hide) {
-			drawHiddenGUI ();
+			DrawHiddenGUI ();
 		} else {
 			// Keep draggable window inside screen
 			int margin = 20;
@@ -89,7 +89,7 @@ public class auMainScript : MonoBehaviour {
 			
 			// Use "windowRect =" to make window draggable
 			// use 12000 for window ID to prevent potential conflicts if use 0
-			windowRect = GUI.Window (12000, windowRect, drawGUI, "Augmenta settings");
+			windowRect = GUI.Window (12000, windowRect, DrawGUI, "Augmenta settings");
 		}
 
 		if (osc.mute) {
@@ -97,7 +97,7 @@ public class auMainScript : MonoBehaviour {
 		}
 	}
 
-	private void drawHiddenGUI(){
+	private void DrawHiddenGUI(){
 		// Create a string with info about OSC connection
 		string oscConnectedString;
 		if (osc.isConnected()) {
@@ -126,7 +126,7 @@ public class auMainScript : MonoBehaviour {
 		           );
 	}
 
-	private void drawGUI(int windowID){
+	private void DrawGUI(int windowID){
 
 		int marginY = 5;
 
@@ -247,7 +247,7 @@ public class auMainScript : MonoBehaviour {
 		if (osc.port >= 1024 || osc.port <= 65535) {
 			if (osc.reconnect() && areaCalibration.areaAutoResize) {
 				// Adjust scene size if auto resize activated because size may have changed 
-				areaCalibration.adjustScene ();
+				areaCalibration.AdjustScene ();
 			}
 		} else {
 			osc.disconnect();
