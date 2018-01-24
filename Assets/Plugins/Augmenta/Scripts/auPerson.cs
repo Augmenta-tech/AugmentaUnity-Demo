@@ -14,7 +14,7 @@ namespace Augmenta
 		public float depth;
 		public Rect boundingRect;
 		public Vector3 highest;		
-		public int inactiveTime;
+		public float lastUpdateTime;
 
 		private float lastDepth;
 		private Vector2 lastCentroid;

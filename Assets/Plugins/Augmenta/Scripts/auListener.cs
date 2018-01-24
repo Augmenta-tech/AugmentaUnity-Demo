@@ -55,7 +55,7 @@ public class auListener : MonoBehaviour  {
 	private Scene scene;
 
 	// Number of frames before a point who hasn't been updated is removed
-	public static int timeOut = 10; // frames
+	public static float timeOut = .5f; // seconds
 
 	// Dinctionnary of persons
 	private static Dictionary<int, Person> arrayPerson = new Dictionary<int, Person>(); // Containing all current persons
@@ -205,7 +205,7 @@ public class auListener : MonoBehaviour  {
 		}
 
 		// Inactive time reset to zero : the point has just been updated
-		p.inactiveTime = 0;
+		p.lastUpdateTime = Time.time;
 	}
 
 	public void clearAllPersons(){
@@ -224,11 +224,7 @@ public class auListener : MonoBehaviour  {
 								
 					Person p = arrayPerson[id];
 					
-					if(p.inactiveTime < timeOut) {
-						//Debug.Log("***: IS ALIVE");
-						// We add a frame to the inactiveTime count
-						p.inactiveTime++;
-					} else {
+					if(Time.time > p.lastUpdateTime + timeOut) {
 						//Debug.Log("***: DESTROY");
 						// The point hasn't been updated for a certain number of frames : remove
 						arrayPerson.Remove(id);
