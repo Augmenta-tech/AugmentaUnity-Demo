@@ -7,13 +7,14 @@ public class AreaCalibration : MonoBehaviour {
 	Vector2 InteractiveAreaSize;
 	bool oldAreaAutoResize = true;
 	public bool areaAutoResize = true;
+	Vector2 oldResolution = new Vector2(0, 0);
 
 	// Use this for initialization
 	void Start () {
 		LoadSettings ();
 		oldAreaAutoResize = areaAutoResize;
 		globalCam = GameObject.FindGameObjectWithTag ("MainCamera");
-		adjustScene ();
+		AdjustScene ();
 		//StartCoroutine("KeepAdjustingScene",3);
 	}
 	
@@ -65,8 +66,12 @@ public class AreaCalibration : MonoBehaviour {
 		}
 
 		// Test change in the value of areaAutoResize
-		if (areaAutoResize != oldAreaAutoResize) {
-			adjustScene ();
+		if (areaAutoResize != oldAreaAutoResize 
+			|| Screen.width != oldResolution.x 
+			|| Screen.height != oldResolution.y
+		) {
+			AdjustScene ();
+			oldResolution = new Vector2(Screen.width, Screen.height);
 		}
 		oldAreaAutoResize = areaAutoResize;
 
@@ -74,12 +79,12 @@ public class AreaCalibration : MonoBehaviour {
 
 	IEnumerator KeepAdjustingScene(float delay) {
 		while (true) {
-			adjustScene ();
+			AdjustScene ();
 			yield return new WaitForSeconds (delay);
 		}
 	}
 
-	public void adjustScene(){
+	public void AdjustScene(){
 		if (areaAutoResize) {
 			//Debug.Log ("Adjust scene");
 

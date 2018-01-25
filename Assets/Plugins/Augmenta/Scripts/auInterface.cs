@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Augmenta;
+using System;
 
 public class auInterface : MonoBehaviour {
 	/*
@@ -34,41 +35,122 @@ public class auInterface : MonoBehaviour {
 
 	*/
 
+	// Broadcast augmenta message DELEGATE
+	public delegate void personEnteredHandler(int id, GameObject obj);
+	public static event personEnteredHandler personEnteredMessage;
+	public delegate void personUpdatedHandler(int id, GameObject obj);
+	public static event personUpdatedHandler personUpdatedMessage;
+	public delegate void personWillLeaveHandler(int id);
+	public static event personWillLeaveHandler personWillLeaveMessage;
+
 	private static Dictionary<int,GameObject> arrayPersonCubes = new Dictionary<int,GameObject>();
 
 	public Material	[] materials;
-	public GameObject boundingPlane; // Put the people on this plane
+	public static GameObject boundingPlane; // Put the people on this plane
 	public GameObject personMarker; // Used to represent people moving about in our example
-	
+
+	/// Ways to get Augmenta objects
+	/// - ALL : all persons are returned
+	/// - OLDEST : only the oldest person in augmenta scene is returned
+	/// - NEWEST : only the newest person in augmenta scene is returned
+	public enum Mode{
+		ALL,
+		OLDEST, 
+		NEWEST
+	}
+
+	/// Currently selected mode
+	public static Mode mode = Mode.ALL;
+
+
 	void Start () {
 		// Launched at scene startup
 		auListener.broadcastMessage += EventReceiver;
+
+		boundingPlane = this.transform.Find ("InteractiveArea").gameObject;
 	}
 		
-	public void onEnable(){
+	public void OnEnable(){
 		auListener.broadcastMessage += EventReceiver;
 	}
 
-	public void onDisable(){
+	public void OnDisable(){
 		auListener.broadcastMessage -= EventReceiver;
 	}
 
 	void Update () {
 		// Called once per frame
+
 	}
-	
-	public static Dictionary<int,GameObject> getAugmentaObjects(){
-		return arrayPersonCubes;
+
+	/// Return Augmenta objects considering currently selected mode to get them
+	public static Dictionary<int,GameObject> GetAugmentaObjects(){
+		switch (mode) {
+		case Mode.ALL:
+			return auInterface.GetAll ();
+
+		case Mode.NEWEST:
+			Dictionary<int,GameObject> newDict = new Dictionary<int,GameObject> ();
+			if(auInterface.GetNewest() != null)
+				newDict.Add (auInterface.GetNewest ().GetComponent<PersonObject> ().GetId (), auInterface.GetNewest ());
+			return newDict;
+
+		case Mode.OLDEST:
+			Dictionary<int,GameObject> oldDict = new Dictionary<int,GameObject> ();
+			if (auInterface.GetOldest() != null)
+				oldDict.Add (auInterface.GetOldest ().GetComponent<PersonObject> ().GetId (), auInterface.GetOldest ());
+			return oldDict;
+
+		default:
+			return null;
+		}
 	}
 
 	public void EventReceiver(string msg, Person person){
-		if (msg == "PersonEntered") {
-			PersonEntered(person);
-		} else if (msg == "PersonUpdated") {
-			PersonUpdated(person);
-		} else if (msg == "PersonWillLeave") {
-			PersonWillLeave(person);
+		switch (mode) {
+		case Mode.ALL:
+			if (msg == "PersonEntered") {
+				PersonEntered(person);
+			} else if (msg == "PersonUpdated") {
+				PersonUpdated(person);
+			} else if (msg == "PersonWillLeave") {
+				PersonWillLeave(person);
+			}
+			break;
+
+		case Mode.NEWEST:
+			if (person == auListener.GetNewest ()) {
+				if (msg == "PersonEntered") {
+					PersonEntered (person);
+				} else if (msg == "PersonUpdated") {
+					PersonUpdated (person);
+				} else if (msg == "PersonWillLeave") {
+					PersonWillLeave (person);
+				}
+			} else {
+				if (msg == "PersonUpdated" || msg == "PersonWillLeave") {
+					PersonWillLeave (person);
+				}
+			}
+			break;
+
+		case Mode.OLDEST:
+			if (person == auListener.GetOldest ()) {
+				if (msg == "PersonEntered") {
+					PersonEntered (person);
+				} else if (msg == "PersonUpdated") {
+					PersonUpdated (person);
+				} else if (msg == "PersonWillLeave") {
+					PersonWillLeave (person);
+				}
+			} else {
+				if (msg == "PersonUpdated" || msg == "PersonWillLeave") {
+					PersonWillLeave (person);
+				}
+			}
+			break;
 		}
+
 	}
 	
 	public void PersonEntered(Person person){
@@ -80,18 +162,30 @@ public class auInterface : MonoBehaviour {
 			personObject.transform.localPosition = Vector3.zero;
 			personObject.transform.localRotation = Quaternion.identity;
 			personObject.transform.localScale = Vector3.one;
-			updatePerson(person, personObject);
+			UpdatePerson(person, personObject);
 
 			personObject.GetComponent<Renderer>().material = materials[person.pid % materials.Length];
 			arrayPersonCubes.Add(person.pid,personObject);
+
+			// Transmit message
+			if (personEnteredMessage != null) {
+				personEnteredMessage (person.pid, personObject);
+			}
 		}
 	}
 
 	public void PersonUpdated(Person person) {
 		//Debug.Log("Person updated pid : " + person.pid);
-		if(arrayPersonCubes.ContainsKey(person.pid)){
-			GameObject cubeToMove = arrayPersonCubes[person.pid];
-			updatePerson(person, cubeToMove);
+		if (arrayPersonCubes.ContainsKey (person.pid)) {
+			GameObject personObject = arrayPersonCubes [person.pid];
+			UpdatePerson (person, personObject);
+
+			// Transmit message
+			if (personUpdatedMessage != null) {
+				personUpdatedMessage (person.pid, personObject);
+			}
+		} else {
+			PersonEntered (person);
 		}
 	}
 
@@ -99,11 +193,16 @@ public class auInterface : MonoBehaviour {
 		//Debug.Log("Person leaving with ID " + person.pid);
 		if(arrayPersonCubes.ContainsKey(person.pid)){
 			//Debug.Log("Destroying cube");
-			GameObject cubeToRemove = arrayPersonCubes[person.pid];
+			GameObject personObject = arrayPersonCubes[person.pid];
 			// Send only the pid : the actual object will be destroyed
 			arrayPersonCubes.Remove(person.pid);
 			//delete it from the scene	
-			Destroy(cubeToRemove);
+			Destroy(personObject);
+
+			// Transmit message
+			if (personWillLeaveMessage != null) {
+				personWillLeaveMessage (person.pid);
+			}
 		}
 	}
 
@@ -125,7 +224,7 @@ public class auInterface : MonoBehaviour {
 		
 	}
 	
-	public void clearAllPersons(){
+	public void ClearAllPersons(){
 		Debug.Log("Clear all cubes");
 		foreach(var pKey in arrayPersonCubes.Keys){
 			Destroy(arrayPersonCubes[pKey]);
@@ -133,14 +232,14 @@ public class auInterface : MonoBehaviour {
 		arrayPersonCubes.Clear();
 	}
 
-	private void updatePerson(Person person, GameObject personObject){
-		movePerson(person, personObject);
+	private void UpdatePerson(Person person, GameObject personObject){
+		MovePerson(person, personObject);
 		PersonObject po = personObject.GetComponent<PersonObject>();
-		po.setId(person.pid);
+		po.SetId(person.pid);
 	}
 
 	//maps the Augmenta coordinate system into one that matches the size of the boundingPlane
-	private void movePerson(Person person, GameObject personObject){
+	private void MovePerson(Person person, GameObject personObject){
 
 		Transform pt = personObject.transform;
 		//Transform bt = boundingPlane.transform;
@@ -151,20 +250,41 @@ public class auInterface : MonoBehaviour {
 
 	}	
 
-	public static GameObject getOldest(){
-		if (auListener.getOldest() != null) {
-			return arrayPersonCubes[auListener.getOldest().pid];
+	// Return oldest tracked person
+	public static GameObject GetOldest(){
+		if (auListener.GetOldest() != null) {
+			return arrayPersonCubes[auListener.GetOldest().pid];
 		} else {
 			return null;
 		}
 	}
-	
-	public static GameObject getNewest(){
-		if (auListener.getNewest() != null) {
-			return arrayPersonCubes[auListener.getNewest().pid];
+
+	// Return newest tracked person
+	public static GameObject GetNewest(){
+		if (auListener.GetNewest() != null) {
+			return arrayPersonCubes[auListener.GetNewest().pid];
 		} else {
 			return null;
 		}
 	}
+
+	// Return all tracked persons
+	public static Dictionary<int,GameObject> GetAll(){
+		return arrayPersonCubes;
+	}
+
+	public static void SetMode(string modeName){
+		try {
+			mode = (Mode)System.Enum.Parse (typeof(Mode), modeName);
+		} 
+		catch(ArgumentException){
+			Debug.LogError ("AugmentaManager : the mode " + modeName + " you try to set does not exist in AugmentaManager.mode enumeration");
+		}
+	}
+
+	public static void SetMode(Mode newMode){
+		mode = newMode;
+	}
+
 
 }

@@ -8,22 +8,21 @@ public class auMainScript : MonoBehaviour {
 
 	// Object references
 	UnityOSCReceiver osc;
-	GameObject syphonCanvas;
 	auListener listener;
-	SyphonSpoutServer graphicServer;
+	SharedTextureServer graphicServer;
 	AreaCalibration areaCalibration;
 
 	// GUI
 	Rect windowRect = new Rect (0, 0, 250, 150);	// Initial position of UI window
 	private string[] load = {"    ", "-   ", "--  ", "--- ", " ---", "  --", "   -"}; // Characters used for loading effect
 	int oscPortUI; // osc port set in UI (different than the one in osc while not validated) 
+	private Vector2 scrollPosition;
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine("GetSyphonCanvas"); // Get the reference like the others but we have to wait until it's instanciated
 		osc = GameObject.Find ("OscReceiver").GetComponent<UnityOSCReceiver>();
 		listener = GameObject.Find ("AugmentaReceiver").GetComponent<auListener> ();
-		graphicServer = GameObject.Find ("MainCamera").GetComponent<SyphonSpoutServer> ();
+		graphicServer = GameObject.Find ("MainCamera").GetComponent<SharedTextureServer> ();
 		areaCalibration = GameObject.Find ("InteractiveArea").GetComponent<AreaCalibration> ();
 		oscPortUI = osc.port;
 	}
@@ -71,15 +70,34 @@ public class auMainScript : MonoBehaviour {
 
 	void OnGUI(){
 		if (hide) {
-			drawHiddenGUI ();
+			DrawHiddenGUI ();
 		} else {
+			// Keep draggable window inside screen
+			int margin = 20;
+			// Window out of the left side of the screen
+			if (windowRect.xMax < margin)
+				windowRect.x = -windowRect.width + margin;
+			// Window out of the right side of the screen
+			if (windowRect.xMin > Screen.width - margin)
+				windowRect.x = Screen.width - margin;
+			// Window out of the top side of the screen
+			if (windowRect.yMin < 0)
+				windowRect.y = 0;
+			// Window out of the bottom side of the screen
+			if (windowRect.yMin > Screen.height - margin)
+				windowRect.y = Screen.height - margin;
+			
 			// Use "windowRect =" to make window draggable
 			// use 12000 for window ID to prevent potential conflicts if use 0
-			windowRect = GUI.Window (12000, windowRect, drawGUI, "Augmenta settings");
+			windowRect = GUI.Window (12000, windowRect, DrawGUI, "Augmenta settings");
+		}
+
+		if (osc.mute) {
+			GUI.Label (new Rect (5, Screen.height - 20, 100, 25), "/!\\ OSC mute");
 		}
 	}
 
-	private void drawHiddenGUI(){
+	private void DrawHiddenGUI(){
 		// Create a string with info about OSC connection
 		string oscConnectedString;
 		if (osc.isConnected()) {
@@ -87,7 +105,9 @@ public class auMainScript : MonoBehaviour {
 		} else {
 			oscConnectedString = " (WARNING : not connected !)";
 		}
-		
+
+		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), Texture2D.blackTexture, ScaleMode.StretchToFill, false);
+
 		GUI.Label (new Rect (20, 29, 500, 1000), 
 		           "[ Press 'H' to show / hide the program ]\n"+
 		           "\n"+
@@ -106,90 +126,163 @@ public class auMainScript : MonoBehaviour {
 		           );
 	}
 
-	private void drawGUI(int windowID){
+	private void DrawGUI(int windowID){
 
-		Vector2 anchor = new Vector2 (10, 25);
-		int offsetX = 10;
-		int offsetY = 30;
+		int marginY = 5;
+
+		scrollPosition = GUILayout.BeginScrollView(scrollPosition);
 
 		//--------------------------------------------------
 		// OSC
 		//--------------------------------------------------
-		Rect oscLabelRect = new Rect(anchor.x, anchor.y, 50, 25);
-		Rect oscPortRect = new Rect(oscLabelRect.xMax + offsetX, anchor.y, 45, 20);
-		Rect muteRect = new Rect(oscPortRect.xMax + offsetY, anchor.y, 50, 20);
-
+		GUILayout.BeginHorizontal ();
 		// Label
-		GUI.Label(oscLabelRect, "Osc port");
+		GUILayout.Label("Osc port", GUILayout.ExpandWidth(false));
 		// Input osc port
 		GUI.SetNextControlName("inputOscPort");
-		if (osc.isConnected()) {
+		if (osc.isConnected() && !osc.mute) {
 			GUI.color = Color.green;
-		} else if(osc.isReconnecting()){
+		} else if(osc.isReconnecting() || osc.mute){
 			GUI.color = Color.gray;
 		} else {
 			GUI.color = Color.red;
 		}
-		if (int.TryParse (GUI.TextField (oscPortRect, oscPortUI.ToString (), 25), out oscPortUI)) {
+		if (int.TryParse (GUILayout.TextField (oscPortUI.ToString (), 25), out oscPortUI)) {
 			// Change port when losing focus or enter key pressed
 			if (oscPortUI != osc.port && (GUI.GetNameOfFocusedControl() != "inputOscPort" || (Event.current.isKey && Event.current.keyCode == KeyCode.Return && GUI.GetNameOfFocusedControl() == "inputOscPort"))) {
-				osc.port = oscPortUI;
-				if (osc.port >= 1024 || osc.port <= 65535) {
-					if (osc.reconnect()) {
-						Invoke ("callClearAllPersons", 0.1f);
-					}
-				} else {
-					osc.disconnect();
-				}
+				ChangeOSCPort (oscPortUI);
 			}
 		}
 		GUI.color = Color.white;
 		// Display loading effect
 		if (osc.isReconnecting ()) {
-			GUI.Label(new Rect(oscPortRect.xMax + 2, oscPortRect.yMin, 20, 20), load[Time.frameCount%load.Length]);
+			GUILayout.Label(load[Time.frameCount%load.Length], GUILayout.ExpandWidth(false));
 		}
 		// Mute toggle
-		osc.mute = GUI.Toggle (muteRect, osc.mute, "Mute");
+		osc.mute = GUILayout.Toggle (osc.mute, "Mute", GUILayout.ExpandWidth(false));
 
+		GUILayout.EndHorizontal ();
+
+		GUILayout.Space (marginY);
 
 		//--------------------------------------------------
 		// Resolution
 		//--------------------------------------------------
-		Rect autoResolutionRect = new Rect(anchor.x, anchor.y + offsetY, 110, 20);
-		Rect labelAutoRect = new Rect(autoResolutionRect.xMax + offsetX, anchor.y + offsetY, 100, 20);
-		Rect labelWidthRect = new Rect(autoResolutionRect.xMax + offsetX, anchor.y + offsetY, 40, 20);
-		Rect lockRatioRect = new Rect(labelWidthRect.xMax + 5, anchor.y + offsetY, 20, 20);
-		Rect labelHeightRect = new Rect(lockRatioRect.xMax, anchor.y + offsetY, 40, 20);
-
-		graphicServer.autoResolution = GUI.Toggle (autoResolutionRect, graphicServer.autoResolution, "Auto resolution");
+		GUILayout.BeginHorizontal();
+		graphicServer.autoResolution = GUILayout.Toggle (graphicServer.autoResolution, "Auto resolution", GUILayout.ExpandWidth(false));
 		if (graphicServer.autoResolution) {
-			GUI.Label (labelAutoRect, graphicServer.renderWidth+" x "+graphicServer.renderHeight);
+			GUILayout.Label (graphicServer.renderWidth+" x "+graphicServer.renderHeight);
 		} else {
-			graphicServer.renderWidth = int.Parse (GUI.TextField (labelWidthRect, graphicServer.renderWidth.ToString (), 25));
-			graphicServer.lockAspectRatio = GUI.Toggle (lockRatioRect, graphicServer.lockAspectRatio, "");
-			graphicServer.renderHeight = int.Parse (GUI.TextField (labelHeightRect, graphicServer.renderHeight.ToString (), 25));
+			graphicServer.renderWidth = int.Parse (GUILayout.TextField (graphicServer.renderWidth.ToString (), 25));
+			graphicServer.lockAspectRatio = GUILayout.Toggle (graphicServer.lockAspectRatio, "", GUILayout.ExpandWidth(false));
+			graphicServer.renderHeight = int.Parse (GUILayout.TextField (graphicServer.renderHeight.ToString (), 25));
 		}
+		GUILayout.EndHorizontal ();
 	
+		GUILayout.Space (marginY);
+
 		//--------------------------------------------------
 		// Augmenta area size
 		//--------------------------------------------------
-		Rect areaResizeRect = new Rect (anchor.x, anchor.y + 2 * offsetY, 150, 20);
+		areaCalibration.areaAutoResize = GUILayout.Toggle (areaCalibration.areaAutoResize, "Auto Augmenta area");
 
-		areaCalibration.areaAutoResize = GUI.Toggle (areaResizeRect, areaCalibration.areaAutoResize, "Auto Augmenta area");
+		GUILayout.Space (marginY);
 
 		//--------------------------------------------------
 		// Smooth
 		//--------------------------------------------------
-		Rect smoothSliderRect = new Rect(anchor.x, anchor.y + 3*offsetY + 5, 120, 20);
-		Rect smoothLabelRect = new Rect(smoothSliderRect.xMax + offsetX, anchor.y + 3*offsetY, 60, 20); 
+		GUILayout.BeginHorizontal();
+		GUILayout.Label ("Smooth", GUILayout.ExpandWidth(false));
+		// Slider style
+		GUIStyle slider = new GUIStyle (GUI.skin.horizontalSlider);
+		slider.margin = new RectOffset(slider.margin.left, slider.margin.right, slider.margin.top + 5, slider.margin.bottom);
+		GUIStyle thumb = new GUIStyle (GUI.skin.horizontalSliderThumb);
+		thumb.padding = new RectOffset(thumb.padding.left, thumb.padding.right, 5, thumb.padding.bottom);
+		listener.SmoothAmount = GUILayout.HorizontalSlider(listener.SmoothAmount, 0, 0.99f, slider, thumb);
+		GUILayout.EndHorizontal ();
 
-		GUI.Label (smoothLabelRect, "Smooth");
-		listener.SmoothAmount = GUI.HorizontalSlider(smoothSliderRect, listener.SmoothAmount, 0, 0.99f);
+		GUILayout.Space (marginY);
 
+		//--------------------------------------------------
+		// Debug
+		//--------------------------------------------------
+		if (debug) {
+			// Save default color
+			Color defaultColor = GUI.contentColor;
+			GUI.contentColor = Color.yellow;
+			debug = GUILayout.Toggle (debug, "Debug activated");
+			// Put back default color
+			GUI.contentColor = defaultColor;
+
+			//--------------------------------------------------
+			// Ways to get Augmenta persons
+			//--------------------------------------------------
+			GUILayout.BeginHorizontal();
+			bool modeAll = GUILayout.Toggle (auInterface.mode == auInterface.Mode.ALL, "All");
+			bool modeOldest = GUILayout.Toggle (auInterface.mode == auInterface.Mode.OLDEST, "Oldest");
+			bool modeNewest = GUILayout.Toggle (auInterface.mode == auInterface.Mode.NEWEST, "Newest");
+			if (modeAll && auInterface.mode != auInterface.Mode.ALL) {
+				auInterface.SetMode (auInterface.Mode.ALL);
+			} else if (modeNewest && auInterface.mode != auInterface.Mode.NEWEST) {
+				auInterface.SetMode (auInterface.Mode.NEWEST);
+			} else if (modeOldest && auInterface.mode != auInterface.Mode.OLDEST) {
+				auInterface.SetMode (auInterface.Mode.OLDEST);
+			}
+			GUILayout.EndHorizontal ();
+
+			GUILayout.Space (marginY);
+
+			//--------------------------------------------------
+			// auUnit
+			//--------------------------------------------------
+			GUILayout.BeginHorizontal();
+			GUILayout.Label ("auUnit", GUILayout.ExpandWidth(false));
+			auUnit.unit = GUILayout.HorizontalSlider(auUnit.unit, 0, 1, slider, thumb);
+			GUILayout.EndHorizontal ();
+
+			GUILayout.Space (marginY);
+
+			//--------------------------------------------------
+			// Debug instructions
+			//--------------------------------------------------
+			// Define text content
+			GUIContent content = new GUIContent ();
+			content.text = 	"You can calibrate Augmenta area in manual mode : \n" +
+							"W + arrows to move the area\n" +
+							"X + arrows to scale the area\n" +
+							"C + left/right to rotate the area\n";
+			// Style that we will use in the box
+			GUIStyle style = GUI.skin.box;
+			style.wordWrap = true;
+			// Allocate space for the box
+			Rect boxRect = GUILayoutUtility.GetRect (content, style);
+			// Draw box
+			GUI.Box (boxRect, GUIContent.none);
+			// Draw text in the box
+			GUI.Label (new Rect(boxRect.x+5, boxRect.y+5, boxRect.width-10, boxRect.height-10), content.text);
+		} else {
+			debug = GUILayout.Toggle(debug, "Debug");
+		}
+
+
+
+		GUILayout.EndScrollView ();
 
 		// Make the window draggable
 		// Just the window's header allow to drag window
 		GUI.DragWindow(new Rect(0, 0, 10000, 20));
+	}
+
+	private void ChangeOSCPort(int port){
+		osc.port = oscPortUI;
+		if (osc.port >= 1024 || osc.port <= 65535) {
+			if (osc.reconnect() && areaCalibration.areaAutoResize) {
+				// Adjust scene size if auto resize activated because size may have changed 
+				areaCalibration.AdjustScene ();
+			}
+		} else {
+			osc.disconnect();
+		}
 	}
 
 }
