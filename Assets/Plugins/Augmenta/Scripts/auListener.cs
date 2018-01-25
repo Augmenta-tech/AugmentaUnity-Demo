@@ -85,7 +85,7 @@ public class auListener : MonoBehaviour  {
 		return arrayPerson.Count;
 	}
 
-	public static Dictionary<int, Person> getPeopleArray(){
+	public static Dictionary<int, Person> GetPeopleArray(){
 		return arrayPerson;
 	}
 
@@ -239,7 +239,7 @@ public class auListener : MonoBehaviour  {
 		}
 	}
 
-	public static Person getOldest(){
+	public static Person GetOldest(){
 		Person bestPerson = null;
 		int maxAge = 0;
 		foreach(KeyValuePair<int, Person> p in arrayPerson) {
@@ -257,7 +257,7 @@ public class auListener : MonoBehaviour  {
 		return bestPerson;
 	}
 	
-	public static Person getNewest(){
+	public static Person GetNewest(){
 		Person bestPerson = null;
 		int minAge = int.MaxValue;
 		foreach(KeyValuePair<int, Person> p in arrayPerson) {
