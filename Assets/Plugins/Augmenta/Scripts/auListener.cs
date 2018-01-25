@@ -54,11 +54,11 @@ public class auListener : MonoBehaviour  {
 	// Scene object
 	private Scene scene;
 
-	// Number of frames before a point who hasn't been updated is removed
-	public static int timeOut = 10; // frames
+    // Number of frames before a point who hasn't been updated is removed
+    public static float timeOut = .5f; // seconds
 
-	// Dinctionnary of persons
-	private static Dictionary<int, Person> arrayPerson = new Dictionary<int, Person>(); // Containing all current persons
+                                       // Dinctionnary of persons
+    private static Dictionary<int, Person> arrayPerson = new Dictionary<int, Person>(); // Containing all current persons
 
 	// Smooth factor for smoothing augmenta data
 	private float smoothAmount = 0;
@@ -204,9 +204,9 @@ public class auListener : MonoBehaviour  {
 			p.Smooth(smoothAmount);
 		}
 
-		// Inactive time reset to zero : the point has just been updated
-		p.inactiveTime = 0;
-	}
+        // Inactive time reset to zero : the point has just been updated
+        p.lastUpdateTime = Time.time;
+    }
 
 	public void ClearAllPersons(){
 		arrayPerson.Clear();
@@ -223,15 +223,12 @@ public class auListener : MonoBehaviour  {
 				if(arrayPerson.ContainsKey(id)){
 								
 					Person p = arrayPerson[id];
-					
-					if(p.inactiveTime < timeOut) {
-						//Debug.Log("***: IS ALIVE");
-						// We add a frame to the inactiveTime count
-						p.inactiveTime++;
-					} else {
-						//Debug.Log("***: DESTROY");
-						// The point hasn't been updated for a certain number of frames : remove
-						arrayPerson.Remove(id);
+
+                    if (Time.time > p.lastUpdateTime + timeOut)
+                    {
+                        //Debug.Log("***: DESTROY");
+                        // The point hasn't been updated for a certain number of frames : remove
+                        arrayPerson.Remove(id);
 						if(broadcastMessage != null){
 							broadcastMessage("PersonWillLeave", p);
 						}

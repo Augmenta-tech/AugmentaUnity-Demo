@@ -13,10 +13,10 @@ namespace Augmenta
 		public Vector2 velocity;
 		public float depth;
 		public Rect boundingRect;
-		public Vector3 highest;		
-		public int inactiveTime;
+		public Vector3 highest;
+        public float lastUpdateTime;
 
-		private float lastDepth;
+        private float lastDepth;
 		private Vector2 lastCentroid;
 		private Vector3 lastHighest;
 		private Rect lastBoundingRect;
