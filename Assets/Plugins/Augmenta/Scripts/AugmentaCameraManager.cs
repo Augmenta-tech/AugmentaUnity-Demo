@@ -93,16 +93,16 @@ public class AugmentaCameraManager : MonoBehaviour
         TopLeftCorner = AugmentaArea.Instance.transform.TransformPoint(new Vector3(-0.5f, -0.5f, 0));
         TopRightCorner = AugmentaArea.Instance.transform.TransformPoint(new Vector3(0.5f, -0.5f, 0));
 
-        theCam.transform.localPosition = new Vector3(0.0f, 0.0f, -CamDistToAugmenta);
+        theCam.transform.localPosition = new Vector3(0.0f, 0.0f, CamDistToAugmenta);
 
         if (theCam.orthographic)
         {
-            transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 1) * 180);
+            //transform.localRotation = Quaternion.Euler(new Vector3(0, 1, 1) * -180);
             ComputeOrthoCamera();
         }
         else
         {
-            transform.localRotation = Quaternion.Euler(new Vector3(0,0,1) * 0);
+            //transform.localRotation = Quaternion.Euler(new Vector3(0,180,0));
             ComputeOffCenterCamera();
         }
 
@@ -142,7 +142,7 @@ public class AugmentaCameraManager : MonoBehaviour
         Vector3 vc = pc - pe; // from pe to pc
         Vector3 vd = pd - pe; // from pe to pd
 
-        float n = -lookTarget.InverseTransformPoint(theCam.transform.position).z; // distance to the near clip plane (screen)
+        float n = lookTarget.InverseTransformPoint(theCam.transform.position).z; // distance to the near clip plane (screen)
         float f = theCam.farClipPlane; // distance of far clipping plane
         float d = Vector3.Dot(va, vn); // distance from eye to screen
         float l = Vector3.Dot(vr, va) * n / d; // distance to left screen edge from the 'center'

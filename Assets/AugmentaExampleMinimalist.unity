@@ -155,9 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PrefabToInstantiate: {fileID: 1676155804350704, guid: 6e281715cbdc31e439370780f4893989,
     type: 2}
-  UsePositionTweening: 0
-  PositionFollowTightness: 0
-  VelocityAverageValueCount: 0
+  PositionFollowTightness: 10
+  VelocityAverageValueCount: 1
 --- !u!1001 &1112734469
 Prefab:
   m_ObjectHideFlags: 0
@@ -385,11 +384,16 @@ Prefab:
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000019073486
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
+        type: 2}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

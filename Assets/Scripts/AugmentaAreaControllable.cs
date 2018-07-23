@@ -13,6 +13,12 @@ public class AugmentaAreaControllable : Controllable
     [OSCProperty]
     public float PixelPerMeter;
 
+    [OSCProperty]
+    public bool FlipX;
+
+    [OSCProperty]
+    public bool FlipY;
+
     [Header("Points")]
     [OSCProperty(TargetList = "Modes")]
     public string AugmentaMode;
@@ -53,7 +59,6 @@ public class AugmentaAreaControllable : Controllable
  
         DebugTransparency = 1.0f;
         TargetScript = MyAugmentaArea;
-        usePresets = false;
         base.Awake();
     }
 

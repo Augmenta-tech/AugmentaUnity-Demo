@@ -7,10 +7,11 @@ public class AugmentaBasicManagerControllable : Controllable {
     public AugmentaBasicManager augmentaBasicManager;
 
     [OSCProperty]
-    public bool UsePositionTweening;
-    [OSCProperty]
+    [Range(1, 20)]
     public float PositionFollowTightness;
+
     [OSCProperty]
+    [Range(1, 20)]
     public int VelocityAverageValueCount;
 
     public override void Awake()

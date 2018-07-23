@@ -9,15 +9,14 @@ public class AugmentaBasicManager : MonoBehaviour {
 
     public Dictionary<int, GameObject> InstantiatedObjects;
 
-    public bool UsePositionTweening;
-    public float PositionFollowTightness;
-    public int VelocityAverageValueCount;
+    [Range(1, 20)]
+    public float PositionFollowTightness = 10;
+
+    [Range(1, 20)]
+    public int VelocityAverageValueCount = 1;
 
     public virtual void Update()
     {
-        if (!UsePositionTweening)
-            return;
-
         foreach (var element in InstantiatedObjects)
         {
             if (!AugmentaArea.AugmentaPoints.ContainsKey(element.Key)) continue;
@@ -74,9 +73,6 @@ public class AugmentaBasicManager : MonoBehaviour {
         if (InstantiatedObjects.ContainsKey(p.pid))
         {
             p.VelocitySmooth = VelocityAverageValueCount;
-
-            if (!UsePositionTweening)
-                InstantiatedObjects[p.pid].transform.position = p.Position;
         }
         else
         {

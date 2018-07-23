@@ -88,6 +88,8 @@ public class AugmentaArea : MonoBehaviour  {
     public float Zoom;
 
     [Header("Augmenta points settings")]
+    public bool FlipX;
+    public bool FlipY;
     // Number of seconds before a point who hasn't been updated is removed
     public float PointTimeOut = 1.0f; // seconds
     public int NbAugmentaPoints;
@@ -284,8 +286,6 @@ public class AugmentaArea : MonoBehaviour  {
             overlay.enabled = Mire;
 
 
-        //Debug visualizer
-
         GetComponent<MeshRenderer>().enabled = AugmentaDebug; 
 
         if(AugmentaDebug)
@@ -367,15 +367,35 @@ public class AugmentaArea : MonoBehaviour  {
 		p.pid = (int)args[0];
 		p.oid = (int)args[1];
 		p.age = (int)args[2];
-        p.centroid = new Vector3((float)args[3], (float)args[4]);
-        p.AddVelocity(new Vector3((float)args[5], (float)args[6]));
+        var centroid = new Vector3((float)args[3], (float)args[4]);
+        var velocity = new Vector3((float)args[5], (float)args[6]);
+        var boudingRect = new Vector3((float)args[8], (float)args[9]);
+        var highest = new Vector3((float)args[12], (float)args[13]);
+        if (FlipX)
+        {
+            centroid.x = 1 - centroid.x;
+            velocity.x = 1 - velocity.x;
+            boudingRect.x = 1 - boudingRect.x;
+            highest.x = 1 - highest.x;
+        }
+        if (FlipY)
+        {
+            centroid.y = 1 - centroid.y;
+            velocity.y = 1 - velocity.y;
+            boudingRect.y = 1 - boudingRect.y;
+            highest.y = 1 - highest.y;
+        }
+
+        p.centroid = centroid;
+        p.AddVelocity(velocity);
+
 		p.depth = (float)args[7];
-		p.boundingRect.x = (float)args[8];
-		p.boundingRect.y = (float)args[9];
+		p.boundingRect.x = boudingRect.x;
+		p.boundingRect.y = boudingRect.y;
 		p.boundingRect.width = (float)args[10];
 		p.boundingRect.height = (float)args[11];
-		p.highest.x = (float)args[12];
-		p.highest.y = (float)args[13];
+		p.highest.x = highest.x;
+		p.highest.y = highest.y;
 		p.highest.z = (float)args[14];
 
         NbAugmentaPoints = AugmentaPoints.Count;
