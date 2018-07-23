@@ -1,0 +1,6 @@
+[submodule "Assets/Plugins/Shared-Texture-Unity"]
+	path = Assets/Plugins/Shared-Texture-Unity
+	url = https://github.com/Theoriz/Shared-Texture-Unity
+[submodule "Assets/Plugins/GenUI"]
+	path = Assets/Plugins/GenUI
+	url = https://github.com/Theoriz/GenUI
