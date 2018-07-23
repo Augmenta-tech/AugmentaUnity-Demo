@@ -1,9 +1,0 @@
-[submodule "Assets/Plugins/Augmenta"]
-	path = Assets/Librairies/Augmenta
-	url = https://bitbucket.org/lyptik/augmentaunity
-[submodule "Assets/Librairies/SharedTextureUnity"]
-	path = Assets/Librairies/SharedTextureUnity
-	url = https://github.com/Lyptik/Shared-Texture-Unity.git
-[submodule "Assets/Librairies/GenUI"]
-	path = Assets/Librairies/GenUI
-	url = http://github.com/theoriz/genui
