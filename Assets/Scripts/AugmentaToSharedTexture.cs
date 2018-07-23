@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SharedTextureToAugmenta : MonoBehaviour {
+public class AugmentaToSharedTexture : MonoBehaviour {
 
     public SharedTexture MySharedTexture;
 
