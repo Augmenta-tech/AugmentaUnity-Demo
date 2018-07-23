@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PersonCube
-  - SpoutCamera
+  - AuDebug
   layers:
   - Default
   - TransparentFX
