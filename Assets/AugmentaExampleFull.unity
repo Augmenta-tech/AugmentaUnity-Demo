@@ -326,7 +326,7 @@ Prefab:
     - target: {fileID: 114255069118496728, guid: b3f2d699d79866a4bb88ddb58e67d193,
         type: 2}
       propertyPath: CamDistToAugmenta
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6bb4f05b275d1643adc3bfe77a87581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BarColor: {r: 0, g: 0, b: 0, a: 0}
   id: SharedTextureControllable
   folder: 
   debug: 0
@@ -421,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f31872663cf1145b44efda88d02c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BarColor: {r: 0, g: 0, b: 0, a: 0}
   id: AugmentaAreaControllable
   folder: 
   debug: 0
@@ -450,6 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ed681456407ae4892ec379fa5db28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BarColor: {r: 0, g: 0, b: 0, a: 0}
   id: AugmentaBasicManager
   folder: 
   debug: 0
@@ -474,6 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ab1ea4ebb18bd448c26a5daccf4200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BarColor: {r: 0, g: 0, b: 0, a: 0}
   id: AugmentaSceneSettings
   folder: 
   debug: 0
@@ -488,7 +492,7 @@ MonoBehaviour:
   UseOrtho: 0
   Far: 0
   Near: 0
-  CamDistToAugmenta: 0
+  CamDistToAugmenta: 100
   MyAugmentaSceneSettings: {fileID: 0}
 --- !u!114 &1530575433
 MonoBehaviour:
@@ -635,7 +639,22 @@ Prefab:
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000091552734
+      value: -0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79c2718dd59243e4c90e145349e7dadf, type: 2}
