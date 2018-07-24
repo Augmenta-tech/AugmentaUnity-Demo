@@ -268,7 +268,7 @@ Prefab:
         type: 2}
       propertyPath: TargetCamera
       value: 
-      objectReference: {fileID: 1641923568}
+      objectReference: {fileID: 0}
     - target: {fileID: 114087296273535996, guid: 9acccce0f1fd21747940a2d2c4334342,
         type: 2}
       propertyPath: sharingName
@@ -608,11 +608,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -180, z: 0}
---- !u!20 &1641923568 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20136894504925516, guid: b3f2d699d79866a4bb88ddb58e67d193,
-    type: 2}
-  m_PrefabInternal: {fileID: 1112734469}
 --- !u!1001 &2079222030
 Prefab:
   m_ObjectHideFlags: 0
@@ -665,7 +660,7 @@ Prefab:
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00012207031
+      value: -0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}

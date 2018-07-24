@@ -178,15 +178,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
       propertyPath: m_LocalRotation.w
@@ -195,69 +195,6 @@ Prefab:
     - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: Zoom
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: PixelPerMeter
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114255069118496728, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: DistanceToAugmentaArea
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 114255069118496728, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: drawNearCone
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114255069118496728, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: drawFrustum
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 20136894504925516, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 20136894504925516, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: m_BackGroundColor.r
-      value: 0.103773594
-      objectReference: {fileID: 0}
-    - target: {fileID: 20136894504925516, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: m_BackGroundColor.g
-      value: 0.103773594
-      objectReference: {fileID: 0}
-    - target: {fileID: 20136894504925516, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: m_BackGroundColor.b
-      value: 0.103773594
-      objectReference: {fileID: 0}
-    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: DebugTransparency
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 114255069118496728, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: CamDistToAugmenta
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
