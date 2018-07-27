@@ -7,14 +7,14 @@ Installation - Git user
 -------------------------------------
 
  - Create a new Unity [Unity](https://unity3d.com/fr) project and git it.
- - Add [Augmenta Unity repository](https://github.com/Theoriz/AugmentaUnity) as git submodule.
+ - Add [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) as git submodule.
  - Add [GenUI](https://github.com/Theoriz/GenUI) as git submodule.
  - `$git submodule update --init --recursive` to pull everything.
  
  Installation - Non Git user
 -------------------------------------
 - Create a new Unity [Unity](https://unity3d.com/fr) project.
-- Download zip and unzip [Augmenta Unity repository](https://github.com/Theoriz/AugmentaUnity) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
+- Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
 - Download zip and unzip [GenUI](https://github.com/Theoriz/GenUI) in `*ProjectFolder*/Assets/Plugins/GenUI`.
 - Download zip and unzip [OCF](https://github.com/Theoriz/OCF) in `*ProjectFolder*/Assets/Plugins/GenUI/Plugins/OCF/`.
 - Download zip and unzip [UnityOSC](https://github.com/Theoriz/UnityOSC) in `*ProjectFolder*/Assets/Plugins/GenUI/Plugins/OCF/Plugins/UnityOSC`.
