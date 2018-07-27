@@ -75,3 +75,9 @@ Documentation
 
 https://github.com/Theoriz/Augmenta/wiki
 
+Version
+-------------
+
+Unity 2018.1.9f1
+
+
