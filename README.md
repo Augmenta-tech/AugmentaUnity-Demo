@@ -6,7 +6,7 @@ A Unity Augmenta library and example created by [Théoriz](http://www.theoriz.co
 Installation
 -------------------------------------
 
- - Install [Unity](https://unity3d.com/fr).
+ - Create a new Unity [Unity](https://unity3d.com/fr) project.
  - Add [Augmenta Unity repository](https://github.com/Theoriz/AugmentaUnity) as submodule or unzip it in your project.
  - Add [GenUI](https://github.com/Theoriz/GenUI) as submodule or unzip it in your project.
 
