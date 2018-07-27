@@ -1,7 +1,7 @@
 Augmenta for Unity
 =======================
 
-A [Unity](https://unity3d.com/fr). Augmenta helper library and example created by [Théoriz](http://www.theoriz.com/en/)
+A Unityt Augmenta library and example created by [Théoriz](http://www.theoriz.com/en/)
 
 Installation
 -------------------------------------
