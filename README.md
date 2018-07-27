@@ -1,7 +1,7 @@
 Augmenta for Unity
 =======================
 
-A Unityt Augmenta library and example created by [Théoriz](http://www.theoriz.com/en/)
+A Unity Augmenta library and example created by [Théoriz](http://www.theoriz.com/en/)
 
 Installation
 -------------------------------------
