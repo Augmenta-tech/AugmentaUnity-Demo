@@ -1,101 +1,83 @@
 Augmenta for Unity
 =======================
 
-A [Unity][] Augmenta helper library and example maintained by [Théoriz studio][]
+A Unity Augmenta library and example created by [Théoriz](http://www.theoriz.com/en/)
 
-Install
--------
-
-Install [Unity][], then get the package from here
-
-```
-// Add link to package release
-```
-
-How to connect your app with Augmenta
+Installation - Git user
 -------------------------------------
 
-#### IMPORT
+ - Create a new Unity [Unity](https://unity3d.com/fr) project and git it.
+ - Add [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) as git submodule.
+ - Add [GenUI](https://github.com/Theoriz/GenUI) as git submodule.
+ - `$git submodule update --init --recursive` to pull everything.
+ 
+ Installation - Non Git user
+-------------------------------------
+- Create a new Unity [Unity](https://unity3d.com/fr) project.
+- Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
+- Download zip and unzip [GenUI](https://github.com/Theoriz/GenUI) in `*ProjectFolder*/Assets/Plugins/GenUI`.
+- Download zip and unzip [OCF](https://github.com/Theoriz/OCF) in `*ProjectFolder*/Assets/Plugins/GenUI/Plugins/OCF/`.
+- Download zip and unzip [UnityOSC](https://github.com/Theoriz/UnityOSC) in `*ProjectFolder*/Assets/Plugins/GenUI/Plugins/OCF/Plugins/UnityOSC`.
+ 
+GenUI
+-------------------------------------
 
-- Clone this project as a starting point
+GenUI is a tool allowing you to easily add UI and OSC control to your game in build and editor, it is used here for its OSC module. An example of Augmenta UI using GenUI is done in AugmentaExampleFull scene.
 
-**OR**
+You can use your own OSC library instead of the one in GenUI. In this case you will need to provide AugmentaArea script with OSC messages, the link is only done in its Start method.
 
-- Open Unity, then double-click on the package or or load it via "Assets -> Import package -> Custom package"
-- Click "Import"
-- The Augmenta library will be added in your plugins folder
+Usage
+-------------------------------------
 
-#### SETUP
+To start developping your application you need Augmenta data, for this use our [Augmenta simulator](https://github.com/Theoriz/Augmenta-simulator/releases), download and launch it.
 
-- If you haven't started developing your own app yet, you can copy the "AugmentaExample2D" or "AugmentaExample3D" scene and start working from here
-- If you're integrating Augmenta into an existing project, you have to :
-    > Drag the "OscReceiver" prefab into your scene (you can also use it to receive your own Osc messages)
-    > Drag the "AugmentaReceiver" prefab into your scene
+- Open your Unity scene.
 
-#### CLASSES
+- Drop the AugmentaArea prefab in it.
 
-- Inside the "AugmentaReceiver" object is the "InteractiveArea" object : it is the virtual equivalent of the area where your people/objects are moving in real life. You can move the "InteractiveArea" wherever you like in your scene and virtual people will appear on it.
-- Attached to the "AugmentaReceiver" is a script called "auInterface", which takes care of instanciating and updating cubes representing the people/objects in the real world scene. The easiest way to access information is through this interface. You may want to hide the debug cubes by turning the "debug" variable to "false".
+- Drop the GenUI prefab in it.
 
-     
-4a --- USING AUGMENTA BY GETTING ALL THE OBJECTS IN THE SCENE ---
+- Run the scene.
 
-- Get the dictionary of the Augmenta objects in the scene by doing :
-```
-    Dictionary<int,GameObject> myAugmentaObjects = auInterface.getAugmentaObjects();
-```
+- Set the augmenta simulator target port as the OSCMaster local port in Genui prefab. 
 
-- Loop through it to read the informations :
-```
-    foreach(KeyValuePair<int, GameObject> pair in myAugmentaObjects) {
-        Debug.Log("The point with id ["+pair.Key+"] is located at : x="+pair.Value.GetComponent<PersonObject>().getCentroid().x+" and y="+pair.Value.GetComponent<PersonObject>().getCentroid().z);
-        Debug.Log ("He's "+pair.Value.GetComponent<PersonObject>().getAge()+" frames old");
-    }
-```
+- Set the augmenta simulator target IP to "127.0.0.1" if you use both software on the same computer otherwise set it as the IP address of the computer running Unity.
 
-4b --- USING AUGMENTA BY LISTENING TO THE MESSAGES ---
+- You should now see Augmenta points (green boxes) in the Augmenta area (red rectangle) in the scene view.
 
-- Add the new functions : "ObjectEntered(GameObject o)", "ObjectUpdated(GameObject o)", and "ObjectWillLeave(int id)" to your code
-- Each function will be called by the auInterface when objects are added/moved/removed, which can be useful especially when you have to instanciate one object per person in the scene
-- As you may have noticed, when the object is about to be removed, you'll have to rely on its ID only.
+- Stop the scene.
 
 
-4c --- USING AUGMENTA BY DOING YOUR CUSTOM CODE ---
+    Explanation
+    -------------------------------------
 
-- If you want to bypass the auInterface and the InteractiveArea, we're okay with that : you just have to know that the position informations will be given between 0 an 1
-- You can listen to the messages broadcasted by the auListener : PersonEntered(Person p) / PersonUpdated(Person p) / PersonWillLeave(Person p)
-- Or access the Persons array like this :
-```
-     foreach(KeyValuePair<int, Person> pair in auListener.getPeopleArray()) {
-        Debug.Log("The point with id ["+pair.Key+"] has raw values : x="+pair.Value.centroid.x+" and y="+pair.Value.centroid.y);
-     }
-```
+    In scene view you should see a red rectangle which corresponds to the Augmenta Area, it represents the area where people will move and be detected. The size is determined by the augmenta scene width and height set in augmenta simulator.  To link it to Unity unit system (meter) we use the PixelPerMeter coefficient, it determines the area scale while the width and height determines its ratio.
+
+    -------------------------------------
+
+- Add a new GameObject to the scene and add it an AugmentaBasicManager script.
+
+- Set its "Prefab to instantiate" field with the prefab you want to instantiate on each augmenta point.
+
+- Run the scene and you should see your own prefab on each augmenta points in the game view.
+
+
+Advanced usage
+-------------------------------------
+
+You can add special behaviours to AugmentaBasicManager by creating an inherited class with your custom behaviour when augmenta points appear/disappear.
+
+You can add an Augmenta behaviour script to your "prefab to instantiate" to be able to add intro/alive/outro animation to your object. 
+For this you have to create a new class which will inherit from AugmentaBehaviour and use its "AbstractValue", see the AugmentaExample scene for more information.
 
 Documentation
 -------------
 
 https://github.com/Theoriz/Augmenta/wiki
 
-Contribute
-----------
+Version
+-------------
 
-Check [TODO](TODO.md) and [TOFIX](TOFIX.md), then
+Unity 2018.1.9f1
 
-```
-git clone https://github.com/Lyptik/augmentaUnity.git
-```
 
-Thanks
-------
-
-Osc implementation based on OSCuMote (which is based on some TUIO C# code) :
-http://itu.dk/people/jzso/OSCuMote/oscumote.html
-
-Thanks to the guys at [OpenTSPS][], this library is heavily inspired from it.
-
-Thanks to the devs and beta testers whose contribution are vitals to the project
- Tom Duchêne / David-Alexandre Chanel / Jonathan Richer / you !
-
-[Unity]: http://http://unity3d.com/
-[Théoriz studio]: http://www.theoriz.com/
-[OpenTSPS]: https://github.com/labatrockwell/openTSPS/
