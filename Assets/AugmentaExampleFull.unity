@@ -244,6 +244,7 @@ MonoBehaviour:
   currentPreset: 
   presetList: []
   augmentaBasicManager: {fileID: 0}
+  PointTimeOut: 0
   PositionFollowTightness: 0
   VelocityAverageValueCount: 0
 --- !u!20 &396986188 stripped
@@ -357,14 +358,6 @@ Prefab:
     - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
@@ -656,7 +649,7 @@ Prefab:
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: -0.00012207031
       objectReference: {fileID: 0}
     - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}

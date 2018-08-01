@@ -7,6 +7,9 @@ public class AugmentaBasicManagerControllable : Controllable {
     public AugmentaBasicManager augmentaBasicManager;
 
     [OSCProperty]
+    public float PointTimeOut;
+
+    [OSCProperty]
     [Range(1, 20)]
     public float PositionFollowTightness;
 
