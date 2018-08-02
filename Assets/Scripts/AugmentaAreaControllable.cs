@@ -11,7 +11,7 @@ public class AugmentaAreaControllable : Controllable
     public int NbAugmentaPoints;
 
     [OSCProperty]
-    public float PixelPerMeter;
+    public float MeterPerPixel;
 
     [OSCProperty]
     public bool FlipX;
