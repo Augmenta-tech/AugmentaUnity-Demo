@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1676155804350704}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1676155804350704
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4077241509249880}
   - component: {fileID: 33158416441179724}
@@ -32,7 +32,7 @@ GameObject:
 --- !u!4 &4077241509249880
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676155804350704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -45,7 +45,7 @@ Transform:
 --- !u!23 &23589971254427346
 MeshRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676155804350704}
   m_Enabled: 1
@@ -80,14 +80,14 @@ MeshRenderer:
 --- !u!33 &33158416441179724
 MeshFilter:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676155804350704}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &114679311334652120
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1676155804350704}
   m_Enabled: 1
@@ -96,8 +96,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pid: 0
-  AbstractValue: 0
-  AppearAnimDuration: 3
+  LoopAliveAnimation: 1
+  scale: 1
+  AppearAnimDuration: 1
   AppearAnimCurve:
     serializedVersion: 2
     m_Curve:
@@ -106,6 +107,40 @@ MonoBehaviour:
       value: 0
       inSlope: 2
       outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  AliveAnimDuration: 2
+  AliveAnimCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -117,78 +152,34 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 0
+    m_PostInfinity: 0
     m_RotationOrder: 4
-  AliveAnimDuration: 5
-  AliveAnimCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.00288569
-      value: 0.9963801
-      inSlope: -1.5399542
-      outSlope: -1.5399542
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.41442868
-    - serializedVersion: 3
-      time: 0.27594954
-      value: 0.67018354
-      inSlope: -0.0011245289
-      outSlope: -0.0011245289
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.46132505
-    - serializedVersion: 3
-      time: 0.76727986
-      value: 1.1289474
-      inSlope: 0.02521316
-      outSlope: 0.02521316
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.6408722
-    - serializedVersion: 3
-      time: 0.9999895
-      value: 1.0013412
-      inSlope: -0.6107414
-      outSlope: -0.6107414
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.60680187
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  LoopAliveAnimation: 1
-  DisappearAnimDuration: 3
+  DisappearAnimDuration: 1
   StartWithActualValue: 1
   DisappearAnimCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.0061222455
-      value: 0.25705892
-      inSlope: 0.00425921
-      outSlope: 0.00425921
+      time: 0
+      value: 1
+      inSlope: 0.02080988
+      outSlope: 0.02080988
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.18845715
+      inWeight: 0
+      outWeight: 0.1281407
     - serializedVersion: 3
-      time: 0.9997392
+      time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2.5471985
+      outSlope: -2.5471985
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.04396987
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
