@@ -1,4 +1,4 @@
-Augmenta for Unity
+﻿Augmenta for Unity
 =======================
 
 A Unity Augmenta library and example created by [Théoriz](http://www.theoriz.com/en/)
@@ -67,8 +67,8 @@ Advanced usage
 
 You can add special behaviours to AugmentaBasicManager by creating an inherited class with your custom behaviour when augmenta points appear/disappear.
 
-You can add an Augmenta behaviour script to your "prefab to instantiate" to be able to add intro/alive/outro animation to your object. 
-For this you have to create a new class which will inherit from AugmentaBehaviour and use its "AbstractValue", see the AugmentaExample scene for more information.
+You can add an AugmentaPersonBehaviour script to your "prefab to instantiate" to be able to add intro/alive/outro animation to your object. 
+For this you have to create a new class which will inherit from AugmentaPersonBehaviour and override its intro/alive/outro coroutines. Check the MyAugmentaPersonBehaviour script for an example of this animating the scale of the cube prefab.
 
 Documentation
 -------------
