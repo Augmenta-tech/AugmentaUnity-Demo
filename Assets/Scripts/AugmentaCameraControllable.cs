@@ -7,17 +7,17 @@ public class AugmentaCameraControllable : Controllable {
     [Header("Camera settings")]
     [Range(0.01f, 500f)]
     [OSCProperty]
-    public float CamDistToAugmenta;
+    public float CamDistToAugmenta = 10;
 
     [Header("Augmenta settings")]
     [OSCProperty]
-    public float Zoom;
+    public float Zoom = 1;
 
     private AugmentaCamera MyAugmentaCamera;
 
     public override void Awake()
     {
-        MyAugmentaCamera = FindObjectOfType<AugmentaCamera>();
+        MyAugmentaCamera = GetComponent<AugmentaCamera>();
         if (MyAugmentaCamera == null)
             Debug.LogWarning("Couldn't find a " + this.GetType().Name + " script");
         TargetScript = MyAugmentaCamera;
