@@ -29,7 +29,7 @@ You can use your own OSC library instead of the one in GenUI. In this case you w
 PostProcess
 -------------------------------------
 
-AugmentaCameras use the postprocessing stack v2. To install it, open the package manager on Window/Package Manager
+AugmentaCameras use the postprocessing stack v2. To install it, open the package manager (Window/Package Manager) and install the package Post-processing.
 
 Usage
 -------------------------------------
