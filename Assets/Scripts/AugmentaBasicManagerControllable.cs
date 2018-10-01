@@ -17,10 +17,6 @@ public class AugmentaBasicManagerControllable : Controllable {
     [Range(1, 20)]
     public int VelocityAverageValueCount;
 
-    [OSCProperty]
-    [Range(0, 1)]
-    public float MasterVolume;
-
     public override void Awake()
     {
         if (augmentaBasicManager == null)

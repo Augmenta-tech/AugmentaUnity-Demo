@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657767, g: 0.4964127, b: 0.57481843, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028401, g: 0.22571425, b: 0.30692324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -113,11 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &322824125 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4229691300591652, guid: 9acccce0f1fd21747940a2d2c4334342,
-    type: 2}
-  m_PrefabInternal: {fileID: 565638588}
 --- !u!1 &388207422
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +124,7 @@ GameObject:
   - component: {fileID: 388207424}
   - component: {fileID: 388207426}
   m_Layer: 0
-  m_Name: AugmentaExample
+  m_Name: AugmentaManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +141,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &388207424
 MonoBehaviour:
@@ -189,74 +184,6 @@ MonoBehaviour:
   PointTimeOut: 0
   PositionFollowTightness: 0
   VelocityAverageValueCount: 0
-  MasterVolume: 1
---- !u!20 &396986188 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 20136894504925516, guid: b3f2d699d79866a4bb88ddb58e67d193,
-    type: 2}
-  m_PrefabInternal: {fileID: 1052802698}
---- !u!1001 &565638588
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1530575428}
-    m_Modifications:
-    - target: {fileID: 4229691300591652, guid: 9acccce0f1fd21747940a2d2c4334342, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.0968018
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229691300591652, guid: 9acccce0f1fd21747940a2d2c4334342, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.6839936
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229691300591652, guid: 9acccce0f1fd21747940a2d2c4334342, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 1.0641698
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229691300591652, guid: 9acccce0f1fd21747940a2d2c4334342, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229691300591652, guid: 9acccce0f1fd21747940a2d2c4334342, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229691300591652, guid: 9acccce0f1fd21747940a2d2c4334342, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229691300591652, guid: 9acccce0f1fd21747940a2d2c4334342, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4229691300591652, guid: 9acccce0f1fd21747940a2d2c4334342, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087296273535996, guid: 9acccce0f1fd21747940a2d2c4334342,
-        type: 2}
-      propertyPath: TargetCamera
-      value: 
-      objectReference: {fileID: 396986188}
-    - target: {fileID: 114087296273535996, guid: 9acccce0f1fd21747940a2d2c4334342,
-        type: 2}
-      propertyPath: sharingName
-      value: AugmentaSender
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087296273535996, guid: 9acccce0f1fd21747940a2d2c4334342,
-        type: 2}
-      propertyPath: outputWidth
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087296273535996, guid: 9acccce0f1fd21747940a2d2c4334342,
-        type: 2}
-      propertyPath: outputHeight
-      value: 1080
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9acccce0f1fd21747940a2d2c4334342, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &935396236
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +199,7 @@ GameObject:
   - component: {fileID: 935396237}
   - component: {fileID: 935396239}
   - component: {fileID: 935396238}
-  m_Layer: 12
+  m_Layer: 8
   m_Name: AugmentaSceneCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -325,7 +252,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 935396243}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 256
   stopNaNPropagation: 1
   antialiasingMode: 0
   temporalAntialiasing:
@@ -464,12 +391,6 @@ Transform:
   m_Father: {fileID: 1736869321}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &998927082 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114087296273535996, guid: 9acccce0f1fd21747940a2d2c4334342,
-    type: 2}
-  m_PrefabInternal: {fileID: 565638588}
-  m_Script: {fileID: 11500000, guid: 16e02543320821f47bb74d6ef3b23e30, type: 3}
 --- !u!1001 &1052802698
 Prefab:
   m_ObjectHideFlags: 0
@@ -560,6 +481,15 @@ Prefab:
       propertyPath: Background
       value: 
       objectReference: {fileID: 1052802701}
+    - target: {fileID: 1077286462109982, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114624218286067010, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 2}
+      propertyPath: volumeLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114893278423126526, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
     - {fileID: 114925498516656342, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
@@ -582,26 +512,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1774977100704186, guid: b3f2d699d79866a4bb88ddb58e67d193,
     type: 2}
   m_PrefabInternal: {fileID: 1052802698}
---- !u!1 &1184557433 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1683651154888158, guid: 9acccce0f1fd21747940a2d2c4334342,
-    type: 2}
-  m_PrefabInternal: {fileID: 565638588}
---- !u!114 &1184557434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1184557433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e531f25570e604d8fb78aee77125a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mode: 3
-  _color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  _scale: 4
-  _shader: {fileID: 4800000, guid: bc6a0edaa182a35449d12a1445ba38db, type: 3}
 --- !u!1 &1530575427
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,13 +520,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1530575428}
-  - component: {fileID: 1530575430}
-  - component: {fileID: 1530575429}
-  - component: {fileID: 1530575432}
-  - component: {fileID: 1530575433}
-  - component: {fileID: 1530575434}
   m_Layer: 0
-  m_Name: Core
+  m_Name: AugmentaCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,101 +539,9 @@ Transform:
   m_Children:
   - {fileID: 1052802699}
   - {fileID: 2079222031}
-  - {fileID: 322824125}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1530575429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530575427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bb4f05b275d1643adc3bfe77a87581, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetScript: {fileID: 0}
-  BarColor: {r: 0.16660735, g: 0.9056604, b: 0.8770161, a: 1}
-  id: SharedTextureControllable
-  folder: 
-  debug: 0
-  targetDirectory: 
-  sourceScene: 
-  usePanel: 1
-  usePresets: 1
-  currentPreset: 
-  presetList: []
-  SpoutOutput: 0
-  MySharedTexture: {fileID: 998927082}
---- !u!114 &1530575430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530575427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9f31872663cf1145b44efda88d02c4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetScript: {fileID: 0}
-  BarColor: {r: 0.9254902, g: 0.20000002, b: 0.36373234, a: 1}
-  id: AugmentaAreaControllable
-  folder: 
-  debug: 0
-  targetDirectory: 
-  sourceScene: 
-  usePanel: 1
-  usePresets: 1
-  currentPreset: 
-  presetList: []
-  NbAugmentaPoints: 0
-  MeterPerPixel: 0
-  FlipX: 0
-  FlipY: 0
-  AugmentaMode: 
-  AskedPoints: 0
-  Mire: 0
-  AugmentaDebug: 0
-  DebugTransparency: 0
-  Modes: []
-  MyAugmentaArea: {fileID: 0}
---- !u!114 &1530575432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530575427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15ab1ea4ebb18bd448c26a5daccf4200, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1530575433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530575427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3ef56b4e1c19b7469848e3688a2d3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MySharedTexture: {fileID: 998927082}
---- !u!114 &1530575434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530575427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e94fa186f3768ff48a529f4cc1af13f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1583892385
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +606,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -180, z: 0}
 --- !u!1 &1736869319
 GameObject:
@@ -842,8 +655,91 @@ Transform:
   m_Children:
   - {fileID: 935396243}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &1861851419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1641406523596634, guid: b3f2d699d79866a4bb88ddb58e67d193,
+    type: 2}
+  m_PrefabInternal: {fileID: 1052802698}
+--- !u!114 &1861851420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1861851419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f31872663cf1145b44efda88d02c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetScript: {fileID: 0}
+  BarColor: {r: 0.9254902, g: 0.20000002, b: 0.36373234, a: 1}
+  id: AugmentaAreaControllable
+  folder: 
+  debug: 0
+  targetDirectory: 
+  sourceScene: 
+  usePanel: 1
+  usePresets: 1
+  currentPreset: 
+  presetList: []
+  NbAugmentaPoints: 0
+  MeterPerPixel: 0
+  FlipX: 0
+  FlipY: 0
+  AugmentaMode: 
+  AskedPoints: 0
+  Mire: 0
+  AugmentaDebug: 0
+  DebugTransparency: 0
+  Modes: []
+  MyAugmentaArea: {fileID: 0}
+--- !u!1 &2005285474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2005285475}
+  - component: {fileID: 2005285476}
+  m_Layer: 8
+  m_Name: PostProcessVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2005285475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2005285474}
+  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2005285476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2005285474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 6223c6bd54c2ab448ac42f492fa70a47, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
 --- !u!1001 &2079222030
 Prefab:
   m_ObjectHideFlags: 0
@@ -886,12 +782,12 @@ Prefab:
     - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
@@ -906,16 +802,21 @@ Prefab:
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: -323
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: -1440
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114736921750431862, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: HideUIAtStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114736921750431862, guid: 79c2718dd59243e4c90e145349e7dadf,
+        type: 2}
+      propertyPath: CloseGenUIPanelAtStart
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

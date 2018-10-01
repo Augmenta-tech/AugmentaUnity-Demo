@@ -8,7 +8,7 @@ public class AugmentaAreaControllable : Controllable
     [Header("Global Augmenta settings")]
 
     [OSCProperty(isInteractible = false)]
-    public int NbAugmentaPoints;
+    public int NbAugmentaPersons;
 
     [OSCProperty]
     public float MeterPerPixel;
@@ -19,12 +19,12 @@ public class AugmentaAreaControllable : Controllable
     [OSCProperty]
     public bool FlipY;
 
-    [Header("Points")]
+    [Header("Persons")]
     [OSCProperty(TargetList = "Modes")]
     public string AugmentaMode;
 
     [OSCProperty]
-    public int AskedPoints;
+    public int AskedPersons;
 
     [Header("Debug")]
     [OSCProperty]
@@ -52,10 +52,10 @@ public class AugmentaAreaControllable : Controllable
             return;
         }
 
-        AugmentaMode = MyAugmentaArea.ActualPointType.ToString();
-        Modes.Add(AugmentaPointType.AllPoints.ToString());
-        Modes.Add(AugmentaPointType.Oldest.ToString());
-        Modes.Add(AugmentaPointType.Newest.ToString());
+        AugmentaMode = MyAugmentaArea.ActualPersonType.ToString();
+        Modes.Add(AugmentaPersonType.AllPersons.ToString());
+        Modes.Add(AugmentaPersonType.Oldest.ToString());
+        Modes.Add(AugmentaPersonType.Newest.ToString());
  
         DebugTransparency = 1.0f;
         TargetScript = MyAugmentaArea;
@@ -65,12 +65,12 @@ public class AugmentaAreaControllable : Controllable
     public override void OnUiValueChanged(string name)
     {
         base.OnUiValueChanged(name);
-        MyAugmentaArea.ActualPointType = (AugmentaPointType)Enum.Parse(typeof(AugmentaPointType), AugmentaMode);
+        MyAugmentaArea.ActualPersonType = (AugmentaPersonType)Enum.Parse(typeof(AugmentaPersonType), AugmentaMode);
     }
 
     public override void OnScriptValueChanged(string name)
     {
         base.OnScriptValueChanged(name);
-        AugmentaMode = MyAugmentaArea.ActualPointType.ToString();
+        AugmentaMode = MyAugmentaArea.ActualPersonType.ToString();
     }
 }

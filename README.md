@@ -26,6 +26,11 @@ GenUI is a tool allowing you to easily add UI and OSC control to your game in bu
 
 You can use your own OSC library instead of the one in GenUI. In this case you will need to provide AugmentaArea script with OSC messages, the link is only done in its Start method.
 
+PostProcess
+-------------------------------------
+
+AugmentaCameras use the postprocessing stack v2. To install it, open the package manager on Window/Package Manager
+
 Usage
 -------------------------------------
 
@@ -55,7 +60,7 @@ To start developping your application you need Augmenta data, for this use our [
 
     -------------------------------------
 
-- Add a new GameObject to the scene and add it an AugmentaBasicManager script.
+- Create a new GameObject in the scene and add an AugmentaBasicManager script to it.
 
 - Set its "Prefab to instantiate" field with the prefab you want to instantiate on each augmenta point.
 
@@ -70,6 +75,15 @@ You can add special behaviours to AugmentaBasicManager by creating an inherited 
 You can add an AugmentaPersonBehaviour script to your "prefab to instantiate" to be able to add intro/alive/outro animation to your object. 
 For this you have to create a new class which will inherit from AugmentaPersonBehaviour and override its intro/alive/outro coroutines. Check the MyAugmentaPersonBehaviour script for an example of this animating the scale of the cube prefab.
 
+Examples
+-------------------------------------
+
+This project contains two example scenes.
+
+**AugmentaExampleMinimalist** contains only the minimum objects to get Augmenta working with an AugmentaArea, an AugmentaMainCamera and GenUI.
+
+**AugmentaExampleAnchor** contains an example of using an AugmentaAreaAnchor to visualize and constrain the AugmentaArea position in the scene. The AugmentaAreaAnchor contains an AugmentaCamera that is used to see the anchor and whose parameters are copied to the AugmentaMainCamera on start. This system is useful if you are working with different scenes : you can have a main scene handling Augmenta with the AugmentaArea and AugmentaMainCamera, and several other scenes with only AugmentaAreaAnchors and AugmentaCameras. When one of those scenes is loaded along the main scene, the values of the AugmentaAreaAnchor and AugmentaCamera inside this scene will be copied to the AugmentaArea and AugmentaMainCamera of the main scene. This allows to design different scenes with different Augmenta setups and have them run one after the other with a single instance of Augmenta.
+
 Documentation
 -------------
 
@@ -78,6 +92,6 @@ https://github.com/Theoriz/Augmenta/wiki
 Version
 -------------
 
-Unity 2018.1.9f1
+Unity 2018.1.10f1
 
 
