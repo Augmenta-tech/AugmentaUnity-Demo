@@ -39,38 +39,26 @@ public class AugmentaAreaControllable : Controllable
 
     public List<string> Modes;
 
-    public AugmentaArea MyAugmentaArea;
-
     public override void Awake()
     {
-        if (MyAugmentaArea == null)
-            MyAugmentaArea = FindObjectOfType<AugmentaArea>();
-
-        if (MyAugmentaArea == null)
-        {
-            Debug.LogWarning("Can't find " + this.GetType().Name + " script to control !");
-            return;
-        }
-
-        AugmentaMode = MyAugmentaArea.ActualPersonType.ToString();
+        AugmentaMode = ((AugmentaArea)TargetScript).ActualPersonType.ToString();
         Modes.Add(AugmentaPersonType.AllPersons.ToString());
         Modes.Add(AugmentaPersonType.Oldest.ToString());
         Modes.Add(AugmentaPersonType.Newest.ToString());
  
         DebugTransparency = 1.0f;
-        TargetScript = MyAugmentaArea;
         base.Awake();
     }
 
     public override void OnUiValueChanged(string name)
     {
         base.OnUiValueChanged(name);
-        MyAugmentaArea.ActualPersonType = (AugmentaPersonType)Enum.Parse(typeof(AugmentaPersonType), AugmentaMode);
+        ((AugmentaArea)TargetScript).ActualPersonType = (AugmentaPersonType)Enum.Parse(typeof(AugmentaPersonType), AugmentaMode);
     }
 
     public override void OnScriptValueChanged(string name)
     {
         base.OnScriptValueChanged(name);
-        AugmentaMode = MyAugmentaArea.ActualPersonType.ToString();
+        AugmentaMode = ((AugmentaArea)TargetScript).ActualPersonType.ToString();
     }
 }

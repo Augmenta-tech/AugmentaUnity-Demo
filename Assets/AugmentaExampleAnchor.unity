@@ -684,12 +684,12 @@ MonoBehaviour:
   usePresets: 1
   currentPreset: 
   presetList: []
-  NbAugmentaPoints: 0
+  NbAugmentaPersons: 0
   MeterPerPixel: 0
   FlipX: 0
   FlipY: 0
   AugmentaMode: 
-  AskedPoints: 0
+  AskedPersons: 0
   Mire: 0
   AugmentaDebug: 0
   DebugTransparency: 0
@@ -792,7 +792,7 @@ Prefab:
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00036621094
+      value: -0.00018310547
       objectReference: {fileID: 0}
     - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 2}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetScript: {fileID: 0}
-  BarColor: {r: 1, g: 1, b: 1, a: 1}
+  BarColor: {r: 0.34895432, g: 1, b: 0.1745283, a: 1}
   id: 
   folder: 
   debug: 0
@@ -243,6 +243,11 @@ Prefab:
       propertyPath: CloseGenUIPanelAtStart
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79c2718dd59243e4c90e145349e7dadf, type: 2}
   m_IsPrefabAsset: 0
@@ -263,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetScript: {fileID: 0}
-  BarColor: {r: 1, g: 1, b: 1, a: 1}
+  BarColor: {r: 1, g: 0.78716046, b: 0.21226418, a: 1}
   id: 
   folder: 
   debug: 0
@@ -372,6 +377,12 @@ Prefab:
     - {fileID: 114894795057741748, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1528269192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
+    type: 2}
+  m_PrefabInternal: {fileID: 1528269191}
+  m_Script: {fileID: 11500000, guid: 3c5d064b252206c4faf00b5f22dae6b1, type: 3}
 --- !u!1 &1583892385
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,3 +449,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1914605113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1641406523596634, guid: b3f2d699d79866a4bb88ddb58e67d193,
+    type: 2}
+  m_PrefabInternal: {fileID: 1528269191}
+--- !u!114 &1914605114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1914605113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f31872663cf1145b44efda88d02c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetScript: {fileID: 1528269192}
+  BarColor: {r: 0.723286, g: 0.2971698, b: 1, a: 1}
+  id: 
+  folder: 
+  debug: 0
+  targetDirectory: 
+  sourceScene: 
+  usePanel: 1
+  usePresets: 1
+  currentPreset: 
+  presetList: []
+  NbAugmentaPersons: 0
+  MeterPerPixel: 0
+  FlipX: 0
+  FlipY: 0
+  AugmentaMode: 
+  AskedPersons: 0
+  Mire: 0
+  AugmentaDebug: 0
+  DebugTransparency: 0
+  Modes: []
+  MyAugmentaArea: {fileID: 0}
