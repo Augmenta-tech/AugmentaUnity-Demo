@@ -7,8 +7,11 @@ public class AugmentaAreaControllable : Controllable
 {
     [Header("Global Augmenta settings")]
 
+    [OSCProperty]
+    public int InputPort;
+
     [OSCProperty(isInteractible = false)]
-    public int NbAugmentaPersons;
+    public int NbAugmentaPoints;
 
     [OSCProperty]
     public float MeterPerPixel;
@@ -19,12 +22,12 @@ public class AugmentaAreaControllable : Controllable
     [OSCProperty]
     public bool FlipY;
 
-    [Header("Persons")]
+    [Header("Points")]
     [OSCProperty(TargetList = "Modes")]
     public string AugmentaMode;
 
     [OSCProperty]
-    public int AskedPersons;
+    public int AskedPoints;
 
     [Header("Debug")]
     [OSCProperty]
@@ -45,7 +48,7 @@ public class AugmentaAreaControllable : Controllable
         Modes.Add(AugmentaPersonType.AllPersons.ToString());
         Modes.Add(AugmentaPersonType.Oldest.ToString());
         Modes.Add(AugmentaPersonType.Newest.ToString());
- 
+
         DebugTransparency = 1.0f;
         base.Awake();
     }

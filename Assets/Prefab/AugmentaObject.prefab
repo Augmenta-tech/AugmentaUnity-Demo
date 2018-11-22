@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pid: 0
   LoopAliveAnimation: 1
-  scale: 1
+  scale: 0.2
   AppearAnimDuration: 1
   AppearAnimCurve:
     serializedVersion: 2
@@ -113,7 +113,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
+      value: 0.85
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.85
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 1
+      value: 0.85
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -163,8 +163,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 1
+      time: -0.012500763
+      value: 0.84996796
       inSlope: 0.02080988
       outSlope: 0.02080988
       tangentMode: 0

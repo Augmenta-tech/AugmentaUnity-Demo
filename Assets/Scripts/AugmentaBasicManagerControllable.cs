@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AugmentaBasicManagerControllable : Controllable {
 
-    public AugmentaBasicManager augmentaBasicManager;
-
     [OSCProperty]
     public float PointTimeOut;
 
@@ -16,19 +14,4 @@ public class AugmentaBasicManagerControllable : Controllable {
     [OSCProperty]
     [Range(1, 20)]
     public int VelocityAverageValueCount;
-
-    public override void Awake()
-    {
-        if (augmentaBasicManager == null)
-            augmentaBasicManager = FindObjectOfType<AugmentaBasicManager>();
-
-        if (augmentaBasicManager == null)
-        {
-            Debug.LogWarning("Can't find " + this.GetType().Name + " script to control !");
-            return;
-        }
-
-        TargetScript = augmentaBasicManager;
-        base.Awake();
-    }
 }
