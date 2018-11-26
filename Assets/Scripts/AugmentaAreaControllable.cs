@@ -11,7 +11,7 @@ public class AugmentaAreaControllable : Controllable
     public int InputPort;
 
     [OSCProperty(isInteractible = false)]
-    public int NbAugmentaPoints;
+    public int NbAugmentaPeople;
 
     [OSCProperty]
     public float MeterPerPixel;

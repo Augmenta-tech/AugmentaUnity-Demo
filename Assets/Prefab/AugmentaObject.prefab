@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ed5b2ec3269634b8931a160d11c418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  augmentaAreaAnchor: {fileID: 0}
   pid: 0
   LoopAliveAnimation: 1
   scale: 0.2
@@ -123,7 +124,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  AliveAnimDuration: 2
+  AliveAnimDuration: 3
   AliveAnimCurve:
     serializedVersion: 2
     m_Curve:

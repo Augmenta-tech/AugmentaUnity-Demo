@@ -189,6 +189,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 251724430}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &252217583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1621650413}
+  m_Script: {fileID: 11500000, guid: 362e7420a46399f47968d1dc0e41a483, type: 3}
 --- !u!1 &289279828
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +238,7 @@ MonoBehaviour:
   alwaysUpdatePostProcess: 0
   useAnchor: 1
   augmentaAreaAnchor: {fileID: 1602895474}
+  linkedAugmentaArea: {fileID: 0}
   updateAugmentaOnStart: 1
   alwaysUpdateAugmenta: 0
   Zoom: 1
@@ -255,9 +262,10 @@ MonoBehaviour:
   volumeTrigger: {fileID: 289279834}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 256
   stopNaNPropagation: 1
-  antialiasingMode: 0
+  finalBlitToCameraTarget: 1
+  antialiasingMode: 2
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -370,12 +378,6 @@ Transform:
   m_Father: {fileID: 1602895475}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &510106331 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114183653244636344, guid: 915af05f794565e44897c1de5f8dd2a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 1621650413}
-  m_Script: {fileID: 11500000, guid: 4e278c1202c0df244ab1a7c4ac2ad238, type: 3}
 --- !u!4 &510106333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8,
@@ -428,7 +430,23 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 2}
+      propertyPath: linkedAugmentaAreaId
+      value: Sol
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255069118496728, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 2}
+      propertyPath: linkedAugmentaArea
+      value: 
+      objectReference: {fileID: 524408532}
+    - target: {fileID: 114255069118496728, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 2}
+      propertyPath: augmentaAreaAnchor
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114792479448016914, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
   m_IsPrefabAsset: 0
 --- !u!114 &524408532 stripped
@@ -530,7 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ed681456407ae4892ec379fa5db28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetScript: {fileID: 510106331}
+  TargetScript: {fileID: 252217583}
   BarColor: {r: 0, g: 0.79850745, b: 0.8584906, a: 1}
   id: AugmentaBasicManager-Sol
   folder: 
@@ -568,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ed681456407ae4892ec379fa5db28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetScript: {fileID: 1602895473}
+  TargetScript: {fileID: 1602895474}
   BarColor: {r: 0, g: 0.8, b: 0.85882354, a: 1}
   id: AugmentaBasicManager-Mur
   folder: 
@@ -787,7 +805,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1602895475}
   - component: {fileID: 1602895474}
-  - component: {fileID: 1602895473}
   m_Layer: 0
   m_Name: AugmentaAreaAnchorMur
   m_TagString: Untagged
@@ -795,22 +812,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1602895473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1602895471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e278c1202c0df244ab1a7c4ac2ad238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PrefabToInstantiate: {fileID: 1676155804350704, guid: 6e281715cbdc31e439370780f4893989,
-    type: 2}
-  PositionFollowTightness: 10
-  VelocityAverageValueCount: 1
-  linkedAugmentaAreaAnchor: {fileID: 1602895474}
 --- !u!114 &1602895474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +825,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedAugmentaAreaId: Mur
+  PrefabToInstantiate: {fileID: 1676155804350704, guid: 6e281715cbdc31e439370780f4893989,
+    type: 2}
+  PositionFollowTightness: 10
+  VelocityAverageValueCount: 1
   Width: 1280
   Height: 800
   MeterPerPixel: 0.005
@@ -892,7 +897,24 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 2}
+      propertyPath: PrefabToInstantiate
+      value: 
+      objectReference: {fileID: 1676155804350704, guid: 6e281715cbdc31e439370780f4893989,
+        type: 2}
+    - target: {fileID: 114202902021390870, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 2}
+      propertyPath: volumeLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202902021390870, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 2}
+      propertyPath: antialiasingMode
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114183653244636344, guid: 915af05f794565e44897c1de5f8dd2a8, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 915af05f794565e44897c1de5f8dd2a8, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1790835554
@@ -963,7 +985,8 @@ MonoBehaviour:
   alwaysUpdateCamera: 0
   alwaysUpdatePostProcess: 0
   useAnchor: 0
-  augmentaAreaAnchor: {fileID: 1790835559}
+  augmentaAreaAnchor: {fileID: 0}
+  linkedAugmentaArea: {fileID: 1790835555}
   updateAugmentaOnStart: 0
   alwaysUpdateAugmenta: 0
   Zoom: 1
@@ -982,8 +1005,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1790835560}
   - component: {fileID: 1790835561}
-  - component: {fileID: 1790835563}
-  - component: {fileID: 1790835559}
   m_Layer: 0
   m_Name: AugmentaDebugger
   m_TagString: Untagged
@@ -991,24 +1012,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1790835559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1790835557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362e7420a46399f47968d1dc0e41a483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedAugmentaAreaId: Sol
-  Width: 0
-  Height: 0
-  MeterPerPixel: 0
-  DrawGizmos: 0
-  linkedAugmentaArea: {fileID: 1790835555}
-  augmentaCamera: {fileID: 1790835556}
 --- !u!4 &1790835560
 Transform:
   m_ObjectHideFlags: 0
@@ -1036,11 +1039,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b07ef0c78283743a78529b6b3d7c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  linkedAugmentaAreaId: Mur
   PrefabToInstantiate: {fileID: 1306760035502730, guid: 2cddff41ae39f484194d19eb26097d48,
     type: 2}
   PositionFollowTightness: 20
   VelocityAverageValueCount: 1
-  linkedAugmentaAreaAnchor: {fileID: 1790835559}
+  Width: 0
+  Height: 0
+  MeterPerPixel: 0
+  DrawGizmos: 0
+  linkedAugmentaArea: {fileID: 0}
+  augmentaCamera: {fileID: 0}
   Background: {fileID: 251724430}
 --- !u!4 &1790835562
 Transform:
@@ -1058,25 +1067,6 @@ Transform:
   m_Father: {fileID: 1414580447}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &1790835563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114792479448016914, guid: b3f2d699d79866a4bb88ddb58e67d193,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1790835557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362e7420a46399f47968d1dc0e41a483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linkedAugmentaAreaId: Sol
-  Width: 0
-  Height: 0
-  MeterPerPixel: 0
-  DrawGizmos: 0
-  linkedAugmentaArea: {fileID: 1790835555}
-  augmentaCamera: {fileID: 1790835556}
 --- !u!4 &2004599037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193,
@@ -1119,6 +1109,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   stopNaNPropagation: 1
+  finalBlitToCameraTarget: 1
   antialiasingMode: 0
   temporalAntialiasing:
     jitterSpread: 0.75
