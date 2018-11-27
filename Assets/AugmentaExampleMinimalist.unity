@@ -422,31 +422,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
+    - target: {fileID: 114545180351306980, guid: b3f2d699d79866a4bb88ddb58e67d193,
         type: 2}
-      propertyPath: linkedAugmentaAreaId
-      value: Sol
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114255069118496728, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: linkedAugmentaArea
-      value: 
-      objectReference: {fileID: 524408532}
-    - target: {fileID: 114255069118496728, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 2}
-      propertyPath: augmentaAreaAnchor
-      value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114792479448016914, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 2}
   m_IsPrefabAsset: 0
 --- !u!114 &524408532 stripped
@@ -527,7 +508,7 @@ MonoBehaviour:
   currentPreset: 
   presetList: []
   InputPort: 0
-  NbAugmentaPoints: 0
+  NbAugmentaPeople: 0
   MeterPerPixel: 0
   FlipX: 0
   FlipY: 0
@@ -623,7 +604,7 @@ MonoBehaviour:
   currentPreset: 
   presetList: []
   InputPort: 12001
-  NbAugmentaPoints: 0
+  NbAugmentaPeople: 0
   MeterPerPixel: 0
   FlipX: 0
   FlipY: 0
@@ -889,32 +870,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
-        type: 2}
-      propertyPath: PrefabToInstantiate
-      value: 
-      objectReference: {fileID: 1676155804350704, guid: 6e281715cbdc31e439370780f4893989,
-        type: 2}
-    - target: {fileID: 114202902021390870, guid: 915af05f794565e44897c1de5f8dd2a8,
-        type: 2}
-      propertyPath: volumeLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 114202902021390870, guid: 915af05f794565e44897c1de5f8dd2a8,
-        type: 2}
-      propertyPath: antialiasingMode
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114183653244636344, guid: 915af05f794565e44897c1de5f8dd2a8, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 915af05f794565e44897c1de5f8dd2a8, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1790835554
@@ -946,24 +902,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5d064b252206c4faf00b5f22dae6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mute: 0
-  Mire: 0
-  AugmentaDebugger: {fileID: 1790835561}
-  _augmentaDebug: 0
-  _debugTransparency: 1
-  DrawGizmos: 1
   mainAugmentaCamera: {fileID: 1790835556}
   augmentaAreaId: Mur
   defaultInputPort: 12001
+  connected: 0
   MeterPerPixel: 0.005
   Zoom: 1
   AspectRatio: 0
   FlipX: 0
   FlipY: 0
   PersonTimeOut: 1
-  NbAugmentaPersons: 247
+  NbAugmentaPeople: 0
   ActualPersonType: 0
-  AskedPersons: 1
+  AskedPeople: 1
+  Mute: 0
+  Mire: 0
+  AugmentaDebugger: {fileID: 1790835561}
+  _augmentaDebug: 0
+  _debugTransparency: 1
+  DrawGizmos: 1
+  overlays: []
 --- !u!114 &1790835556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1159,7 +1117,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2133316050}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09e531f25570e604d8fb78aee77125a9, type: 3}
   m_Name: 
