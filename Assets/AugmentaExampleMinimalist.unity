@@ -112,6 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &31345945 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
+    type: 3}
+  m_PrefabInstance: {fileID: 524408531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5d064b252206c4faf00b5f22dae6b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &251724430
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,6 +451,18 @@ PrefabInstance:
       objectReference: {fileID: 1042540549}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
+--- !u!114 &789542678 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1621650413}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362e7420a46399f47968d1dc0e41a483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1041816965
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +516,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1160606518}
+  - component: {fileID: 1160606517}
+  - component: {fileID: 1160606516}
+  - component: {fileID: 1160606520}
+  - component: {fileID: 1160606519}
   m_Layer: 0
   m_Name: Controllables
   m_TagString: Untagged
@@ -499,6 +527,78 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1160606516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160606515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d608b87930dd44cabf700538002104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetScript: {fileID: 31345945}
+  BarColor: {r: 1, g: 1, b: 1, a: 1}
+  id: AugmentaAreaSol
+  folder: 
+  debug: 0
+  targetDirectory: 
+  sourceScene: 
+  usePanel: 1
+  usePresets: 1
+  currentPreset: 
+  presetList: []
+  cameraRendering: 0
+  InputPort: 0
+  connected: 0
+  MeterPerPixel: 0
+  FlipX: 0
+  FlipY: 0
+  NbAugmentaPeople: 0
+  AugmentaMode: 
+  AskedPeople: 0
+  Mire: 0
+  AugmentaDebug: 0
+  DebugTransparency: 0
+  Modes: []
+--- !u!114 &1160606517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160606515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05d608b87930dd44cabf700538002104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetScript: {fileID: 1790835555}
+  BarColor: {r: 1, g: 1, b: 1, a: 1}
+  id: AugmentaAreaMur
+  folder: 
+  debug: 0
+  targetDirectory: 
+  sourceScene: 
+  usePanel: 1
+  usePresets: 1
+  currentPreset: 
+  presetList: []
+  cameraRendering: 0
+  InputPort: 0
+  connected: 0
+  MeterPerPixel: 0
+  FlipX: 0
+  FlipY: 0
+  NbAugmentaPeople: 0
+  AugmentaMode: 
+  AskedPeople: 0
+  Mire: 0
+  AugmentaDebug: 0
+  DebugTransparency: 0
+  Modes: []
 --- !u!4 &1160606518
 Transform:
   m_ObjectHideFlags: 0
@@ -513,6 +613,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1160606519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160606515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0352b5b78a044346874ad8d51081fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetScript: {fileID: 789542678}
+  BarColor: {r: 1, g: 1, b: 1, a: 1}
+  id: AugmentaAreaAnchorSol
+  folder: 
+  debug: 0
+  targetDirectory: 
+  sourceScene: 
+  usePanel: 1
+  usePresets: 1
+  currentPreset: 
+  presetList: []
+  distanceToArea: 0
+  PointTimeOut: 0
+  PositionFollowTightness: 0
+  VelocityAverageValueCount: 0
+--- !u!114 &1160606520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160606515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0352b5b78a044346874ad8d51081fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetScript: {fileID: 1602895474}
+  BarColor: {r: 1, g: 1, b: 1, a: 1}
+  id: AugmentaAreaAnchorMur
+  folder: 
+  debug: 0
+  targetDirectory: 
+  sourceScene: 
+  usePanel: 1
+  usePresets: 1
+  currentPreset: 
+  presetList: []
+  distanceToArea: 0
+  PointTimeOut: 0
+  PositionFollowTightness: 0
+  VelocityAverageValueCount: 0
 --- !u!1001 &1295999164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -744,12 +898,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041816966}
     m_Modifications:
-    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
-        type: 3}
-      propertyPath: PrefabToInstantiate
-      value: 
-      objectReference: {fileID: 1676155804350704, guid: c76354004b9135f4ea9c7dddb1c3632e,
-        type: 3}
     - target: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3107452
@@ -782,6 +930,12 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: PrefabToInstantiate
+      value: 
+      objectReference: {fileID: 1676155804350704, guid: c76354004b9135f4ea9c7dddb1c3632e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
 --- !u!1 &1790835554

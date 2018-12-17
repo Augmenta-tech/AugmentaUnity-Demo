@@ -7,8 +7,14 @@ public class AugmentaAreaControllable : Controllable
 {
     [Header("Global Augmenta settings")]
 
+    [OSCProperty]
+    public bool cameraRendering;
+
+    [OSCProperty]
+    public int InputPort;
+
     [OSCProperty(isInteractible = false)]
-    public int NbAugmentaPoints;
+    public bool connected;
 
     [OSCProperty]
     public float MeterPerPixel;
@@ -20,13 +26,18 @@ public class AugmentaAreaControllable : Controllable
     public bool FlipY;
 
     [Header("Points")]
+
+    [OSCProperty(isInteractible = false)]
+    public int NbAugmentaPeople;
+
     [OSCProperty(TargetList = "Modes")]
     public string AugmentaMode;
 
     [OSCProperty]
-    public int AskedPoints;
+    public int AskedPeople;
 
     [Header("Debug")]
+
     [OSCProperty]
     public bool Mire;
 
@@ -39,38 +50,26 @@ public class AugmentaAreaControllable : Controllable
 
     public List<string> Modes;
 
-    public AugmentaArea MyAugmentaArea;
-
     public override void Awake()
     {
-        if (MyAugmentaArea == null)
-            MyAugmentaArea = FindObjectOfType<AugmentaArea>();
-
-        if (MyAugmentaArea == null)
-        {
-            Debug.LogWarning("Can't find " + this.GetType().Name + " script to control !");
-            return;
-        }
-
-        AugmentaMode = MyAugmentaArea.ActualPersonType.ToString();
+        AugmentaMode = ((AugmentaArea)TargetScript).ActualPersonType.ToString();
         Modes.Add(AugmentaPersonType.AllPeople.ToString());
         Modes.Add(AugmentaPersonType.Oldest.ToString());
         Modes.Add(AugmentaPersonType.Newest.ToString());
  
         DebugTransparency = 1.0f;
-        TargetScript = MyAugmentaArea;
         base.Awake();
     }
 
     public override void OnUiValueChanged(string name)
     {
         base.OnUiValueChanged(name);
-        MyAugmentaArea.ActualPersonType = (AugmentaPersonType)Enum.Parse(typeof(AugmentaPersonType), AugmentaMode);
+        ((AugmentaArea)TargetScript).ActualPersonType = (AugmentaPersonType)Enum.Parse(typeof(AugmentaPersonType), AugmentaMode);
     }
 
     public override void OnScriptValueChanged(string name)
     {
         base.OnScriptValueChanged(name);
-        AugmentaMode = MyAugmentaArea.ActualPersonType.ToString();
+        AugmentaMode = ((AugmentaArea)TargetScript).ActualPersonType.ToString();
     }
 }

@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AugmentaBasicManagerControllable : Controllable {
+public class AugmentaAreaAnchorControllable : Controllable {
+
+    [Header("Augmenta Manager Settings")]
+
+    [OSCProperty]
+    [Range(0.0f, 50.0f)]
+    public float distanceToArea;
 
     [OSCProperty]
     public float PointTimeOut;

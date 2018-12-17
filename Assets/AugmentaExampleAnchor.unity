@@ -144,12 +144,6 @@ PrefabInstance:
       propertyPath: volumeLayer.m_Bits
       value: 256
       objectReference: {fileID: 0}
-    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
-        type: 3}
-      propertyPath: PrefabToInstantiate
-      value: 
-      objectReference: {fileID: 1676155804350704, guid: c76354004b9135f4ea9c7dddb1c3632e,
-        type: 3}
     - target: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3107452
@@ -194,6 +188,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: PrefabToInstantiate
+      value: 
+      objectReference: {fileID: 1676155804350704, guid: c76354004b9135f4ea9c7dddb1c3632e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
 --- !u!1 &388207422
@@ -205,10 +205,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 388207423}
+  - component: {fileID: 388207425}
   - component: {fileID: 388207424}
-  - component: {fileID: 388207426}
   m_Layer: 0
-  m_Name: AugmentaManager
+  m_Name: Controllables
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,10 +237,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 388207422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e278c1202c0df244ab1a7c4ac2ad238, type: 3}
+  m_Script: {fileID: 11500000, guid: 05d608b87930dd44cabf700538002104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &388207426
+  TargetScript: {fileID: 948550756}
+  BarColor: {r: 1, g: 1, b: 1, a: 1}
+  id: 
+  folder: 
+  debug: 0
+  targetDirectory: 
+  sourceScene: 
+  usePanel: 1
+  usePresets: 1
+  currentPreset: 
+  presetList: []
+  cameraRendering: 0
+  InputPort: 0
+  connected: 0
+  MeterPerPixel: 0
+  FlipX: 0
+  FlipY: 0
+  NbAugmentaPeople: 0
+  AugmentaMode: 
+  AskedPeople: 0
+  Mire: 0
+  AugmentaDebug: 0
+  DebugTransparency: 0
+  Modes: []
+--- !u!114 &388207425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -249,9 +273,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 388207422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06ed681456407ae4892ec379fa5db28e, type: 3}
+  m_Script: {fileID: 11500000, guid: d0352b5b78a044346874ad8d51081fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetScript: {fileID: 1144404867}
+  BarColor: {r: 1, g: 1, b: 1, a: 1}
+  id: 
+  folder: 
+  debug: 0
+  targetDirectory: 
+  sourceScene: 
+  usePanel: 1
+  usePresets: 1
+  currentPreset: 
+  presetList: []
+  distanceToArea: 0
+  PointTimeOut: 0
+  PositionFollowTightness: 0
+  VelocityAverageValueCount: 0
 --- !u!1001 &399945301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -329,6 +368,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79c2718dd59243e4c90e145349e7dadf, type: 3}
+--- !u!114 &948550756 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
+    type: 3}
+  m_PrefabInstance: {fileID: 1052802698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5d064b252206c4faf00b5f22dae6b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1052802698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -368,6 +419,32 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114545180351306980, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: _shader
+      value: 
+      objectReference: {fileID: 4800000, guid: bc6a0edaa182a35449d12a1445ba38db, type: 3}
+    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: PrefabToInstantiate
+      value: 
+      objectReference: {fileID: 1306760035502730, guid: 2cddff41ae39f484194d19eb26097d48,
+        type: 3}
+    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: PositionFollowTightness
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: Background
+      value: 
+      objectReference: {fileID: 1052802701}
+    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: augmentaCamera
+      value: 
+      objectReference: {fileID: 46156482}
     - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
         type: 3}
       propertyPath: MeterPerPixel
@@ -398,32 +475,6 @@ PrefabInstance:
       propertyPath: AugmentaDebugger
       value: 
       objectReference: {fileID: 1052802700}
-    - target: {fileID: 114545180351306980, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 3}
-      propertyPath: _shader
-      value: 
-      objectReference: {fileID: 4800000, guid: bc6a0edaa182a35449d12a1445ba38db, type: 3}
-    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 3}
-      propertyPath: PrefabToInstantiate
-      value: 
-      objectReference: {fileID: 1306760035502730, guid: 2cddff41ae39f484194d19eb26097d48,
-        type: 3}
-    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 3}
-      propertyPath: PositionFollowTightness
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 3}
-      propertyPath: Background
-      value: 
-      objectReference: {fileID: 1052802701}
-    - target: {fileID: 114936487958699388, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 3}
-      propertyPath: augmentaCamera
-      value: 
-      objectReference: {fileID: 46156482}
     - target: {fileID: 1077286462109982, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -462,6 +513,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1052802698}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1144404867 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 225063565}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362e7420a46399f47968d1dc0e41a483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1530575427
 GameObject:
   m_ObjectHideFlags: 0
