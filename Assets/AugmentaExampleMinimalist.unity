@@ -487,6 +487,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: AugmentaAreaAnchorMur
       objectReference: {fileID: 0}
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: linkedAugmentaAreaId
+      value: Mur
+      objectReference: {fileID: 0}
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: augmentaCameraAnchor
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3107452
@@ -531,10 +541,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
-        type: 3}
-      propertyPath: linkedAugmentaAreaId
-      value: Mur
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdateTransform
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
@@ -721,6 +730,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AugmentaAreaAnchor
       objectReference: {fileID: 0}
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: augmentaCameraAnchor
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3107452
@@ -763,6 +777,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdateTransform
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
