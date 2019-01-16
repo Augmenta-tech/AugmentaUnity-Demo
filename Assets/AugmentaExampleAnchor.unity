@@ -185,6 +185,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdateTransform
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1617185360228212, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_Layer
       value: 8
