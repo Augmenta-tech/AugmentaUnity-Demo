@@ -79,10 +79,10 @@ This system of anchors is especially useful if you are working with different sc
 Augmenta Behaviours
 -------------------------------------
 
-You can add special behaviours to your instantiated Augmenta prefab in the AugmentaBasicManager by creating a class inheriting from AugmentaBasicManager with your custom behaviour when augmenta points appear/disappear.
+You can add special behaviours to the instantiation and handling of your Augmenta prefabs by creating a class inheriting from AugmentaBasicManager with your custom behaviour when augmenta points appear/disappear.
 
-You can add an AugmentaPersonBehaviour script to your "prefab to instantiate" to be able to add intro/alive/outro animation to your object.
-For this you have to create a new class which will inherit from AugmentaPersonBehaviour and override its intro/alive/outro coroutines. Check the AugmentaBasicPersonBehaviour script for an example of this animating a value along the object lives.
+You can also add special behaviours to your instantiated prefab by adding an AugmentaPersonBehaviour script to your "prefab to instantiate". The provided AugmentaPersonBehaviour script implements 3 coroutines Appear/Alive/Disappear that are called when the object is created/living/destroyed respectively.
+To implement your own animations you have to create a new class inheriting from AugmentaPersonBehaviour and override its intro/alive/outro coroutines. Check the AugmentaBasicPersonBehaviour script for an example of this animating a value along the object lives.
 
 Using Several Augmenta Streams
 -------------------------------------
