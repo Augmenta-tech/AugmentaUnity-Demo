@@ -157,6 +157,11 @@ PrefabInstance:
       propertyPath: defaultInputPort
       value: 12001
       objectReference: {fileID: 0}
+    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: scaling
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -307,6 +312,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114624218286067010, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: volumeLayer.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114624218286067010, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: antialiasingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4322944844106208, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0
@@ -315,7 +330,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114624218286067010, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
 --- !u!4 &524408532 stripped
 Transform:
@@ -416,6 +432,10 @@ PrefabInstance:
       propertyPath: alwaysUpdatePostProcess
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: disableAfterUpdate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1617185360228212, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -457,7 +477,7 @@ Transform:
   m_Children:
   - {fileID: 510106333}
   m_Father: {fileID: 1850362166}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1160606515
 GameObject:
@@ -506,7 +526,8 @@ MonoBehaviour:
   cameraRendering: 0
   InputPort: 0
   connected: 0
-  MeterPerPixel: 0
+  meterPerPixel: 0
+  scaling: 0
   FlipX: 0
   FlipY: 0
   NbAugmentaPeople: 0
@@ -543,7 +564,8 @@ MonoBehaviour:
   cameraRendering: 0
   InputPort: 0
   connected: 0
-  MeterPerPixel: 0
+  meterPerPixel: 0
+  scaling: 0
   FlipX: 0
   FlipY: 0
   NbAugmentaPeople: 0
@@ -806,7 +828,7 @@ Transform:
   m_Children:
   - {fileID: 674976626}
   m_Father: {fileID: 1850362166}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583892385
 GameObject:
@@ -1056,7 +1078,7 @@ Transform:
   m_Children:
   - {fileID: 1583892387}
   m_Father: {fileID: 1850362166}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1734545907 stripped
 MonoBehaviour:
@@ -1109,9 +1131,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1695322351}
   - {fileID: 1414580447}
   - {fileID: 1041816966}
-  - {fileID: 1695322351}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

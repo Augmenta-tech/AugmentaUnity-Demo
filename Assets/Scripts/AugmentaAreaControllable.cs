@@ -17,9 +17,12 @@ public class AugmentaAreaControllable : Controllable
     public bool connected;
 
     [OSCProperty]
-    public float MeterPerPixel;
+    public float meterPerPixel;
 
-    [OSCProperty]
+	[OSCProperty]
+	public float scaling;
+
+	[OSCProperty]
     public bool FlipX;
 
     [OSCProperty]
