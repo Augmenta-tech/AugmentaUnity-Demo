@@ -31,7 +31,7 @@ PostProcess
 
 AugmentaCameras use the postprocessing stack v2. To install it, open the package manager (Window/Package Manager) and install the package Post-processing.
 
-Note: There is currently an [issue](https://github.com/Unity-Technologies/PostProcessing/issues/789) with the last versions of PostProcessing (2.1.5-6), we recommand you to stay on version 2.1.4 for now.
+Note: There is currently an [issue](https://github.com/Unity-Technologies/PostProcessing/issues/789) with the last versions of PostProcessing (2.1.5-6), we recommand you stay on version 2.1.4 for now.
 
 Usage
 -------------------------------------
