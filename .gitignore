@@ -42,3 +42,4 @@ Assembly-*
 *.user
 *.unityproj
 *.booproj
+Logs/
