@@ -6,14 +6,13 @@ A Unity Augmenta library and example created by [Théoriz](http://www.theoriz.co
 Installation - Git user
 -------------------------------------
 
- - Create a new Unity [Unity](https://unity3d.com/fr) project and git it.
- - Add [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) as git submodule.
- - Add [GenUI](https://github.com/Theoriz/GenUI) as git submodule.
+ - Create a new [Unity](https://unity3d.com/fr) project and git it.
  - `$git submodule update --init --recursive` to pull everything.
 
  Installation - Non Git user
 -------------------------------------
-- Create a new Unity [Unity](https://unity3d.com/fr) project.
+- Create a new [Unity](https://unity3d.com/fr) project.
+- Download zip and unzip this project in `*ProjectFolder*'.
 - Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
 - Download zip and unzip [GenUI](https://github.com/Theoriz/GenUI) in `*ProjectFolder*/Assets/Plugins/GenUI`.
 - Download zip and unzip [OCF](https://github.com/Theoriz/OCF) in `*ProjectFolder*/Assets/Plugins/GenUI/Plugins/OCF/`.
@@ -31,8 +30,6 @@ PostProcess
 
 AugmentaCameras use the postprocessing stack v2. To install it, open the package manager (Window/Package Manager) and install the package Post-processing.
 
-Note: There is currently an [issue](https://github.com/Unity-Technologies/PostProcessing/issues/789) with the last versions of PostProcessing (2.1.5-6), we recommand you stay on version 2.1.4 for now.
-
 Usage
 -------------------------------------
 
@@ -45,6 +42,8 @@ To start developping your application you need Augmenta data, for this use our [
 - Drop the AugmentaAreaAnchor prefab in it.
 
 - Drop the GenUI prefab in it.
+
+- Link the AugmentaArea and AugmentaAreaAnchor by giving them the same ID (in the ID string parameters).
 
 - Run the scene.
 
@@ -136,4 +135,4 @@ https://github.com/Theoriz/Augmenta/wiki
 Version
 -------------
 
-Unity 2019.1.0f2
+Unity 2019.1.7f1
