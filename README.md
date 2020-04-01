@@ -17,16 +17,16 @@ Installation - Git user
 - Download zip and unzip this project in `*ProjectFolder*`.
 - Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity/tree/V2-Minimalist) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
 
-Usage
+How to use
 -------------------------------------
 
-To start developping your application you need Augmenta data, for this use our [Augmenta simulator](https://github.com/Theoriz/Augmenta-simulator/releases), download and launch it.
+To start developping your application you probably need Augmenta data. If you do not have an Augmenta node ready, you can use our [Augmenta simulator](https://github.com/Theoriz/Augmenta-simulator/releases).
 
 - Open your Unity scene.
 
-- Drop the Augmenta prefab in it.
+- Drop the Augmenta prefab (from Assets/Plugins/Augmenta/Prefabs) in it.
 
-- Set the input port in the AugmentaManager script to your protocol port.
+- Set the input port in the AugmentaManager script of the Augmenta prefab to your protocol port.
 
 - Run the scene.
 
