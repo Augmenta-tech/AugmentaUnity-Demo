@@ -16,7 +16,10 @@ public class AugmentaAreaControllable : Controllable
     [OSCProperty(isInteractible = false)]
     public bool connected;
 
-    [OSCProperty]
+    [OSCProperty(TargetList = "versions")]
+    public string version;
+
+    [OSCProperty][Tooltip("for protocol V1 only.")]
     public float meterPerPixel;
 
 	[OSCProperty]
@@ -52,6 +55,7 @@ public class AugmentaAreaControllable : Controllable
     public float DebugTransparency;
 
     public List<string> Modes;
+    public List<string> versions;
 
     public override void Awake()
     {
@@ -59,6 +63,10 @@ public class AugmentaAreaControllable : Controllable
         Modes.Add(AugmentaPersonType.AllPeople.ToString());
         Modes.Add(AugmentaPersonType.Oldest.ToString());
         Modes.Add(AugmentaPersonType.Newest.ToString());
+
+        version = ((AugmentaArea)TargetScript).protocolVersion.ToString();
+        versions.Add(ProtocolVersion.v1.ToString());
+        versions.Add(ProtocolVersion.v2.ToString());
  
         DebugTransparency = 1.0f;
         base.Awake();
@@ -68,11 +76,13 @@ public class AugmentaAreaControllable : Controllable
     {
         base.OnUiValueChanged(name);
         ((AugmentaArea)TargetScript).ActualPersonType = (AugmentaPersonType)Enum.Parse(typeof(AugmentaPersonType), AugmentaMode);
+        ((AugmentaArea)TargetScript).protocolVersion = (ProtocolVersion)Enum.Parse(typeof(ProtocolVersion), version);
     }
 
     public override void OnScriptValueChanged(string name)
     {
         base.OnScriptValueChanged(name);
         AugmentaMode = ((AugmentaArea)TargetScript).ActualPersonType.ToString();
+        version = ((AugmentaArea)TargetScript).protocolVersion.ToString();
     }
 }

@@ -94,8 +94,9 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -139,27 +140,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1230384563}
     m_Modifications:
+    - target: {fileID: 1077286462109982, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1641406523596634, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
       propertyPath: m_Name
       value: AugmentaAreaMur
       objectReference: {fileID: 0}
     - target: {fileID: 1641406523596634, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 3}
-      propertyPath: augmentaAreaId
-      value: Mur
-      objectReference: {fileID: 0}
-    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 3}
-      propertyPath: defaultInputPort
-      value: 12001
-      objectReference: {fileID: 0}
-    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
-        type: 3}
-      propertyPath: scaling
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
@@ -214,9 +204,20 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1077286462109982, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
-      propertyPath: m_Layer
-      value: 8
+    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: augmentaAreaId
+      value: Mur
+      objectReference: {fileID: 0}
+    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: defaultInputPort
+      value: 12001
+      objectReference: {fileID: 0}
+    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: scaling
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114624218286067010, guid: b3f2d699d79866a4bb88ddb58e67d193,
         type: 3}
@@ -249,6 +250,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1621650413}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &521453502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 521453503}
+  m_Layer: 0
+  m_Name: AugmentaAnchors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &521453503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521453502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1414580447}
+  - {fileID: 1041816966}
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &524408531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -256,6 +289,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1230384563}
     m_Modifications:
+    - target: {fileID: 1077286462109982, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1641406523596634, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
       propertyPath: m_Name
       value: AugmentaAreaSol
@@ -263,6 +300,14 @@ PrefabInstance:
     - target: {fileID: 1641406523596634, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322944844106208, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322944844106208, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4733989382475658, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
       propertyPath: m_LocalPosition.x
@@ -308,9 +353,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1077286462109982, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
-      propertyPath: m_Layer
-      value: 8
+    - target: {fileID: 114562361110998660, guid: b3f2d699d79866a4bb88ddb58e67d193,
+        type: 3}
+      propertyPath: protocolVersion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114624218286067010, guid: b3f2d699d79866a4bb88ddb58e67d193,
         type: 3}
@@ -321,14 +367,6 @@ PrefabInstance:
         type: 3}
       propertyPath: antialiasingMode
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322944844106208, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4322944844106208, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3f2d699d79866a4bb88ddb58e67d193, type: 3}
@@ -345,14 +383,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1414580447}
     m_Modifications:
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: updateTransformOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: updatePostProcessOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: updateAugmentaOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdateAugmenta
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: cameraType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdateTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdatePostProcess
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: disableAfterUpdate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1470022884545152, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_Name
       value: AugmentaAreaAnchor
       objectReference: {fileID: 0}
-    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
-        type: 3}
-      propertyPath: linkedAugmentaAreaId
-      value: Mur
+    - target: {fileID: 1617185360228212, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -403,41 +472,10 @@ PrefabInstance:
       propertyPath: volumeLayer.m_Bits
       value: 256
       objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: updateTransformOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: updatePostProcessOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: updateAugmentaOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: alwaysUpdateAugmenta
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: cameraType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: alwaysUpdateTransform
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: alwaysUpdatePostProcess
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: disableAfterUpdate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1617185360228212, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: m_Layer
-      value: 8
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: linkedAugmentaAreaId
+      value: Mur
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
@@ -475,8 +513,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 510106333}
-  m_Father: {fileID: 1850362166}
-  m_RootOrder: 2
+  m_Father: {fileID: 521453503}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1160606515
 GameObject:
@@ -586,7 +624,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1160606519
 MonoBehaviour:
@@ -705,7 +743,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1249043968
 MonoBehaviour:
@@ -752,8 +790,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 674976626}
-  m_Father: {fileID: 1850362166}
-  m_RootOrder: 1
+  m_Father: {fileID: 521453503}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583892385
 GameObject:
@@ -780,8 +818,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583892385}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -853,6 +892,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041816966}
     m_Modifications:
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdateTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdateCamera
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdateAugmenta
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: alwaysUpdatePostProcess
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: updateCameraOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: updatePostProcessOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: updateAugmentaOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: updateTransformOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: disableAfterUpdate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1470022884545152, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_Name
       value: AugmentaAreaAnchor
@@ -861,11 +940,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
-        type: 3}
-      propertyPath: augmentaCameraAnchor
-      value: 
-      objectReference: {fileID: 2022899025}
+    - target: {fileID: 1617185360228212, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617185360228212, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4367033815543688, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -910,59 +992,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114202902021390870, guid: 915af05f794565e44897c1de5f8dd2a8,
-        type: 3}
-      propertyPath: volumeLayer.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: alwaysUpdateTransform
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: alwaysUpdateCamera
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: alwaysUpdateAugmenta
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: alwaysUpdatePostProcess
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: updateCameraOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: updatePostProcessOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: updateAugmentaOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: updateTransformOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: disableAfterUpdate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 289279835, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1617185360228212, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1617185360228212, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4824704955623244, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
       propertyPath: m_LocalPosition.z
       value: 10
@@ -971,6 +1000,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ClearFlags
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202902021390870, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: volumeLayer.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: augmentaCameraAnchor
+      value: 
+      objectReference: {fileID: 2022899025}
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: protocolVersion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: Width
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114784919723292498, guid: 915af05f794565e44897c1de5f8dd2a8,
+        type: 3}
+      propertyPath: Height
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 915af05f794565e44897c1de5f8dd2a8, type: 3}
@@ -1015,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4679437618935694, guid: 79c2718dd59243e4c90e145349e7dadf, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4679437618935694, guid: 79c2718dd59243e4c90e145349e7dadf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1029,16 +1083,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -1047,6 +1091,16 @@ PrefabInstance:
     - target: {fileID: 224261597021104126, guid: 79c2718dd59243e4c90e145349e7dadf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224579476644313692, guid: 79c2718dd59243e4c90e145349e7dadf,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1134,10 +1188,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1695322351}
-  - {fileID: 1414580447}
-  - {fileID: 1041816966}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2022899025 stripped
 MonoBehaviour:
