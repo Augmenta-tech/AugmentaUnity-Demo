@@ -1,7 +1,8 @@
 ﻿Augmenta for Unity
 =======================
 
-A Unity Augmenta library and example created by [Théoriz](http://www.theoriz.com/en/)
+A Unity Augmenta library and example created by [Théoriz](http://www.theoriz.com/en/).
+This is a complex version of the library with dependencies, for a minimalist version without dependencies check the V2-Minimalist branch.
 
 Installation - Git user
 -------------------------------------
