@@ -46,4 +46,4 @@ https://github.com/Theoriz/Augmenta/wiki
 Version
 -------------
 
-Unity 2019.3.8f1
+Unity 2019.3.9f1
