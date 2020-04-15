@@ -1,3 +1,6 @@
 [submodule "Assets/Plugins/Augmenta"]
 	path = Assets/Plugins/Augmenta
 	url = http://github.com/theoriz/augmentaunity
+[submodule "Assets/Plugins/Shared-Texture-Unity"]
+	path = Assets/Plugins/Shared-Texture-Unity
+	url = https://github.com/theoriz/shared-texture-unity
