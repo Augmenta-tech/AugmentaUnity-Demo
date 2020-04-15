@@ -211,6 +211,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1772874338564897810, guid: 3893de5ef0f42a048bd9142972e01291,
+        type: 3}
+      propertyPath: _inputPort
+      value: 12000
+      objectReference: {fileID: 0}
     - target: {fileID: 1772874338564897812, guid: 3893de5ef0f42a048bd9142972e01291,
         type: 3}
       propertyPath: m_Name
