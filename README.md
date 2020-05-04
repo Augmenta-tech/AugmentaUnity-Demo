@@ -5,19 +5,19 @@ A Unity Augmenta library and example created by [Théoriz](http://www.theoriz.co
 
 This is the minimalist version of the library. For a more complex version with additionnal dependencies, check the master branch.
 
-Installation - Git user
+Installation - Git User
 -------------------------------------
 
  - Create a new [Unity](https://unity3d.com/fr) project and git it.
  - `$git submodule update --init --recursive` to pull everything.
 
- Installation - Non Git user
+ Installation - Non Git User
 -------------------------------------
 - Create a new [Unity](https://unity3d.com/fr) project.
 - Download zip and unzip this project in `*ProjectFolder*`.
 - Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity/tree/V2-Minimalist) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
 
-How to use
+How to Use
 -------------------------------------
 
 To start developping your application you probably need Augmenta data. If you do not have an Augmenta node ready, you can use our [Augmenta simulator](https://github.com/Theoriz/Augmenta-simulator/releases).
@@ -31,6 +31,13 @@ To start developping your application you probably need Augmenta data. If you do
 - Run the scene.
 
 - You should see gizmos of your scene and persons in the scene view. You can add/remove debug objects visible in gameview with the Show Debug option
+
+Using Custom Object Prefabs
+-------------------------------------
+
+To instantiate your own proefab on each Augmenta object, add your prefab to the Custom Object Prefab parameter of the Augmenta Manager.
+
+You can change this prefab at runtime by calling the function `ChangeCustomObjectPrefab(GameObject newPrefab)` of the Augmenta Manager.
 
 Using Several Augmenta Streams
 -------------------------------------
