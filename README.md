@@ -35,7 +35,7 @@ To start developping your application you probably need Augmenta data. If you do
 Using Custom Object Prefabs
 -------------------------------------
 
-To instantiate your own proefab on each Augmenta object, add your prefab to the Custom Object Prefab parameter of the Augmenta Manager.
+To instantiate your own prefab on each Augmenta object, add your prefab to the Custom Object Prefab parameter of the Augmenta Manager.
 
 You can change this prefab at runtime by calling the function `ChangeCustomObjectPrefab(GameObject newPrefab)` of the Augmenta Manager.
 
