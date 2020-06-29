@@ -15,7 +15,7 @@ Installation - Git User
 -------------------------------------
 - Create a new [Unity](https://unity3d.com/fr) project.
 - Download zip and unzip this project in `*ProjectFolder*`.
-- Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity/tree/V2-Minimalist) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
+- Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
 
 How to Use
 -------------------------------------
@@ -53,4 +53,4 @@ https://github.com/Theoriz/Augmenta/wiki
 Version
 -------------
 
-Unity 2019.3.9f1
+Unity 2019.4.1f1
