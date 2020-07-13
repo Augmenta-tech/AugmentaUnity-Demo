@@ -200,7 +200,7 @@ PrefabInstance:
     - target: {fileID: 114087296273535996, guid: 9acccce0f1fd21747940a2d2c4334342,
         type: 3}
       propertyPath: sharingName
-      value: AugmentaSpout
+      value: 1 - AugmentaScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9acccce0f1fd21747940a2d2c4334342, type: 3}
