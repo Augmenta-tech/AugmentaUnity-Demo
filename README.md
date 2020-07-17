@@ -1,4 +1,4 @@
-Augmenta for Unity
+﻿menta for Unity
 =======================
 
 Unity examples using the Augmenta-Unity library created by [Théoriz](http://www.theoriz.com/en/).
@@ -71,6 +71,10 @@ This example shows how to use an Augmenta Video Output along with any camera in 
 
 In this workflow, the field of view of the camera is fixed and color padding is added to the output video texture to match the desired texture resolution.
 
+### 5 - SeveralAugmentaScenes
+
+In this example, two different Augmenta streams are received on two different ports and placed in the scene to simulate the usecase of an interactive floor and an interactive wall used together in the same scene.
+
 Augmenta Documentation
 -------------
 
@@ -79,4 +83,4 @@ https://github.com/Theoriz/Augmenta/wiki
 Version
 -------------
 
-Unity 2019.4.3f1
+Unity 2019.4.4f1
