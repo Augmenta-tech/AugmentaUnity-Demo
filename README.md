@@ -1,4 +1,4 @@
-﻿menta for Unity
+﻿Augmenta for Unity
 =======================
 
 Unity examples using the Augmenta-Unity library created by [Théoriz](http://www.theoriz.com/en/).
