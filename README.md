@@ -75,6 +75,15 @@ In this workflow, the field of view of the camera is fixed and color padding is 
 
 In this example, two different Augmenta streams are received on two different ports and placed in the scene to simulate the usecase of an interactive floor and an interactive wall used together in the same scene.
 
+### 6 - AugmentaToGameObject
+
+In this example, a custom object prefab is used to make a simple scene with squirrels react to Augmenta persons.
+
+### 7 - AugmentaToShader
+
+In this example, the Augmenta person data is send to a ripple shader in order to have the shader creates ripples under the Augmenta persons.
+
+
 Augmenta Documentation
 -------------
 
@@ -83,4 +92,4 @@ https://github.com/Theoriz/Augmenta/wiki
 Version
 -------------
 
-Unity 2019.4.4f1
+Unity 2019.4.6f1

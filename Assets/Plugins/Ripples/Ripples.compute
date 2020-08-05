@@ -1,0 +1,97 @@
+﻿#pragma kernel InitRipples
+#pragma kernel UpdateRipples
+
+float _RipplesWidth;
+float _RipplesHeight;
+float _RipplesScale;
+float _RipplesAttenuation;
+
+float _TextureWidth;
+float _TextureHeight;
+
+float4 _Mouse;
+
+int _AugmentaPointsCount;
+StructuredBuffer<float4> _AugmentaPoints;
+
+RWTexture2D<float4> _RipplesTextureRead;
+RWTexture2D<float4> _RipplesTextureWrite;
+
+float4 SampleTexture2DBilinear(RWTexture2D<float4> textureToSample, float2 coord) {
+
+	coord.x = min(max(coord.x, 0), _TextureWidth - 1);
+	coord.y = min(max(coord.y, 0), _TextureHeight - 1);
+
+	int x = coord.x;
+	int y = coord.y;
+
+	float fx = coord.x - x;
+	float fy = coord.y - y;
+
+	int xp1 = min(_TextureWidth - 1, x + 1);
+	int yp1 = min(_TextureHeight - 1, y + 1);
+
+	float4 p0 = textureToSample[uint2(x, y)];
+	float4 p1 = textureToSample[uint2(xp1, y)];
+	float4 p2 = textureToSample[uint2(x, yp1)];
+	float4 p3 = textureToSample[uint2(xp1, yp1)];
+
+	float4 x0, x1, result;
+
+	x0 = p0 * (1.0f - fx) + p1 * fx;
+	x1 = p2 * (1.0f - fx) + p3 * fx;
+
+	result = x0 * (1.0f - fy) + x1 * fy;
+
+	return result;
+}
+
+[numthreads(8, 8, 1)]
+void InitRipples(uint3 id : SV_DispatchThreadID)
+{
+	_RipplesTextureRead[id.xy] = float4(0.5f, 0.5f, 0, 0);
+	_RipplesTextureWrite[id.xy] = float4(0.5f, 0.5f, 0, 0);
+}
+
+[numthreads(8,8,1)]
+void UpdateRipples (uint3 id : SV_DispatchThreadID)
+{
+	float2 textureSize = float2(_TextureWidth, _TextureHeight);
+	float3 eps = float3(1.0f, 1.0f, 0.0f);
+
+	float4 c = SampleTexture2DBilinear(_RipplesTextureRead, id.xy);
+
+	float p11 = c.y;
+
+	float p10 = SampleTexture2DBilinear(_RipplesTextureRead, id.xy - eps.zy).x;
+	float p01 = SampleTexture2DBilinear(_RipplesTextureRead, id.xy - eps.xz).x;
+	float p21 = SampleTexture2DBilinear(_RipplesTextureRead, id.xy + eps.xz).x;
+	float p12 = SampleTexture2DBilinear(_RipplesTextureRead, id.xy + eps.zy).x;
+
+	float d = 0.0f;
+
+	// add ripples
+	//if(_Mouse.w == 1)
+	//	d += smoothstep(4.5, .5, length(float2(_Mouse.x, _Mouse.y) * textureSize - id.xy));
+
+	float minDistToPoint = 1000000000.0f;
+
+	for (int i = 0; i < _AugmentaPointsCount; i++) {
+		if (_AugmentaPoints[i].w == 1) {
+			float distToPoint = length(float2(_AugmentaPoints[i].x, _AugmentaPoints[i].y) * textureSize - id.xy) - _RipplesScale;
+
+			if (distToPoint < minDistToPoint)
+				minDistToPoint = distToPoint;
+
+			d += smoothstep(_RipplesHeight, _RipplesWidth, distToPoint);
+		}
+	}
+
+	// The actual propagation:
+	d += -(p11 - .5) * 2. + (p10 + p01 + p21 + p12 - 2.);
+	d *= 1.0f - _RipplesAttenuation; // dampening
+	d = d * .5 + .5;
+
+	// Put previous state as "y":
+	_RipplesTextureWrite[id.xy] = float4(d, c.x, minDistToPoint, 0);
+}
