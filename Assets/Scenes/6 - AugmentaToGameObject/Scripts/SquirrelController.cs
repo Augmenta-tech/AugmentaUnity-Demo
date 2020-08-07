@@ -31,15 +31,13 @@ public class SquirrelController : MonoBehaviour
     private float _timeSinceLastTargetChange = 0.0f;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         _animator = GetComponent<Animator>();
         GoToIdle();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         UpdateSquirrelBehaviour();
     }
 
@@ -50,13 +48,10 @@ public class SquirrelController : MonoBehaviour
 
     void UpdateSquirrelBehaviour() {
 
-        //Increase target timer
-        _timeSinceLastTargetChange += Time.deltaTime;
-
         //Find all targets
         _targets = FindObjectsOfType<SquirrelTarget>();
 
-        if(_targets.Length == 0) {
+        if (_targets.Length == 0) {
             //If no target found, go to idle animation
             _target = null;
             GoToIdle();
@@ -75,15 +70,21 @@ public class SquirrelController : MonoBehaviour
                 }
 
                 _timeSinceLastTargetChange = 0.0f;
+            } else {
+                //Update target distance 
+                _closestTargetDistance = Vector3.Distance(transform.position, _target.transform.position);
+
+                //Increase target timer
+                _timeSinceLastTargetChange += Time.deltaTime;
             }
 
             _targetDirection = (_target.transform.position - transform.position).normalized;
             _minPointDistance = _target.augmentaObject.highest.z > heightThreshold ? minPointDistanceHighHeight : minPointDistanceLowHeight;
 
-			switch (_currentState) {
+            switch (_currentState) {
                 case State.Idle:
 
-                    if(_closestTargetDistance < detectionDistance) {
+                    if (_closestTargetDistance < detectionDistance) {
                         //If in detection distance
                         if (_closestTargetDistance > _minPointDistance * 1.3f) {
                             //Move closer if too far
@@ -91,17 +92,17 @@ public class SquirrelController : MonoBehaviour
                         } else if (_closestTargetDistance < _minPointDistance * 0.7f) {
                             //Move away if too close
                             GoToMovingAway();
-						}
+                        }
                     }
-                    
+
                     break;
 
                 case State.MovingAway:
 
-                    if(_closestTargetDistance > _minPointDistance) {
+                    if (_closestTargetDistance > _minPointDistance) {
                         //Far enough, go to idle
                         GoToIdle();
-					}
+                    }
 
                     break;
 
@@ -113,7 +114,7 @@ public class SquirrelController : MonoBehaviour
                     }
 
                     break;
-			}
+            }
         }
 
         UpdatePosition();
@@ -122,16 +123,16 @@ public class SquirrelController : MonoBehaviour
 
     void UpdatePosition() {
 
-        if(_currentState == State.MovingCloser)
+        if (_currentState == State.MovingCloser)
             transform.position += _targetDirection * speed * Time.deltaTime;
-        else if(_currentState == State.MovingAway)
+        else if (_currentState == State.MovingAway)
             transform.position -= _targetDirection * speed * Time.deltaTime;
     }
 
     void UpdateRotation() {
 
-            transform.rotation = Quaternion.LookRotation(_currentState == State.MovingAway ? -_targetDirection : _targetDirection, Vector3.up);
-	}
+        transform.rotation = Quaternion.LookRotation(_currentState == State.MovingAway ? -_targetDirection : _targetDirection, Vector3.up);
+    }
 
     void GoToIdle() {
 
@@ -154,12 +155,12 @@ public class SquirrelController : MonoBehaviour
         UpdateAnimation(true);
     }
 
-	private void OnDrawGizmos() {
+    private void OnDrawGizmos() {
 
         if (!showGizmos)
             return;
 
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, _targetDirection);
-	}
+    }
 }
