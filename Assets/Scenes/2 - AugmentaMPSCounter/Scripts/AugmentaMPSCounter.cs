@@ -16,27 +16,33 @@ public class AugmentaMPSCounter : MonoBehaviour
 
     private int _messageCount = 0;
     private float _timer = 0;
-    private float _previousMessageTime = 0;
-    private List<float> _mpsList = new List<float>();
 
 	private void OnEnable() {
 
         augmentaManager.sceneUpdated += OnAugmentaSceneMessageReceived;
+
+        _timer = 0;
 	}
 
-    private void OnDisable() {
+	private void Update() {
+
+        _timer += Time.deltaTime;
+
+        if(_timer >= calculationWindow) {
+            augmentaMPS = _messageCount / _timer;
+            text.text = "Messages per seconds = " + augmentaMPS.ToString("F1");
+            _messageCount = 0;
+            _timer = 0;
+        }
+	}
+
+	private void OnDisable() {
 
         augmentaManager.sceneUpdated -= OnAugmentaSceneMessageReceived;
     }
 
 	void OnAugmentaSceneMessageReceived() {
 
-        //_messageCount++;
-
-        augmentaMPS = 1.0f / (Time.time - _previousMessageTime);
-
-        _previousMessageTime = Time.time;
-
-        text.text = "Messages per seconds = " + augmentaMPS.ToString("F1");
+        _messageCount++;
     }
 }

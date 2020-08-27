@@ -300,7 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   augmentaManager: {fileID: 1093255337}
   text: {fileID: 588006703}
-  calculationWindow: 10
+  calculationWindow: 0.5
   augmentaMPS: 0
 --- !u!4 &827148031
 Transform:
