@@ -97,13 +97,13 @@ In this example, a custom object prefab is used to make a simple scene with squi
 
 In this example, the Augmenta person data is send to a ripple shader in order to have the shader creates ripples under the Augmenta persons.
 
-![](https://media.giphy.com/media/frBheeR3bJ2KxDAzXh/giphy.gif)
+![](https://media.giphy.com/media/iKGxo1w593GKKVREXk/giphy.gif)
 
 ### 8 - AugmentaToVFXGraph
 
 In this example, the Augmenta person data is send to a VFXGraph in order to make the sand particle react to the oldest 3 persons in the scene.
 
-![](https://media.giphy.com/media/H83NoJu9HYU30TwpKX/giphy.gif)
+![](https://media.giphy.com/media/kc71FmUgEIg7elRTd7/giphy.gif)
 
 Augmenta Documentation
 -------------
