@@ -16,6 +16,8 @@ Installation
 - Create a new [Unity](https://unity3d.com/fr) project.
 - Download zip and unzip this project in `*ProjectFolder*`.
 - Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
+- Download zip and unzip [Shared-Texture-Unity](https://github.com/Theoriz/Shared-Texture-Unity) in `*ProjectFolder*/Assets/Plugins/SharedTextureUnity/`.
+
 
 How to Use
 -------------------------------------
