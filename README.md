@@ -107,6 +107,12 @@ In this example, the Augmenta person data is send to a VFXGraph in order to make
 
 ![](https://media.giphy.com/media/kc71FmUgEIg7elRTd7/giphy.gif)
 
+### 9 - FusionSpout
+
+In this example, the FusionSpout prefab is used to display a Spout coming from Augmenta Fusion on a quad fitted to an AugmentaVideoOutput.
+
+![](https://media.giphy.com/media/2e6Wkvgc284Bxh94ZY/giphy.gif)
+
 Augmenta Documentation
 -------------
 
@@ -115,4 +121,4 @@ https://github.com/Theoriz/Augmenta/wiki
 Version
 -------------
 
-Unity 2020.1.3f1
+Unity 2020.1.11f1
