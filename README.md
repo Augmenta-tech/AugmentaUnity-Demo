@@ -135,4 +135,4 @@ https://github.com/Theoriz/Augmenta/wiki
 Version
 -------------
 
-Unity 2020.1.11f1
+Unity 2020.2.7f1
