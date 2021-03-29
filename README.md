@@ -42,6 +42,14 @@ To instantiate your own prefab on each Augmenta object, add your prefab to the C
 
 You can change this prefab at runtime by calling the function `ChangeCustomObjectPrefab(GameObject newPrefab)` of the Augmenta Manager.
 
+#### Using Custom Behaviours
+
+You can implement custom spawn and destroy behaviours for your custom Augmenta objects by implementing the IAugmentaObjectBehaviour interface in a script of your object. If you do, its Spawn function will be called when the object is instantiated, and its Destroy function will be called when the object should be destroyed (i.e. when the corresponding AugmentaObject is destroyed).
+
+Note that if you implement the IAugmentaObjectBehaviour interface, the AugmentaObject will *NOT* destroy your object when it destroys itself, instead it will call the Destroy function of the interface. You should handle the destruction of the custom object yourself in the Destroy() function of the interface.
+
+An example use of the custom behaviours is shown in scene 10 - AugmentaObjectBehaviour.
+
 ### Using Several Augmenta Streams
 
 You can receive different Augmenta streams in the same Unity application as long as they are not on the same OSC port. You need to add an Augmenta prefab (i.e. AugmentaManager) for each incoming stream, then set each AugmentaManager ID and input port to listen to each protocol.
@@ -112,6 +120,12 @@ In this example, the Augmenta person data is send to a VFXGraph in order to make
 In this example, the FusionSpout prefab is used to display a Spout coming from Augmenta Fusion on a quad fitted to an AugmentaVideoOutput.
 
 ![](https://media.giphy.com/media/2e6Wkvgc284Bxh94ZY/giphy.gif)
+
+### 10 - AugmentaObjectBehaviour
+
+In this example, the IAugmentaObjectBehaviour interface is used in the custom object prefab to fade in and out a sphere rotating around each AugmentaObject.
+
+![](https://media.giphy.com/media/z5JYu475MKpQ0YFmVC/giphy.gif)
 
 Augmenta Documentation
 -------------
