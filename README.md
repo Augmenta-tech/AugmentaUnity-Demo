@@ -42,7 +42,7 @@ To instantiate your own prefab on each Augmenta object, add your prefab to the C
 
 You can change this prefab at runtime by calling the function `ChangeCustomObjectPrefab(GameObject newPrefab)` of the Augmenta Manager.
 
-#### Using Custom Behaviours
+**Using Custom Behaviours**
 
 You can implement custom spawn and destroy behaviours for your custom Augmenta objects by implementing the IAugmentaObjectBehaviour interface in a script of your object. If you do, its Spawn function will be called when the object is instantiated, and its Destroy function will be called when the object should be destroyed (i.e. when the corresponding AugmentaObject is destroyed).
 
