@@ -30,6 +30,7 @@ Library/
 # ===================================== #
 
 .vs/
+.vsconfig
 ExportedObj/
 obj/
 Assembly-*	
