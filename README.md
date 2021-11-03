@@ -130,7 +130,7 @@ In this example, the IAugmentaObjectBehaviour interface is used in the custom ob
 Augmenta Documentation
 -------------
 
-https://github.com/Theoriz/Augmenta/wiki
+https://github.com/Augmenta-tech/Augmenta/wiki
 
 Version
 -------------
