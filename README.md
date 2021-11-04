@@ -34,7 +34,7 @@ To start developping your application you probably need Augmenta data. If you do
 
 - Run the scene.
 
-- You should see gizmos of your scene and persons in the scene view. You can add/remove debug objects visible in gameview with the Show Debug option
+- You should see gizmos of your Augmenta scene and persons in the scene view. You can enable or disable debug objects with the Show Debug option of the AugmentaManager.
 
 ### Using Custom Object Prefabs
 
