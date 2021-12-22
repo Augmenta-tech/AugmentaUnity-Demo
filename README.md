@@ -6,6 +6,10 @@ Unity examples using the [Augmenta-Unity](https://github.com/theoriz/augmentauni
 Installation
 -------------------------------------
 
+### Unity asset store
+
+https://assetstore.unity.com/packages/tools/integration/augmenta-for-unity-206658
+
 ### Git User
 
  - Create a new [Unity](https://unity3d.com/fr) project and git it.
