@@ -157,7 +157,7 @@ Augmenta Documentation
 
 https://github.com/Augmenta-tech/Augmenta/wiki
 
-Last Tested Version
+Last Tested Unity Version
 -------------
 
 Unity 2021.2.10f1
