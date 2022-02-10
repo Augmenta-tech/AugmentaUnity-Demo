@@ -6,6 +6,10 @@ Unity examples using the [Augmenta-Unity](https://github.com/theoriz/augmentauni
 Installation
 -------------------------------------
 
+### Unity asset store
+
+https://assetstore.unity.com/packages/tools/integration/augmenta-for-unity-206658
+
 ### Git User
 
  - Create a new [Unity](https://unity3d.com/fr) project and git it.
@@ -34,7 +38,7 @@ To start developping your application you probably need Augmenta data. If you do
 
 - Run the scene.
 
-- You should see gizmos of your scene and persons in the scene view. You can add/remove debug objects visible in gameview with the Show Debug option
+- You should see gizmos of your Augmenta scene and persons in the scene view. You can enable or disable debug objects with the Show Debug option of the AugmentaManager.
 
 ### Using Custom Object Prefabs
 
@@ -151,7 +155,7 @@ You can also remove the Klak NDI package and the NDI scene if you do not intend 
 Augmenta Documentation
 -------------
 
-https://github.com/Theoriz/Augmenta/wiki
+https://github.com/Augmenta-tech/Augmenta/wiki
 
 Last Tested Version
 -------------
