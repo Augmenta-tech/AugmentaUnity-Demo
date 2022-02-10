@@ -127,12 +127,33 @@ In this example, the IAugmentaObjectBehaviour interface is used in the custom ob
 
 ![](https://media.giphy.com/media/z5JYu475MKpQ0YFmVC/giphy.gif)
 
+### 11 - FusionNDI
+
+In this example, the FusionNDI prefab is used to display an NDI coming from Augmenta Fusion on a quad fitted to an AugmentaVideoOutput.
+
+![](https://media.giphy.com/media/z5JYu475MKpQ0YFmVC/giphy.gif)
+
+### 12 - ImmersiveSpace
+
+In this example, an existing immersive space 3D model is imported and the Augmenta areas are mapped to the floor and walls of the space. The Fusion file for this space can be found in the Fusion folder of this scene.
+
+![](https://media.giphy.com/media/2pKH8zvjDqyfSCkbsX/giphy.gif)
+
+Known Issues
+-------------
+
+There is an [issue](https://github.com/keijiro/KlakNDI/issues/130) with Klak NDI that may cause an error when importing.
+
+To fix it, you can try switching between the different Api Compatibility Level in Project Settings/Player/Other Settings/Configuration.
+
+You can also remove the Klak NDI package and the NDI scene if you do not intend to use NDI.
+
 Augmenta Documentation
 -------------
 
 https://github.com/Theoriz/Augmenta/wiki
 
-Version
+Last Tested Version
 -------------
 
-Unity 2020.3.21f1
+Unity 2021.2.10f1
