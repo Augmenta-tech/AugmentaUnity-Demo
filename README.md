@@ -135,7 +135,7 @@ In this example, the IAugmentaObjectBehaviour interface is used in the custom ob
 
 In this example, the FusionNDI prefab is used to display an NDI coming from Augmenta Fusion on a quad fitted to an AugmentaVideoOutput.
 
-![](https://media.giphy.com/media/z5JYu475MKpQ0YFmVC/giphy.gif)
+![](https://media.giphy.com/media/2e6Wkvgc284Bxh94ZY/giphy.gif)
 
 ### 12 - ImmersiveSpace
 
