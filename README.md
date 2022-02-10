@@ -150,7 +150,7 @@ There is an [issue](https://github.com/keijiro/KlakNDI/issues/130) with Klak NDI
 
 To fix it, you can try switching between the different Api Compatibility Level in Project Settings/Player/Other Settings/Configuration.
 
-You can also remove the Klak NDI package and the NDI scene if you do not intend to use NDI.
+You can also remove the Klak NDI package and the 11 - FusionNDI folder if you do not intend to use NDI.
 
 Augmenta Documentation
 -------------
