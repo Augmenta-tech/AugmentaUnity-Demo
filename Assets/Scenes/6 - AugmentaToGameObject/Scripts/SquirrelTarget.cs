@@ -13,6 +13,16 @@ public class SquirrelTarget : MonoBehaviour
 
 	private Augmenta.AugmentaObject _augmentaObject;
 
+	private void OnEnable() {
+
+		SquirrelsManager.instance.targets.Add(this);
+	}
+
+	private void OnDisable() {
+
+		SquirrelsManager.instance.targets.Remove(this);
+	}
+
 	private void GetAugmentaObject() {
 
 		_augmentaObject = transform.parent.GetComponentInChildren<Augmenta.AugmentaObject>();

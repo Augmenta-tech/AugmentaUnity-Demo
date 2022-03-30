@@ -40,7 +40,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "12.1.4",
+      "version": "12.1.6",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
@@ -50,7 +50,7 @@
       }
     },
     "com.unity.render-pipelines.high-definition": {
-      "version": "12.1.4",
+      "version": "12.1.6",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
@@ -60,18 +60,18 @@
         "com.unity.modules.animation": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.terrain": "1.0.0",
-        "com.unity.render-pipelines.core": "12.1.4",
-        "com.unity.shadergraph": "12.1.4",
-        "com.unity.visualeffectgraph": "12.1.4",
-        "com.unity.render-pipelines.high-definition-config": "12.1.4"
+        "com.unity.render-pipelines.core": "12.1.6",
+        "com.unity.shadergraph": "12.1.6",
+        "com.unity.visualeffectgraph": "12.1.6",
+        "com.unity.render-pipelines.high-definition-config": "12.1.6"
       }
     },
     "com.unity.render-pipelines.high-definition-config": {
-      "version": "12.1.4",
+      "version": "12.1.6",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "12.1.4"
+        "com.unity.render-pipelines.core": "12.1.6"
       }
     },
     "com.unity.searcher": {
@@ -82,16 +82,16 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "12.1.4",
+      "version": "12.1.6",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "12.1.4",
+        "com.unity.render-pipelines.core": "12.1.6",
         "com.unity.searcher": "4.9.1"
       }
     },
     "com.unity.test-framework": {
-      "version": "1.1.29",
+      "version": "1.1.31",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -111,12 +111,12 @@
       }
     },
     "com.unity.visualeffectgraph": {
-      "version": "12.1.4",
+      "version": "12.1.6",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
-        "com.unity.shadergraph": "12.1.4",
-        "com.unity.render-pipelines.core": "12.1.4"
+        "com.unity.shadergraph": "12.1.6",
+        "com.unity.render-pipelines.core": "12.1.6"
       }
     },
     "jp.keijiro.klak.ndi": {

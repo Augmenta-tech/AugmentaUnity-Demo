@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.Profiling;
 using UnityEngine;
+using Augmenta;
 
 public class SquirrelController : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class SquirrelController : MonoBehaviour
 
     private Animator _animator;
 
-    private SquirrelTarget[] _targets;
     private SquirrelTarget _target;
     private Vector3 _targetDirection;
 
@@ -32,12 +32,14 @@ public class SquirrelController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+
         _animator = GetComponent<Animator>();
         GoToIdle();
     }
 
     // Update is called once per frame
     void Update() {
+
         UpdateSquirrelBehaviour();
     }
 
@@ -48,10 +50,7 @@ public class SquirrelController : MonoBehaviour
 
     void UpdateSquirrelBehaviour() {
 
-        //Find all targets
-        _targets = FindObjectsOfType<SquirrelTarget>();
-
-        if (_targets.Length == 0) {
+        if (SquirrelsManager.instance.targets.Count == 0) {
             //If no target found, go to idle animation
             _target = null;
             GoToIdle();
@@ -61,7 +60,7 @@ public class SquirrelController : MonoBehaviour
             if (_target == null || _timeSinceLastTargetChange > minTimeBetweenTargetChange) {
                 //Get closest target
                 _closestTargetDistance = 100000.0f;
-                foreach (SquirrelTarget target in _targets) {
+                foreach (SquirrelTarget target in SquirrelsManager.instance.targets) {
                     float _distance = Vector3.Distance(transform.position, target.transform.position);
                     if (_distance < _closestTargetDistance) {
                         _target = target;

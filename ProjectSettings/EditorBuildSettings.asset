@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/3 - AugmentaVideoOutput/3 - AugmentaVideoOutput.unity
+    guid: 996181f8c30177f45988bec57f87d44b
   m_configObjects: {}

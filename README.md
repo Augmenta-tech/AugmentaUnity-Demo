@@ -160,4 +160,4 @@ https://github.com/Augmenta-tech/Augmenta/wiki
 Last Tested Unity Version
 -------------
 
-Unity 2021.2.10f1
+Unity 2021.2.17f1
