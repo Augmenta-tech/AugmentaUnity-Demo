@@ -6,21 +6,19 @@ Unity examples using the [Augmenta-Unity](https://github.com/theoriz/augmentauni
 Installation
 -------------------------------------
 
-### Unity asset store
+### From the Unity asset store
 
 https://assetstore.unity.com/packages/tools/integration/augmenta-for-unity-206658
 
-### Git User
+### From Github using Git 
 
- - Create a new [Unity](https://unity3d.com/fr) project and git it.
- - `$git submodule update --init --recursive` to pull everything.
+This project uses submodules, you need to pull the submodules to get everything using `$git submodule update --init --recursive`.
 
-### Non Git User
+### From Github manually
 
-- Create a new [Unity](https://unity3d.com/fr) project.
-- Download zip and unzip this project in `*ProjectFolder*`.
-- Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) in `*ProjectFolder*/Assets/Plugins/Augmenta/`.
-- Download zip and unzip [Shared-Texture-Unity](https://github.com/Theoriz/Shared-Texture-Unity) in `*ProjectFolder*/Assets/Plugins/SharedTextureUnity/`.
+- Download zip and unzip this project.
+- Download zip and unzip [Augmenta Unity](https://github.com/Theoriz/AugmentaUnity) in `/Assets/Plugins/Augmenta/`.
+- Download zip and unzip [Shared-Texture-Unity](https://github.com/Theoriz/Shared-Texture-Unity) in `/Assets/Plugins/SharedTextureUnity/`.
 
 
 How to Use
