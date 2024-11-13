@@ -1,6 +1,16 @@
-Unity project examples demo
+Unity project for Asset Store publishing
 ===========================
 
-Unity project examples using the [Augmenta Unity Asset store plugin](https://assetstore.unity.com/packages/tools/integration/augmenta-for-unity-206658) created by [Théoriz](https://www.theoriz.com/).
+## How to publish a new package ##
 
-Check the documentation & tutorial here : [https://docs.augmenta.tech](https://docs.augmenta.tech)
+1. Create a new draft of Augmenta for Unity in the [Unity Publisher Portal](https://publisher.unity.com/)
+
+2. Download the latest version of the [AugmentaUnity](https://github.com/Augmenta-tech/augmentaunity) repository and add it in the Assets/AugmentaTech/AugmentaUnity/Runtime/ folder.
+
+3. Ensure the Samples scenes work.
+
+4. Use the Asset Store Tools to validate and upload the package, selecting the AugmentaTech folder as the folder path.
+
+5. Fill the rest of the draft on the Unity Publisher Portal.
+
+6. Submit.
