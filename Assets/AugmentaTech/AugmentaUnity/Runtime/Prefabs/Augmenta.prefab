@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1772874338564897812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1772874338564897813}
+  - component: {fileID: 1772874338564897810}
+  m_Layer: 0
+  m_Name: Augmenta
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1772874338564897813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772874338564897812}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1772874338564897810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772874338564897812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6216aad597d8a4e94fe7c0ef766a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  augmentaId: Main
+  _inputPort: 12000
+  portBinded: 0
+  receivingData: 0
+  protocolVersion: 1
+  pixelSize: 0.005
+  scaling: {x: 1, y: 1}
+  flipX: 0
+  flipY: 0
+  augmentaObjectTimeOut: 1
+  desiredAugmentaObjectType: 0
+  desiredAugmentaObjectCount: 1
+  velocitySmoothing: 0.5
+  positionOffsetFromVelocity: 0
+  positionFromBoundingBox: 0
+  augmentaScenePrefab: {fileID: 7870137636367897960, guid: 1f88dc5aedbc8814b9b3f0bf73b3c6b6,
+    type: 3}
+  augmentaObjectPrefab: {fileID: 9127892026477570146, guid: d1029461073db394a800b516377c2ab4,
+    type: 3}
+  customObjectPrefab: {fileID: 0}
+  customObjectPositionType: 0
+  customObjectRotationType: 0
+  customObjectScalingType: 0
+  videoOutputSizeInPixels: {x: 0, y: 0}
+  videoOutputSizeInMeters: {x: 0, y: 0}
+  videoOutputOffset: {x: 0, y: 0}
+  mute: 0
+  augmentaScene: {fileID: 0}
+  _showSceneDebug: 1
+  _showObjectDebug: 1

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8323288267989200192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8323288267989200254}
+  - component: {fileID: 8323288267989200193}
+  m_Layer: 0
+  m_Name: AugmentaVideoOutput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8323288267989200254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323288267989200192}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8323288267989200193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323288267989200192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc981ad089ad4e468a94af62c1203b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  augmentaManager: {fileID: 0}
+  camera: {fileID: 0}
+  paddingColor: {r: 0, g: 0, b: 0, a: 1}
+  autoOutputSizeInPixels: 1
+  autoOutputSizeInMeters: 1
+  autoOutputOffset: 1
+  botLeftCorner: {x: 0, y: 0, z: 0}
+  botRightCorner: {x: 0, y: 0, z: 0}
+  topLeftCorner: {x: 0, y: 0, z: 0}
+  topRightCorner: {x: 0, y: 0, z: 0}
+  _videoOutputSizeInPixels: {x: 1200, y: 1200}
+  _videoOutputSizeInMeters: {x: 0, y: 0}
+  _videoOutputOffset: {x: 0, y: 0}
+  _cameraMode: 2
