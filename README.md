@@ -9,7 +9,7 @@ Unity project for Asset Store publishing
 
 3. Ensure the Samples scenes work.
 
-4. Use the Asset Store Tools to validate and upload the package, selecting the AugmentaTech folder as the folder path.
+4. Use the Asset Store Tools (in the top menu bar of the Unity editor) to validate and upload the package, selecting the AugmentaTech folder as the folder path.
 
 5. Fill the rest of the draft on the Unity Publisher Portal.
 
